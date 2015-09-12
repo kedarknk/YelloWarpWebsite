@@ -1,0 +1,97 @@
+<html>
+	<head>
+			<script src="resources/js/jquery.min.js"></script>
+			<link rel="stylesheet" href="resources/css/bootstrap.min.css">
+			  <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+			  <link rel="stylesheet" type="text/css" href="resources/css/yellowarp.css">
+			  <script type="text/javascript" src="resources/js/jquery.arctext.js"></script> 
+	</head>
+	</head>
+	<script>
+		 $(document).ready(function() {
+			$('#information').hide();
+			$('#photo').arctext({radius:100});
+			$('#music').arctext({radius:80});
+			$('#about').arctext({radius:80});
+			$('#home').arctext({radius:80});
+			$('#contact').arctext({radius:80});
+			$('#services').arctext({radius:80});
+			$('#filmCrew').arctext({radius:100});
+			$('#logo').hide();
+		   $('#contact').css('color','#FF9900');
+		   $('#move').animate({left: '-=28.5em', top: '+=6em'}, 1000,function() {
+				//$('#information').fadeIn(1500);
+				$('#information').show({duration:1500,easing:'linear'});
+				$('#move').hide();
+				$('#logo').show();
+				$("#logo").css({top: '49%', left: '9em', position:'absolute'});
+				$('#contact').show();
+		   });
+		   
+		   $('a').click(function(e) {
+				e.preventDefault();
+				 var href = $(this).attr('href');
+				 if(href != 'contactus.html') {
+					/*$('#information').fadeOut(1500,function(o){
+						$('#logo').hide();
+						$('#move').show();
+						$('#move').animate({left: '+=28em', top: '-=5em'}, 1000,function() {
+							$('#move').hide();
+							$("#logo").css({top: 251, left: '38em', position:'absolute'});
+							$('#logo').show();
+							window.location.href = href;
+						});
+					});*/
+					$('#information').hide({duration:1500,easing:'linear',complete: function(){
+							$('#logo').hide();
+							$('#move').show();
+							$('#move').animate({left: '+=28.5em', top: '-=6em'}, 1000,function() {
+								$('#move').hide();
+								$("#logo").css({top: 251, left: '38em', position:'absolute'});
+								$('#logo').show();
+								window.location.href = href;
+							});
+						}
+					});
+				 }
+		   });
+		});
+	</script>
+	<body>
+	<div id="move" style="margin-top:16.3%;position:absolute;width:100%;text-align:center;"><img  src="resources/images/logoweb.png" width="17%"/></div>
+			<div class="row">
+			<div class="left-container" id="logo" style="width:100%;">
+				<img class="left" src="resources/images/logoweb.png" width="17%"/>
+				<a href='contactus.html' class='deg315' style="width:93px;"><span id="contact">Contact</span></a>
+				<a href='thefilmcrew.html' class='deg45' style="width:95px;"><span id="filmCrew">The Film Crew</span></a>
+				<a href='services.html' class='deg0' style="width:120px;"><span id="services">Services</span></a>
+				<a href='photography.html' class='deg150' style="width:120px;"><span id="photo">Photography</span></a>
+				<a href='music.html' class='deg225' style="width:93px;"><span id="music">Music</span></a>
+				<a href='films.html' class='deg135' style="width:93px;"><span id="films">Films</span></a>
+				<a href='index.html' class='deg325' style="width:93px;"><span id="home">Home</span></a>
+				<a href='About.html' class='deg335' style="width:120px;"><span id="about">About Us</span></a>
+			</div>
+				<div class="col-md-7">
+				</div>
+				<div class="col-md-5" id="information">
+					<img src="resources/images/Contactusphoto.png" alt="contact" class="img-circle">
+					<h4 style="font-family:Century Gothic">Zaryan Patel</h4>
+					<h4 style="font-family:Century Gothic">+91 9819146444</h4><br>
+					<h4 style="font-family:Century Gothic">Shaun kolah</h4>
+					<h4 style="font-family:Century Gothic">+91 9769972360</h4><br>
+					<form>
+					  <div class="form-group">
+						<label for="exampleInputName">Name:</label>
+						<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter Name" style="width:58%">
+					  </div>
+					  <div class="form-group">
+						<label for="exampleInputEmail">Email:</label>
+						<input type="Email" class="form-control" id="exampleInputPassword1" placeholder="Enter Email" style="width:58%"><br>
+						<b>Message:</b><textarea class="form-control" rows="3" cols="7" placeholder="Enter your Message" style="width:58%"></textarea>
+						<button type="submit" class="btn btn-default" style="margin-top:16px;">Submit</button>
+					</div>
+					</form>
+				</div>
+			</div>
+	</body>
+</html>

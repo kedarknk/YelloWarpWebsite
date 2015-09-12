@@ -1,0 +1,127 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="resources/css/bootstrap.min.css">
+		<script src="resources/js/jquery.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="resources/css/yellowarp.css">
+		<script type="text/javascript" src="resources/js/jquery.arctext.js"></script> 
+	</head>
+	<script>
+	/*$( window ).resize(function() {
+		var param = $('#logo img').width();
+		var ch;
+		if(param < 200){
+			ch = 'a';
+		}else if(param < 300){
+			ch = '';
+		}else{
+			ch = 'b';
+		}
+		for(var i=0;i<$('#logo').children('a').length;i++){
+			var cls = $($('#logo').children('a')[i]).attr('class') + ch;
+			$($('#logo').children('a')[i]).removeClass();
+			$($('#logo').children('a')[i]).addClass(cls);
+		}
+	});*/
+		 $(document).ready(function() {
+		 $('#filmCrew').arctext({radius:100});
+		 $('#about').arctext({radius:80});
+		 $('#photo').arctext({radius:100});
+		 $('#music').arctext({radius:80});
+		 $('#home').arctext({radius:80});
+		 $('#services').arctext({radius:80});
+		 $('#contact').arctext({radius:80});
+			$('#information').hide();
+			$('#logo').hide();
+			$('#topLogo').hide();
+		   $('#about').css('color','#FF9900');
+		   $('#move').css('margin-top','16.3%');
+		   $('#move').animate({left: '-=33.5em', top: '+=10em'}, 1000,function() {
+				//$('#information').show();
+				$('#move').hide();
+				$('#logo').show();
+				$("#logo").css({top: 380, left: 60, position:'absolute'});
+				$('.aboutusline').css({top: $('#topLogo').height() -25});
+				var margin = parseInt($('#topLogo').css('margin-left').split("px")[0]) + (parseInt($('#topLogo').css('width').split("px")[0]) / 2 ) - 45;
+				$('.aboutusline').css('margin-left',margin);
+				var height = 450 - $('#topLogo').height();
+				$('.aboutusline').css('height',0);
+				$('.aboutusline').css({top: $('#topLogo').height() -25 + height});				
+				var param = $('#logo img').width();
+				var ch;
+				if(param < 200){
+					ch = 'a';
+				}else if(param < 300){
+					ch = '';
+				}else{
+					ch = 'b';
+				}
+				for(var i=0;i<$('#logo').children('a').length;i++){
+					var cls = $($('#logo').children('a')[i]).attr('class') + ch;
+					$($('#logo').children('a')[i]).removeClass();
+					$($('#logo').children('a')[i]).addClass(cls);
+				}
+				$('.aboutusline').css('display','block');
+				/*$('.aboutusline').slideDown(1000,function(){
+					$('.aboutusline').css('display','block');
+					$('#topLogo').fadeIn(1000,function() {					
+						$('#information').fadeIn(1000);					
+					});
+				});*/				
+				$('.aboutusline').animate({'height': height,'top': $('#topLogo').height() -25},400,'linear',function(){
+					$('#topLogo').fadeIn(1000,function() {					
+						$('#information').fadeIn(1000);					
+					});
+				});
+		   });
+		   $('a').click(function(e) {
+				e.preventDefault();
+				 var href = $(this).attr('href');
+				 if(href != 'About.html') {
+					$('#information').fadeOut(1000,function(){
+					$("#logo").hide();
+					$("#move").show();
+						$('#topLogo').fadeOut(1000,function(){
+							$('.aboutusline').hide();
+							$("#move").animate({left: '+=33.5em', top: '-=10em'},1000,function(){
+								window.location.href = href;
+							});
+						});
+					});
+				 }
+			});
+		});
+	</script>
+	<body>
+	<div id="move" style="margin-top:12.5%;position:absolute;width:100%;text-align:center;"><img  src="resources/images/logoweb.png" width="17%"/></div>
+		<div class="row">
+		<div class="left-container" id="logo">
+			<img class="left" src="resources/images/logoweb.png" width="17%" style="font-family:Century Gothic"/>
+			<a href='films.html' class='deg135' style="width:93px;"><span id="films">Films</span></a>
+			<a href='thefilmcrew.html' class='deg45' style="width:95px;"><span id="filmCrew">The Film Crew</span></a>
+			<a href='services.html' class='deg0' style="width:120px;"><span id="services">Services</span></a>
+			<a href='photography.html' class='deg150' style="width:120px;"><span id="photo">Photography</span></a>
+			<a href='music.html' class='deg225' style="width:93px;"><span id="music">Music</span></a>
+			<a href='contactus.html' class='deg315' style="width:93px;"><span id="contact">Contact</span></a>
+			<a href='index.html' class='deg325' style="width:93px;"><span id="home">Home</span></a>
+			<a href='About.html' class='deg335' style="width:120px;"><span id="about">About Us</span></a>
+		</div>
+			<div class="aboutusline">&nbsp;</div>
+			<div class="col-md-5">
+			<img src="resources/images/Aboutusphoto.png" width="37%" style="margin-left:290px;margin-top:5px;" id="topLogo"/>
+			</div>
+			<div class="col-md-6" id="information" style="padding-top:15%;">
+				 <p style="font-family:Century Gothic"> 
+					From watching <span class="about">great films</span> & <span class="about">idolizing</span> great filmmakers.<br>
+					To studying film passionately & connecting with the <span class="about">fraternity.</span>
+					From <span class="about">coffee</span> runs,to becoming right hand-men.<br>
+					And finally pooling together to <span class="about">plunge</span> into own <span class="about">existence.</span><br>
+					<span class="about">Y</span>ello <span class="about">W</span>arp <span class="about">Productions</span> comes fully loaded,with a talent pool<br>
+					of young,fresh,creative,dedicated & professional <span class="about">filmmakers.</span><br>
+					Co-Founded by <span class="about">Shaun kolah</span> & <span class="about">Zaryan Patel.</span><br>
+					We are a <span class="about">one-stop-shop</span>,production-house that caters<br>
+					to all your <span class="about">media</span> content generation <span class="about">requirements.</span>
+				</p>
+			</div>
+		</div>	
+	</body>
+</html>

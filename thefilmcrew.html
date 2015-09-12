@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="resources/css/bootstrap.min.css">
+		  <script src="resources/js/jquery.min.js"></script>
+		  <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+		  <link rel="stylesheet" type="text/css" href="resources/css/yellowarp.css">
+		  <script type="text/javascript" src="resources/js/jquery.arctext.js"></script> 
+	</head>
+	<script>
+		 $(document).ready(function() {
+		 $('#photo').arctext({radius:100});
+		 $('#about').arctext({radius:80});
+		 $('#music').arctext({radius:80});
+		 $('#filmCrew').arctext({radius:100});
+		 $('#home').arctext({radius:80});
+		 $('#contact').arctext({radius:80});
+		 $('#services').arctext({radius:80});
+		   $('#filmCrew').css('color','#FF9900');
+		   $('#logo').hide(0);
+		   $("#line").hide();
+		   $('#rightImage').hide();
+		   $('.yellowtree').hide();
+		   $('#rightImage').css({top: '8.6%', left: '55em', position:'absolute'});
+		   $('#move').animate({left: '+=14.5em', top: '-=12em'}, 1000,function() {
+				$('#move').hide();
+				$('#logo').show();
+				$("#logo").css({top: '10.6%', left: '52em', position:'absolute'});
+				$("#line").css({top: $('#logo').height(), left: '55em'});
+				var left = parseInt($("#line").css('left').split("px")[0]) + ($("#logo").children('img').width()/2);
+				$('#line').css('left',left);
+				
+				
+				/*$('.verticalLine').slideDown({
+					duration:1500,					
+					start: function(){
+						$('#serviceImg').animate({'margin-top': $('#logo').height()+42+$('.verticalLine').height()},2000);
+					},
+					complete: function() {
+						$('.verticalLine').css({display: 'block'});
+					}
+				});*/
+				
+				$('#rightImage').css('z-index',-99);
+				$('#rightImage').show();
+				
+				$('#line').slideDown({
+					duration: 1500,
+					start: function(){
+						$('#rightImage').animate({left: '+=9.5em', top: '+=24em'}, 1500,function(){
+							$('.yellowtree').css({'margin-bottom': '-25%','top': '100%','margin-top':'3.2%'});					
+							$('.yellowtree').show();
+							$('.yellowtree').animate({'top': '0'},2000);					
+						});
+					},
+					complete: function(){
+						$('#line').css({display: 'block'});
+					}
+				});
+				
+				/*$('#rightImage').css('z-index',-99);
+				$('#rightImage').show();
+				
+				
+				
+				$('#rightImage').animate({left: '+=9.5em', top: '+=24em'}, 1500,function(){
+					$('.yellowtree').css({'margin-bottom': '-25%','top': '100%','margin-top':'3.2%'});					
+					$('.yellowtree').show();
+					$('.yellowtree').animate({'top': '0'},2000);					
+				});*/
+		   });
+		   $('#test1').css({top:'77%',left:'12%'});
+		   $('#test2').css({top:'66%',left:'7%'});
+		   $('#test3').css({top:'55%',left:'6%'});
+		   $('#test4').css({top:'45%',left:'7%'});
+		   $('#test5').css({top:'40%',left:'14%'});
+		   $('#test6').css({top:'25%',left:'18%'});
+		   $('#test7').css({top:'16%',left:'23%'});
+		   $('#test8').css({top:'5%',left:'29%'});
+		   $('#test9').css({top:'16%',left:'35%'});
+		   $('#test10').css({top:'24%',left:'40%'});
+		   $('#test11').css({top:'39%',left:'38%'});
+		   $('#test12').css({top:'39%',left:'47%'});
+		   $('#test13').css({top:'54%',left:'40%'});
+		   $('#test14').css({top:'64%',left:'46%'});
+		   $('#test15').css({top:'74%',left:'39%'});
+
+		   $('a').click(function(e) {
+				e.preventDefault();
+				 var href = $(this).attr('href');
+				 if(href != 'thefilmcrew.html') {
+				 
+					$('.verticalLine').slideUp({
+							duration: 2000,
+							start: function(){
+								$('#serviceImg').animate({'margin-top': '42px'},2000);
+							},
+							complete: function(){
+								$('#serviceImg').hide();
+								$('#logo').hide();								
+								$('#move').show();
+								$('#move').animate({left: '+=33.5em', top: '+=13.2em'}, 1000,function() {
+									$('#move').hide();
+									$("#logo").css({top: 206, left: '36em', position:'absolute'});
+									$('#logo').show();
+									window.location.href = href;
+								});
+							}
+						});
+						
+					/*$('#line').slideUp({
+						duration: 1000,
+						start: function(){
+							$('.yellowtree').animate({'margin-top':'-60%'},1000,function(){
+								$('#rightImage').animate({left: '-=9.5em', top: '-=24em'}, 1000,function(){
+									$('#rightImage').hide();
+									$('#logo').hide();
+									$('#move').show();
+									$('#move').animate({left: '-=14.5em', top: '+=12em'}, 1000,function(){
+										window.location.href = href;
+									});
+								});
+							});
+						}
+					});*/
+				 
+					/*$('.yellowtree').animate({'margin-top':'-60%'},1000,function(){
+						$('#rightImage').animate({left: '-=9.5em', top: '-=24em'}, 1000,function(){
+							$('#rightImage').hide();
+							$('#logo').hide();
+							$('#move').show();
+							$('#move').animate({left: '-=14.5em', top: '+=12em'}, 1000,function(){
+								window.location.href = href;
+							});
+						});
+					});*/
+					
+					$('.yellowtree').animate({'margin-top':'-60%'},{
+						duration: 1000,						
+						complete: function(){
+							$('#line').animate({height: '0'},1000,function(){
+								$(this).hide();
+							});
+							$('#rightImage').animate({left: '-=9.5em', top: '-=24em'}, 1000,function(){
+								$('#rightImage').hide();
+								$('#logo').hide();
+								$('#move').show();
+								$('#move').animate({left: '-=14.5em', top: '+=12em'}, 1000,function(){
+									window.location.href = href;
+								});
+							});
+						}
+					});
+				 }
+		   });
+		});
+	</script>
+	<body style="overflow-x:hidden;">
+	<div id="move" style="margin-top:16.3%;position:absolute;width:100%;text-align:center;"><img  src="resources/images/logoweb.png" width="17%"/></div>
+			<div class="row">
+				<div class="left-container" id="logo" style="width:100%;">
+					<img class="left" src="resources/images/logoweb.png" width="17%"/>
+					<a href='contactus.html' class='deg315' style="width:93px;"><span id="contact">Contact</span></a>
+					<a href='thefilmcrew.html' class='deg45' style="width:95px;"><span id="filmCrew">The Film Crew</span></a>
+					<a href='services.html' class='deg0' style="width:120px;"><span id="services">Services</span></a>
+					<a href='photography.html' class='deg150' style="width:120px;"><span id="photo">Photography</span></a>
+					<a href='music.html' class='deg225' style="width:93px;"><span id="music">Music</span></a>
+					<a href='films.html' class='deg135' style="width:93px;"><span id="films">Films</span></a>
+					<a href='index.html' class='deg325' style="width:93px;"><span id="home">Home</span></a>
+					<a href='About.html' class='deg335' style="width:120px;"><span id="about">About Us</span></a>
+				</div>
+			</div>			
+			<div class="filmcrewline" id="line">&nbsp;</div>
+			<div id="rightImage" style="width:100%;">				
+				<img src="resources/images/filmcrewphoto.png" width="16%">
+			</div>
+			<div class="yellowtree">
+				<img src="resources/images/yellowtree.png" width="60%" height="60%">
+				<span id="test1">Assistant Direction Team<br><span style="margin-left:27%;">Mohit</span><br><span style="margin-left:27%;">Sunny</span><br><span style="margin-left:27%;">Abhishek</span><br><span style="margin-left:27%;">Lalit</span></span>
+				<span id="test2">Costume Designers<br><span style="margin-left:10%;">Sambo Parakh</span><br><span style="margin-left:10%;">Shweta Grower</span></span>
+				<span id="test3">Audio Post-Mix & Master<br><span style="margin-left:25%;">Jon Olliffe</span></span>
+				<span id="test4">Sound Design<br><span style="margin-left:7%;">Shaun Kolah</span><br><span style="width:80px;">& Sumedh Mirji</span></span>
+				<span id="test5">Music Composer & Producer<br><span style="margin-left:27%;">Shaun Kolah</span></span>
+				<span id="test6">Line Production<br><span style="width:93px">Durgesh Dadihch<br>Bhakti Sakpal</span></span>
+				<span id="test7"><span style="margin-left:10px;">Director</span><br>Shaun Kolah</span>
+				<span id="test8">Executive Producers<br><span style="margin-left:21px;">Shaun Kolah</span><br><span style="margin-left:21px;">Zaryan Patel</span><br><span style="margin-left:17px;">Mehera Kolah</span></span>
+				<span id="test9">Director Of Photography<br><span style="margin-left:30px;">Zaryan Patel</span></span>
+				<span id="test10"><span style="margin-left:20px;">Editors</span><br><span style="width:86px;">Protim Khaound</span><br><span style="margin-left:20px;">Sachin</span></span>
+				<span id="test11"><span style="margin-left:10px;width:65px;">Art Directors</span><br><span style="width:86px;">Jimesh Parmar</span><br><span style="margin-left:20px;">Pankaj</span></span>
+				<span id="test12"><span style="margin-left:15px;width:80px;">MakeUp & Hair</span><br><span style="width:123px;">MakeOvers by Mehera</span><br><span style="margin-left:14px;width:86px;">Different Strokes</span></span>
+				<span id="test13"><span style="margin-left:36px;width:80px;">Animation</span><br><span style="width:134px;">2D-Merven Imchen & co.</span><br><span style="margin-left:7px;width:110px;">3D-Kevin Lobo & co.</span></span>
+				<span id="test14"><span style="margin-left:36px;width:80px;">Finance</span><br><span style="width:134px;">V.T. Patel & Associates</span></span>
+				<span id="test15"><span style="width:106px;">Gaffers(lighting AC)</span><br><span style="margin-left:15px;width:134px;">Vishal Chauhan</span><br><span style="width:134px;margin-left:32px;">Atul Tiwari</span></span>
+			</div>
+	</body>
+</html>

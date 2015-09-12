@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="resources/css/bootstrap.min.css">
+		  <script src="resources/js/jquery.min.js"></script>
+		  <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+		  <link rel="stylesheet" type="text/css" href="resources/css/yellowarp.css">
+		  <script type="text/javascript" src="resources/js/jquery.arctext.js"></script> 
+	</head>
+	<script>
+		 $(document).ready(function() {
+		 $('#photo').arctext({radius:100});
+		 $('#about').arctext({radius:80});
+		 $('#music').arctext({radius:80});
+		 $('#filmCrew').arctext({radius:100});
+		 $('#home').arctext({radius:80});
+		 $('#contact').arctext({radius:80});
+		 $('#services').arctext({radius:80});
+		   $('#music').css('color','#FF9900');
+		   $('#information').hide();
+		   $('#image3').hide();
+		   $('#image2').hide();
+		   $('#image1').hide();
+		   $('#image').hide();
+		   $('#logo').hide();
+		   $('#logo').show(0,function() {
+				/*$('#image1').slideDown(1500,function(){
+					var margin = ($('#image1').width() / 2) + parseInt($('.row').css('margin-right').split('px')[0]); 
+					var ht = $('#image1').height() + 20;
+					$('#image1').css('z-index','999');
+					$('.verticalLineMusic').css({'height': 0,'right': margin,'margin-top': '40px','display': 'block','z-index': '-999','position': 'absolute'});
+					$('.verticalLineMusic').animate({height: ht},1000);
+					$('#image2').css('margin-top',20);
+					$('#image2').slideDown(1500,function(){
+						var ht = $('#image2').height() + $('.verticalLineMusic').height() + 20;
+						$('.verticalLineMusic').animate({height: ht},1000);
+						$('#image3').css('margin-top',20);
+						$('#image3').slideDown(1500,function(){
+							$('#information').fadeIn(1500);
+						});
+					});						
+				});*/
+				
+				$('#image').css('margin-top','-25%');
+				$('#image').show();
+				$('#image').animate({'margin-top': '+=25%'}, 500,function(){
+					$('#information').fadeIn(1000);
+				});
+		   });
+		   
+		   $('a').click(function(e) {
+				e.preventDefault();
+				 var href = $(this).attr('href');
+				 if(href != 'music.html') {
+					$('#information').fadeOut(1500,function(o){
+						/*var ht = $('.verticalLineMusic').height() - 20 - $('#image2').height();
+						$('.verticalLineMusic').animate({height: ht},1000);
+						$('#image3').slideUp(1500,function(){
+							$('.verticalLineMusic').animate({height: 0},1000);
+							$('#image2').slideUp(1500,function(){																
+								$('#image1').slideUp(1500,function(){
+									window.location.href = href;
+								});
+							});
+						});*/
+						
+						/*$('#image').slideUp({
+							duration:300,
+							easing:'linear',
+							complete: function(){
+								window.location.href = href;
+							}
+						});*/
+						//$('#image').animate({top:'-150%'},300);
+						$('#image').animate({'margin-top': '-=250%'}, 1000,function(){
+							window.location.href = href;
+						});
+					});
+				 }
+		   });
+		   
+		});
+	</script>
+	<body>
+	<!--<div id="move" style="position:absolute;width:100%;text-align:center;"><img  src="resources/images/logoweb.png" width="17%"/></div> -->
+	<div class="circle-container" id="logo">
+		<img class="centered" src="resources/images/logoweb.png" width="17%" style="font-family:Century Gothic"/>
+			<a href='#' class='center'></a>
+			<a href='services.html' class='deg0' style="width:120px;"><span id="services">Services</span></a>
+			<a href='thefilmcrew.html' class='deg45' style="width:95px;"><span id="filmCrew">The Film Crew</span></a>
+			<a href='films.html' class='deg135' style="width:93px;"><span id="films">Films</span></a>
+			<a href='photography.html' class='deg150' style="width:120px;"><span id="photo">Photography</span></a>
+			<a href='music.html' class='deg225' style="width:93px;"><span id="music">Music</span></a>
+			<a href='contactus.html' class='deg315' style="width:93px;"><span id="contact">Contact</span></a>
+			<a href='index.html' class='deg325' style="width:93px;"><span id="home">Home</span></a>
+			<a href='About.html' class='deg335' style="width:120px;"><span id="about">About Us</span></a>
+	</div>
+	<div style="vertical-align:bottom;position:absolute;max-width:40%; bottom: 0%;left:2%;font-family:Century Gothic" id="information">
+		Meet <span class="music">Shaun</span> a.k.a <span class="music">Warp.</span><br>
+		The guy who gives <span class="music">direction</span> to each of our <span class="music">films.</span><br>
+		Shaun is a <span class="music">classically</span> trained 'Music' composer,producer<br>
+		and <span class="music">Sound</span> Designer.<br>
+		Every film of ours is <span class="music">coloured</span> with the <span class="music">timbre</span><br>
+		of Shaun's music and sound <span class="music">Design.</span><br>
+		To view his <span class="music">'Music'</span> portfolio please refer to our <span class="music">FILMS</span> page.<br><br><br><br> 
+	</div>
+	<div class="row" style="margin-top:3%;margin-right:20%">
+	<!-- <div class="verticalLineMusic" id="vline">&nbsp;</div> -->
+	<!-- <div style="text-align:right">		
+		<img src="resources/images/Musicphoto2.png" width="15%" id="image1"/>
+	</div>
+	<div style="text-align:right"><img src="resources/images/Musicphoto1.png" width="15%" id="image2"/>	
+	</div>
+	<div style="text-align:right"><img src="resources/images/Musicphoto3.png" width="15%" id="image3"/>
+	</div> -->
+	<div style="text-align:right"><img src="resources/images/musicimg.png" width="15%" id="image"/>	
+	</div>
+	</body>
+</html>

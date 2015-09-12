@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+	<head>
+		<link rel="stylesheet" href="resources/css/bootstrap.min.css">
+		  <script src="resources/js/jquery.min.js"></script>
+		  <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+		  <script src="resources/js/pgwslideshow.js"></script>
+		<link rel="stylesheet" type="text/css" href="resources/css/yellowarp.css">
+		<!--<link rel="stylesheet" type="text/css" href="resources/css/temp.css"> -->
+		<script src="resources/js/imagelightbox.js"></script>
+		<script type="text/javascript" src="resources/js/jquery.arctext.js"></script> 
+	</head>
+	<style>
+		.outer img{
+			position: fixed;
+		}
+		.circle-container a {position: fixed;}
+	</style>
+	<script>
+		 $(document).ready(function() {
+			$('#photo').arctext({radius:100});
+			$('#filmCrew').arctext({radius:100});
+			$('#about').arctext({radius:80});
+			$('#music').arctext({radius:80});
+			$('#contact').arctext({radius:80});
+			$('#home').arctext({radius:80});
+			$('#services').arctext({radius:80});
+			$('#photo').css('color','#FF9900');
+			$('#information').hide();
+			for(var i=1;i<=8;i++) {
+				$('#img'+i).hide();
+			}
+			
+			$('#logo').hide();
+			$('#leftImage').hide();
+			$('#photoId').hide();
+			$('#logo').show(0,function(){
+				$('#img7').css({top: 391, left: '50%'});
+				$('#img7').show();
+				$('#img7').animate({left: '50%', top: '46%'}, 500,function(){
+					$('#img8').css({left: '39.5%', top: '32%',opacity:-1});
+					$('#img8').show();
+					$('#img6').css({left: '62%', top: '32%',opacity:-1});
+					$('#img6').show();
+					$('#img8').animate({left: '49%', top: '44%',opacity:1}, 500,function(){});
+					$('#img6').animate({left: '53%', top: '44%',opacity:1}, 500,function() {
+						$('#img5').css({left: '55.5%', top: '25.5%',opacity:-1});
+						$('#img5').show();
+						$('#img5').animate({left: '52%', top: '42%',opacity:1}, 500,function(){});
+						$('#img1').css({left: '45.5%', top: '25.5%',opacity:-1});
+						$('#img1').show();
+						$('#img1').animate({left: '49%', top: '43%',opacity:1}, 500,function() {
+							$('#img2').css({left: '53%', top: '26.5%',opacity:-1});
+							$('#img2').show();
+							$('#img2').animate({left: '51%', top: '45%',opacity:1}, 500,function() {});
+							$('#img4').css({left: '49.5%', top: '27%',opacity:-1});
+							$('#img4').show();
+							$('#img4').animate({left: '51%', top: '46%',opacity:1}, 500,function(){
+								/*$('#leftImage').slideDown(300,function() {
+									$('#photoId').slideDown({
+										duration:300,
+										easing:'linear',
+										complete: function(){
+											$('#information').fadeIn(1500);
+										}
+									});
+								});*/
+								$('#leftImage').css('margin-top','-25%');
+								$('#leftImage').show();
+								$('#photoId').css('margin-top','-25%');
+								$('#photoId').show();
+								$('#leftImage').animate({'margin-top':'+0%'},500);
+								$('#photoId').animate({'margin-top':'+0%'},500,function(){$('#information').fadeIn(1000);});
+							});
+						});
+					});
+				});
+				$('#img3').css({top: '35%', left: '50%',opacity:-1});
+				$('#img3').show();
+				$('#img3').animate({left: '51%', top: '50%',opacity:1}, 1500,function(){
+				});
+				
+			});
+			
+			/*$('img').click(function(e) {
+				if($(this).attr('id') == 'img7') {
+					var dir = "resources/images/";
+					var fileextension = ".png";
+					$.ajax({
+						url:dir,
+						success: function(data){
+							$("#slideShow").html('<ul class="pgwSlideshow">');
+							$(data).find("a:contains(" + fileextension + ")").each(function () {
+								var filename = this.href.replace(window.location.host, "").replace("http:///", "");
+								var temp = filename.indexOf('/');
+								filename = filename.substring(temp+1);
+								$(".pgwSlideshow").append($("<li><img src=" + dir + filename + "></img></li>"));
+							});
+							 $("#slideShow").append('</ul>');
+							$('.pgwSlideshow').pgwSlideshow();
+						}
+					});
+				}
+			});*/
+			
+			$('a').click(function(e) {
+				e.preventDefault();
+				 var href = $(this).attr('href');
+				 if(href != 'photography.html') {
+					$('#information').fadeOut(1500,function(o){
+						$('#leftImage').animate({'margin-top':'-50%'},400,function(o){
+							$('#img4').animate({left: '49.5%', top: '26.7%'}, 500,function() {
+								$('#img4').hide();
+							});
+							$('#img2').animate({left: '53%', top: '27%'}, 500,function(){
+								$('#img2').css('z-index','-999');
+								$('#img2').hide();
+								$('#img1').css('z-index','-999');
+								$('#img1').animate({left: '45%', top: '26%'}, 500,function(){
+									$('#img1').hide();
+								});
+								$('#img5').animate({left: '56%', top: '27%'}, 500,function(){
+									$('#img5').hide();
+									$('#img6').animate({left: '61%', top: '33%'}, 500,function(){
+										$('#img6').css('z-index','-999');
+										$('#img6').hide();
+									});
+									$('#img8').css('z-index','-999');
+									$('#img8').animate({left: '40%', top: '33%'}, 500,function() {
+										$('#img7').css('z-index','999');
+										$('#img8').hide();
+										$('#img7').css('z-index','-999');
+										$('#img7').animate({left: '50%', top: '64%'}, 500,function() {
+											$('#img7').hide();
+										});
+										$('#img3').animate({left: '50%',top: '30%'},500,function(){
+											$('#img3').hide();
+											window.location.href = href;
+										});
+									});
+								});
+							});
+						});
+					});
+				 }
+		   });
+		});
+	</script>
+	<body>
+	<!-- <div id="move" style="position:absolute;width:100%;text-align:left; margin-left:10%;margin-top:50px"><img  src="resources/images/logoweb.png" width="17%"/></div> -->
+	<div class="outer">
+	
+	<!-- <a href="resources/images/logoweb.png"> --> <img src="resources/images/Thumbnail7.png" id="img1" height="58px" width="58px" class='imgdeg0' style="width:70px;height:70px;"/>
+	<img src="resources/images/Thumbnail6.png" id="img2" height="58px" width="58px" class='imgdeg45'  style="width:75px;height:75px;"/>
+	<img src="resources/images/Thumbnail5.png" id="img3" height="58px" width="58px" class='imgdeg135' style="width:75px;height:75px;"/>
+	<img src="resources/images/Thumbnail4.png" id="img4" height="58px" width="58px" class='imgdeg150' style="width:75px;height:75px;"/>
+	<img src="resources/images/Thumbnail3.png" id="img5" height="58px" width="58px" class='imgdeg225' style="width:75px;height:75px;"/>
+	<img src="resources/images/Thumbnail2.png" id="img6" height="58px" width="58px" class='imgdeg315' style="width:75px;height:75px;"/>
+	<img src="resources/images/Thumbnail1.png" id="img7" height="58px" width="58px" class='imgdeg325' style="width:85px;height:85px;"/>
+	<img src="resources/images/Thumbnail8.png" id="img8" height="58px" width="58px" class='imgdeg335' style="width:75px;height:75px;"/>
+	</div>
+	<div class="circle-container" id="logo">
+		<img class="centered" src="resources/images/logoweb.png" width="17%" style="font-family:Century Gothic"/>
+			<a href='#' class='center'></a>
+			<a href='services.html' class='deg0' style="width:120px;"><span id="services">Services</span></a>
+			<a href='thefilmcrew.html' class='deg45' style="width:95px;"><span id="filmCrew">The Film Crew</span></a>
+			<a href='films.html' class='deg135' style="width:93px;"><span id="films">Films</span></a>
+			<a href='photography.html' class='deg150' style="width:120px;"><span id="photo">Photography</span></a>
+			<a href='music.html' class='deg225' style="width:93px;"><span id="music">Music</span></a>
+			<a href='contactus.html' class='deg315' style="width:93px;"><span id="contact">Contact</span></a>
+			<a href='index.html' class='deg325' style="width:93px;"><span id="home">Home</span></a>
+			<a href='About.html' class='deg335' style="width:120px;"><span id="about">About Us</span></a>
+	</div>
+		
+		<div style="height:25% width:56%" id="leftImage"><img id="photoId" src="resources/images/photographyphoto.png" width="15%" height="25%"/></div>
+		<div style="vertical-align:bottom; bottom: 0;margin-left:20px;font-family:Century Gothic; width:25%" id="information">
+			Meet <span class="photography">Zaryan</span> a.k.a<span class="photography">Y</span>ellow.<br>The <span class="photography">'eye'</span> behind<br><span class="photography">Y</span>ello<span class="photography">W</span>arp Production's<br><span class="photography">P</span>hotography & <span class="photography">Cinematography.</span><br>Zaryan has <span class="photography">conceptualized</span>  & shot<br> numerous photography <span class="photography">campaigns,</span><br>
+			music <span class="photography">videos</span>,commercials,<br>and many <span class="photography">feature films.</span><br><br><br>
+		</div>
+		<div id="slideShow" style="z-index:9999;"></div>
+		<!--<ul class="pgwSlideshow"></ul>-->
+	</body>
+</html>
