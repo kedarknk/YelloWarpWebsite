@@ -2,6 +2,7 @@
 	<head>
 		<link rel="stylesheet" href="resources/css/bootstrap.min.css">
 		<script src="resources/js/jquery.min.js"></script>
+		<!-- <script src="resources/js/guitar.js"></script>  -->
 		<link rel="stylesheet" type="text/css" href="resources/css/yellowarp.css">
 		<script src="maotext.js"></script>
 		<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
@@ -22,68 +23,72 @@
 			$('#vline').hide();
 		   $('#services').css('color','#FF9900');
 		   $('#move').css('margin-top','16.5%');
+		   $('#myCanvas').hide();
 		   $('#move').animate({left: '-=33.5em', top: '-=13.5em'}, 1500,function() {
 				$('#information').fadeIn(1000);
 				$('#move').hide();
 				$('#logo').show();
 				$('#logo').css('z-index',999);
-				$('#serviceImg').css('left',50);
+				$('#serviceImg').css('position','absolute');
+				$('#serviceImg').css('left','14%');
 				$('#serviceImg').show();			
 				$("#logo").css({top: 50, left: 50, position:'absolute'});				
 				$('.verticalLine').css({top: $('#logo').height()+50});				
-				
-				$('.verticalLine').slideDown({
-					duration:1500,					
-					start: function(){
-						$('#serviceImg').animate({'margin-top': $('#logo').height()+42+$('.verticalLine').height()},2000);
-					},
-					complete: function() {
-						$('.verticalLine').css({display: 'block'});
-					}
-				});
+				$('#myCanvas').css('position','absolute');
+				$('#myCanvas').css('left','5%');
+				$('#myCanvas').css('top','12%');
+				$('#myCanvas').css('height','60%');
+				$('#myCanvas').css('width','15%');
+				$('#myCanvas').css('z-index','-999');
+				var canvas = document.getElementById('myCanvas');
+				var context = canvas.getContext('2d');
+				context.beginPath();
+				context.moveTo ($("#logo").offset().top + $("#logo").height(), $("#logo").offset().top + $("#logo").height());
+				context.lineTo ($("#logo").offset().top + $("#logo").height(), $('#serviceImg').position().top);
+				context.stroke();
+					$('#serviceImg').animate({'top': $("#logo").offset().top + $("#logo").height()+150},
+						{
+							duration:1000,
+							step: function(now){								
+								$('#myCanvas').slideDown(1000);
+							}
+						}
+					);
 		   });
+		   
 		   $('a').click(function(e) {
 				e.preventDefault();
 				 var href = $(this).attr('href');
 				 if(href != 'services.html') {
 					$('#information').fadeOut(1500,function(o){						
-						$('.verticalLine').slideUp({
-							duration: 2000,
-							start: function(){
-								$('#serviceImg').animate({'margin-top': '42px'},2000);
-							},
-							complete: function(){
-								$('#serviceImg').hide();
-								$('#logo').hide();								
-								$('#move').show();
-								$('#move').animate({left: '+=33.5em', top: '+=13.2em'}, 1000,function() {
-									$('#move').hide();
-									$("#logo").css({top: 206, left: '36em', position:'absolute'});
-									$('#logo').show();
-									window.location.href = href;
-								});
+						$('#serviceImg').animate({'top': $("#logo").offset().top + $("#logo").height()-229},
+						{
+								duration:1000,
+								step: function(now){								
+									$('#myCanvas').slideUp(1000,function(){
+										$('#serviceImg').hide();
+										$('#logo').hide();
+										$('#move').show();
+										$('#move').animate({left: '+=33.5em', top: '+=13.2em'}, 1000,function() {
+											$('#move').hide();
+											$("#logo").css({top: 206, left: '36em', position:'absolute'});
+											$('#logo').show();
+											window.location.href = href;
+										});
+									});
+								}
 							}
-						});
-						/*$('.verticalLine').slideUp(500,function(){
-							$('#logo').hide();
-							$('#move').show();
-							$('#move').animate({left: '+=32.5em', top: '+=12em'}, 1000,function() {
-								$('#move').hide();
-								$("#logo").css({top: 206, left: '36em', position:'absolute'});
-								$('#logo').show();
-								window.location.href = href;
-							});
-						});*/
+						);
 					});
 				}
 		   });
 		});
 	</script>
 	<body>
-	<div id="move" style="margin-top:12%;position:absolute;width:100%;text-align:center;"><img  src="resources/images/logoweb.png" width="17%"/></div>
-		<div class="row">
+	<div id="move" style="margin-top:12%;position:absolute;width:100%;text-align:center;"><img  src="resources/images/logoweb.png" width="14%"/></div>
+		<div class="row"><canvas id="myCanvas"></canvas>
 		<div class="left-container" id="logo" style="width:100%;">
-			<img class="left" src="resources/images/logoweb.png" width="17%" style="font-family:Century Gothic"/>
+			<img class="left" src="resources/images/logoweb.png" width="14%" style="font-family:Century Gothic;margin-top:0%;"/>
 			<a href='films.html' class='deg135' style="width:93px;"><span id="films">Films</span></a>
 			<a href='thefilmcrew.html' class='deg45' style="width:95px;"><span id="filmCrew">The Film Crew</span></a>
 			<a href='services.html' class='deg0' style="width:120px;"><span id="services">Services</span></a>
@@ -94,30 +99,29 @@
 			<a href='index.html' class='deg325' style="width:93px;"><span id="home">Home</span></a>
 			<a href='About.html' class='deg335' style="width:120px;"><span id="about">About Us</span></a>
 		</div>
-		<div class="verticalLine" id="vline" draggable="true">&nbsp;</div>
-		<div class="col-md-5 services-image">
+		<!--<div class="verticalLine" id="vline" draggable="true">&nbsp;</div>-->
+		<div class="col-md-4 services-image">
 			<img class="left bottom-image" id = "serviceImg" src="resources/images/Servicesphoto.png" width="40%"/>
 		</div>
-			
-			<div class="col-md-6 moamix1w1" id="information" style="padding-top:10%;">
-				<p style="font-family:Century Gothic">
+			<div class="col-md-7 moamix1w1" id="information" style="padding-top:9%;line-height:150%;letter-spacing:2px">
+				<p style="font-family:Century Gothic;font-size:16px;">
 					<span class="about">Y</span>ello <span class="about">W</span>arp <span class="about">P</span>roductions is a <span class="about"> FULL</span> service <span class="about">production</span> house,<br>
 					that caters to all <span class="about">media</span> content <span class="about">generation</span> requirements.<br>
-					We cover a <span class="about">broad range </span>of service including:commercial <span class="about">films</span>,<br>
-					<span class="about">Digital</span> films,corporate films,<span class="about">Animated</span> films,Personal films,A/V's,<br>
-					Music <span class="about">Composition</span> & production,<span class="about">Photography</span>,<br>Billboard & <span class="about">Poster</span> Design,<span class="about">Digital art</span>,<br>
+					We cover a <span class="about">broad range </span>of service including : Commercial <span class="about">films</span>,<br>
+					<span class="about">Digital</span> films, Corporate films,<span class="about"> Animated</span> films, Personal films, A/V's,<br>
+					Music <span class="about">Composition</span> & Production,<span class="about"> Photography</span>,<br>Billboard & <span class="about">Poster</span> Design,<span class="about"> Digital art</span>,<br>
 					<span class="about">Website Design</span> and App Development.
 				</p>
-				<br>
-				<p style="font-family:Century Gothic;">
-					<span class="about">Flexible</span> enough,we provide <span class="about">Value</span> for money package deals <span class="about">& </span><br> 
+				<br><br>
+				<p style="font-family:Century Gothic;font-size:16px;">
+					<span class="about">Flexible</span> enough, we provide <span class="about">Value</span> for money package deals <span class="about">& </span><br> 
 					also give our clients the option hire our <span class="about">individual talents</span> on a<br> 
-					<span class="about">freelance</span> basis.These may include :Executive production,<span class="about">Direction</span>,<br>
-					<span class="about">cinematography</span>,Editing,vfx & packaging,<span class="about">Animation,<br>
-					Music</span> composition & production,<span class="about">Sound</span> Design & audio <span class="about">post,</span><br>
+					<span class="about">freelance</span> basis. These may include : Executive production,<span class="about"> Direction</span>,<br>
+					<span class="about">Cinematography</span>, Editing,vfx & packaging,<span class="about"> Animation,<br>
+					Music</span> Composition & Production,<span class="about"> Sound</span> Design & audio <span class="about">post,</span><br>
 					still <span class="about">Photography</span> and digital <span class="about">art</span>.
 				</p>
 			</div>
-		</div>	
+		</div>
 	</body>
 </html>

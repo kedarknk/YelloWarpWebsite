@@ -4,7 +4,7 @@
 		  <script src="resources/js/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="resources/css/yellowarp.css">
 		  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-		  <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+		  <!--<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script> -->
 		  <script type="text/javascript" src="resources/js/jquery.arctext.js"></script> 
 	</head>
 	</head>
@@ -25,65 +25,125 @@
 			$('#films').arctext({radius:80});
 			$('#information').hide();
 			$('#logo').hide();
+			$('#remoteDiv').hide();
+			$('.film-tv-div').hide();
 		   $('#home').css('color','#FF9900');
-		   $('#move').animate({left: '+=30em', top: '-=1em'}, 1000,function() {
+		   $('#move').animate({left: '+=30.5em', top: '-=1em'}, 1000,function() {
 				$('#move').hide();
 				$('#logo').show();
 				$("#logo").css({top: '35%', left: '68em', position:'absolute'});
-		   });
+				$('#remoteDiv').css('margin-top','-30%');
+				$('#remoteDiv').show();
+				$('#remoteDiv').animate({'margin-top':'+0%'},700,function() {
+				});
+				$('.film-tv-div').css('margin-left','-250%');
+				$('.film-tv-div').show();
+				$('.film-tv-div').animate({'margin-left':'+10%'},600);
+		   });/*
 		   $('a').click(function(e) {
 				e.preventDefault();
 				 var href = $(this).attr('href');
 				 if(href != 'films.html') {
-					window.location.href = href;
+					$('.film-tv-div').animate({'margin-left':'-500%'},700,function(){
+						$('#remoteDiv').animate({'margin-top':'-100%'},700,function(){
+							$('#logo').hide();
+							$('#move').show();
+							$('#move').animate({left: '-=30.5em', top: '+=1em'}, 1000,function(){
+								window.location.href = href;
+							});
+						});
+					});
+				 }
+		   });*/
+		   $('#remote').mousemove(function(data){
+				if(data.offsetX > 27 && data.offsetX < 115 && data.offsetY > 77 && data.offsetY < 115) {
+					$('.film-tv-div').html('<img src="resources/images/FilmsRemote.png" width="85%" height="54%" style="display:table;margin-top:5%;margin-left:5%;">');
+				} else {
+					$('.film-tv-div').empty();
+				}
+		   })
+		   //Animation for new DOM--
+			$('#newlogo').hide();
+			$('#tv').hide();
+			$('#remote').hide();
+			$('#move0').animate({left: '+=37.8em', top: '-=3.5em'}, 1000,function(){
+				$('#move0').hide();
+				$('#newlogo').show();				
+				$('#tv').css('margin-left','-20%');
+				$('#tv').show();
+				$('#tv').animate({'margin-left':'20%'},600);
+				$('#remote').css('margin-top','-60%');
+				$('#remote').show();
+				$('#remote').animate({'margin-top':'+0%'},700);
+		   });
+		   
+		   $('a').click(function(e) {
+				e.preventDefault();
+				 var href = $(this).attr('href');
+				 if(href != 'films.html') {
+					$('#tv').animate({'margin-left':'-500%'},700,function(){
+						$('#remote').animate({'margin-top':'-999%'},700,function(){
+							$('#newlogo').hide();
+							$('#move0').show();
+							$('#move0').animate({left: '-=37.5em', top: '+=5em'}, 1000,function(){
+								window.location.href = href;
+							});
+						});
+					});
 				 }
 		   });
+		   
 		});
 	</script>
-	<body style="overflow-x:hidden;">
-	<div id="move" style="margin-top:17.3%;position:absolute;width:100%;text-align:center;"><img  src="resources/images/logoweb.png" width="17%"/></div>
+	<body>
+	<!-- <div id="move" style="margin-top:17.3%;position:absolute;width:100%;text-align:center;"><img  src="resources/images/logoweb.png" width="14%"/></div>
 			<div class="row">
 				<div class="left-container" id="logo" style="width:100%;">
-					<img class="left" src="resources/images/logoweb.png" width="17%"/>
-					<!--<a href='contactus.html' class='deg0'>Contact</a>
-					<a href='thefilmcrew.html' class='deg45' style="width:93px;">The </a><a href='thefilmcrew.html' class='deg451' style="width:93px;">Film </a><a href='thefilmcrew.html' class='deg452' style="width:93px;">Crew </a>
-					<a href='services.html' class='deg135'>Services</a>
-					<a href='photography.html' class='deg150'>Photo</a><a href='photography.html' class='deg1501'>graphy</a>
-					<a href='films.html' class='deg225' id="home">Films</a>
-					<a href='music.html' class='deg315'>Music</a>
-					<a href='index.html' class='deg325' >Home</a>
-					<a href='About.html' class='deg335'>About </a><a href='About.html' class='deg3351'>Us</a>-->
-					<a href='films.html' class='deg135' style="width:93px;"><span id="films">Films</span></a>
-					<a href='thefilmcrew.html' class='deg45' style="width:95px;"><span id="filmCrew">The Film Crew</span></a>
-					<a href='services.html' class='deg0' style="width:120px;"><span id="services">Services</span></a>
-					<a href='photography.html' class='deg150' style="width:120px;"><span id="photo">Photography</span></a>
-					<a href='music.html' class='deg225' style="width:93px;"><span id="music">Music</span></a>
-					<a href='contactus.html' class='deg315' style="width:93px;"><span id="contact">Contact</span></a>
-					<a href='index.html' class='deg325' style="width:93px;"><span id="home">Home</span></a>
-					<a href='About.html' class='deg335' style="width:120px;"><span id="about">About Us</span></a>
+					<img class="left" src="resources/images/logoweb.png" width="14%"/>
+					<a href='films.html' class='deg135' style="min-width:7%;"><span id="films">Films</span></a>
+					<a href='thefilmcrew.html' class='deg45' style="min-width:7%;"><span id="filmCrew">The Film Crew</span></a>
+					<a href='services.html' class='deg0' style="min-width:9%;"><span id="services">Services</span></a>
+					<a href='photography.html' class='deg150' style="min-width:9%;"><span id="photo">Photography</span></a>
+					<a href='music.html' class='deg225' style="min-width:7.1%;"><span id="music">Music</span></a>
+					<a href='contactus.html' class='deg315' style="min-width:7.5%;"><span id="contact">Contact</span></a>
+					<a href='index.html' class='deg325' style="min-width:6%;"><span id="home">Home</span></a>
+					<a href='About.html' class='deg335' style="min-width:9%;"><span id="about">About Us</span></a>
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-4" style="margin-top: 10%">
-					<!--<img class="img-responsive center-block" src="resources/images/FilmsTV.png" width="90%" height="65%" style="top:52%;">-->
+				<div class="col-md-4" style="margin-top: 16%;margin-left: 5%;">
 					<div class="film-tv-div" width="100%" height="100%">
 						<div class="tv-content"></div>
 					</div>
 				</div>
-				<div class="col-md-4">
-					<img class="img-responsive center-block" style="margin-top:5%;" src="resources/images/FilmsRemote.png" width="50%" height="30%"> 
+				<div class="col-md-5" id="remoteDiv">
+					<img id="remote" class="img-responsive center-block" style="margin: 0 auto;" src="resources/images/FilmsRemote.png" width="50%" height="30%"> 
 				</div>
-				<!--<div class="col-md-4" id="logo">
-					<img src="resources/images/logoweb.png" width="50%"/>
-					<a href='films.html' class='deg135' style="width:93px;"><span id="films">Films</span></a>
-					<a href='thefilmcrew.html' class='deg45' style="width:95px;"><span id="filmCrew">The Film Crew</span></a>
-					<a href='services.html' class='deg0' style="width:120px;"><span id="services">Services</span></a>
-					<a href='photography.html' class='deg150' style="width:120px;"><span id="photo">Photography</span></a>
-					<a href='music.html' class='deg225' style="width:93px;"><span id="music">Music</span></a>
-					<a href='contactus.html' class='deg315' style="width:93px;"><span id="contact">Contact</span></a>
-					<a href='index.html' class='deg325' style="width:93px;"><span id="home">Home</span></a>
-					<a href='About.html' class='deg335' style="width:120px;"><span id="about">About Us</span></a>
-				</div>-->
+			</div> -->
+			
+			
+			<!-- NEW DOM-->
+			<div id="move0" style="margin-top:17.3%;position:absolute;width:100%;text-align:center;"><img  src="resources/images/logoweb.png" width="14%"/></div>
+			<div class="row">
+				<div class="col-md-6" style="margin-top:8%">
+					<img src="resources/images/FilmsTV.png" id="tv" width="65%" style="display:block;margin:0 auto;">
+				</div>
+				<div class="col-md-6">
+					<div class="col-md-6">
+						<img src="resources/images/FilmsRemote.png" id="remote" width="80%" style="display:block;margin:0 auto;">
+					</div>
+					<div class="col-md-5 left-container-film" id="newlogo">
+						<img src="resources/images/logoweb-crop.png" width="78%" class="pull-right" style="margin-top:70%">
+						<a href='films.html' class='deg135film' style="min-width:7%;"><span id="films">Films</span></a>
+					<a href='thefilmcrew.html' class='deg45film' style="min-width:7%;"><span id="filmCrew">The Film Crew</span></a>
+					<a href='services.html' class='deg0film' style="min-width:9%;"><span id="services">Services</span></a>
+					<a href='photography.html' class='deg150film' style="min-width:9%;"><span id="photo">Photography</span></a>
+					<a href='music.html' class='deg225film' style="min-width:7.1%;"><span id="music">Music</span></a>
+					<a href='contactus.html' class='deg315film' style="min-width:7.5%;"><span id="contact">Contact</span></a>
+					<a href='index.html' class='deg325film' style="min-width:6%;"><span id="home">Home</span></a>
+					<a href='About.html' class='deg335film' style="min-width:9%;"><span id="about">About Us</span></a>
+					</div>
+				</div>
 			</div>
 	</body>
 </html>

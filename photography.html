@@ -12,10 +12,9 @@
 		<script type="text/javascript" src="resources/js/jquery.arctext.js"></script> 
 	</head>
 	<style>
-		.outer img{
-			position: fixed;
+		#img1:hover,#img2:hover,#img3:hover,#img4:hover,#img5:hover,#img6:hover,#img7:hover,#img8:hover {
+			width:8.1%;
 		}
-		.circle-container a {position: fixed;}
 	</style>
 	<script>
 		 $(document).ready(function() {
@@ -57,15 +56,6 @@
 							$('#img4').css({left: '49.5%', top: '27%',opacity:-1});
 							$('#img4').show();
 							$('#img4').animate({left: '51%', top: '46%',opacity:1}, 500,function(){
-								/*$('#leftImage').slideDown(300,function() {
-									$('#photoId').slideDown({
-										duration:300,
-										easing:'linear',
-										complete: function(){
-											$('#information').fadeIn(1500);
-										}
-									});
-								});*/
 								$('#leftImage').css('margin-top','-25%');
 								$('#leftImage').show();
 								$('#photoId').css('margin-top','-25%');
@@ -122,12 +112,12 @@
 								});
 								$('#img5').animate({left: '56%', top: '27%'}, 500,function(){
 									$('#img5').hide();
-									$('#img6').animate({left: '61%', top: '33%'}, 500,function(){
+									$('#img6').animate({left: '62%', top: '35%'}, 500,function(){
 										$('#img6').css('z-index','-999');
 										$('#img6').hide();
 									});
 									$('#img8').css('z-index','-999');
-									$('#img8').animate({left: '40%', top: '33%'}, 500,function() {
+									$('#img8').animate({left: '40%', top: '35%'}, 500,function() {
 										$('#img7').css('z-index','999');
 										$('#img8').hide();
 										$('#img7').css('z-index','-999');
@@ -151,32 +141,34 @@
 	<!-- <div id="move" style="position:absolute;width:100%;text-align:left; margin-left:10%;margin-top:50px"><img  src="resources/images/logoweb.png" width="17%"/></div> -->
 	<div class="outer">
 	
-	<!-- <a href="resources/images/logoweb.png"> --> <img src="resources/images/Thumbnail7.png" id="img1" height="58px" width="58px" class='imgdeg0' style="width:70px;height:70px;"/>
-	<img src="resources/images/Thumbnail6.png" id="img2" height="58px" width="58px" class='imgdeg45'  style="width:75px;height:75px;"/>
-	<img src="resources/images/Thumbnail5.png" id="img3" height="58px" width="58px" class='imgdeg135' style="width:75px;height:75px;"/>
-	<img src="resources/images/Thumbnail4.png" id="img4" height="58px" width="58px" class='imgdeg150' style="width:75px;height:75px;"/>
-	<img src="resources/images/Thumbnail3.png" id="img5" height="58px" width="58px" class='imgdeg225' style="width:75px;height:75px;"/>
-	<img src="resources/images/Thumbnail2.png" id="img6" height="58px" width="58px" class='imgdeg315' style="width:75px;height:75px;"/>
-	<img src="resources/images/Thumbnail1.png" id="img7" height="58px" width="58px" class='imgdeg325' style="width:85px;height:85px;"/>
-	<img src="resources/images/Thumbnail8.png" id="img8" height="58px" width="58px" class='imgdeg335' style="width:75px;height:75px;"/>
+	<!-- <a href="resources/images/logoweb.png"> --> 
+	<img src="resources/images/Thumbnail7.png" id="img1" class='imgdeg0' style="min-width:7.1%;max-height:20%;"/>
+	<img src="resources/images/Thumbnail6.png" id="img2" class='imgdeg45'  style="min-width:7.1%;max-height:20%;"/>
+	<img src="resources/images/Thumbnail5.png" id="img3" class='imgdeg135' style="min-width:7.1%;max-height:20%;"/>
+	<img src="resources/images/Thumbnail4.png" id="img4" class='imgdeg150' style="min-width:7.1%;max-height:20%;"/>
+	<img src="resources/images/Thumbnail3.png" id="img5" class='imgdeg225' style="min-width:7.1%;max-height:20%;"/>
+	<img src="resources/images/Thumbnail2.png" id="img6" class='imgdeg315' style="min-width:7.1%;max-height:20%;"/>
+	<img src="resources/images/Thumbnail1.png" id="img7" class='imgdeg325' style="min-width:7.1%;max-height:20%"/>
+	<img src="resources/images/Thumbnail8.png" id="img8" class='imgdeg335' style="min-width:7.1%;max-height:20%"/>
 	</div>
 	<div class="circle-container" id="logo">
-		<img class="centered" src="resources/images/logoweb.png" width="17%" style="font-family:Century Gothic"/>
+		<img class="centered" src="resources/images/logoweb.png" width="14%" style="font-family:Century Gothic"/>
 			<a href='#' class='center'></a>
-			<a href='services.html' class='deg0' style="width:120px;"><span id="services">Services</span></a>
-			<a href='thefilmcrew.html' class='deg45' style="width:95px;"><span id="filmCrew">The Film Crew</span></a>
-			<a href='films.html' class='deg135' style="width:93px;"><span id="films">Films</span></a>
-			<a href='photography.html' class='deg150' style="width:120px;"><span id="photo">Photography</span></a>
-			<a href='music.html' class='deg225' style="width:93px;"><span id="music">Music</span></a>
-			<a href='contactus.html' class='deg315' style="width:93px;"><span id="contact">Contact</span></a>
-			<a href='index.html' class='deg325' style="width:93px;"><span id="home">Home</span></a>
-			<a href='About.html' class='deg335' style="width:120px;"><span id="about">About Us</span></a>
+			<a href='services.html' class='deg0' style="min-width:9%;"><span id="services">Services</span></a>
+			<a href='thefilmcrew.html' class='deg45' style="min-width:7%;"><span id="filmCrew">The Film Crew</span></a>
+			<a href='films.html' class='deg135' style="min-width:7%;"><span id="films">Films</span></a>
+			<a href='photography.html' class='deg150' style="min-width:9%;"><span id="photo">Photography</span></a>
+			<a href='music.html' class='deg225' style="min-width:7%;"><span id="music">Music</span></a>
+			<a href='contactus.html' class='deg315' style="min-width:7%;"><span id="contact">Contact</span></a>
+			<a href='index.html' class='deg325' style="min-width:7%;"><span id="home">Home</span></a>
+			<a href='About.html' class='deg335' style="min-width:9%;"><span id="about">About Us</span></a>
 	</div>
-		
-		<div style="height:25% width:56%" id="leftImage"><img id="photoId" src="resources/images/photographyphoto.png" width="15%" height="25%"/></div>
-		<div style="vertical-align:bottom; bottom: 0;margin-left:20px;font-family:Century Gothic; width:25%" id="information">
-			Meet <span class="photography">Zaryan</span> a.k.a<span class="photography">Y</span>ellow.<br>The <span class="photography">'eye'</span> behind<br><span class="photography">Y</span>ello<span class="photography">W</span>arp Production's<br><span class="photography">P</span>hotography & <span class="photography">Cinematography.</span><br>Zaryan has <span class="photography">conceptualized</span>  & shot<br> numerous photography <span class="photography">campaigns,</span><br>
-			music <span class="photography">videos</span>,commercials,<br>and many <span class="photography">feature films.</span><br><br><br>
+		<div style="height:25% width:56%" id="leftImage">
+		<img id="photoId" src="resources/images/photographyphoto.png" width="13%" height="25%"/></div>
+		<br>	
+		<div style="vertical-align:bottom; bottom: 0;margin-left:20px;font-family:Century Gothic;font-size:16px; width:32%;letter-spacing:2px;" id="information">
+			Meet <span class="photography">Zaryan</span> a.k.a<span class="photography"> Y</span>ellow.<br>The <span class="photography"> 'eye' </span> behind<br><span class="photography">Y</span>ello<span class="photography">W</span>arp Production's<br><span class="photography">P</span>hotography & <span class="photography">Cinematography.</span><br>Zaryan has <span class="photography">conceptualized</span>  & shot<br> numerous photography <span class="photography">campaigns,</span><br>
+			music <span class="photography">videos</span>, Commercials,<br> and many <span class="photography">feature films.</span><br><br><br>
 		</div>
 		<div id="slideShow" style="z-index:9999;"></div>
 		<!--<ul class="pgwSlideshow"></ul>-->
