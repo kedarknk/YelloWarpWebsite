@@ -439,6 +439,27 @@ p{
 	.deg135crew { transform:rotate(-81deg) translate(-9.1em) rotate(-95deg) }
 	.deg45crew { transform: rotate(75deg) translate(7.5em) rotate(65deg) }
 	.deg0crew { transform: rotate(10deg) translate(6.3em) rotate(75deg)}
+	
+	.left-container-film a {
+		display: block;
+		position: absolute;
+		top: 74.5%;
+		left: 67.9%;
+		margin: -2em;
+		z-index: 999;
+		font-family:Century Gothic;
+		color:black;
+		font-size:14px;
+	}
+	
+	.deg335film { transform: rotate(313deg) translate(7.9em) rotate(-267deg) }
+	.deg325film { transform:rotate(266deg) translate(9em) rotate(-263deg)}
+	.deg315film { transform:rotate(220deg) translate(10.8em) rotate(-256deg) }
+	.deg225film { transform:rotate(185deg) translate(11.8em) rotate(-263deg)}
+	.deg150film {transform:rotate(-34deg) translate(-13.9em) rotate(-97deg)}
+	.deg135film { transform:rotate(-81deg) translate(-11.8em) rotate(-95deg) }
+	.deg45film { transform: rotate(74deg) translate(10em) rotate(66deg) }
+	.deg0film{ transform: rotate(10deg) translate(8.4em) rotate(77deg)}
 }
 
 @media only screen and (min-width : 2500px) {
@@ -496,6 +517,27 @@ p{
 	.imgdeg315 { transform: rotate(208deg) translate(28em) rotate(-210deg) }
 	.imgdeg325 { transform: rotate(259deg) translate(21.5em) rotate(-261deg) }
 	.imgdeg335 { transform: rotate(316deg) translate(18.5em) rotate(-319deg) }
+	
+	.left-container-film a {
+		display: block;
+		position: absolute;
+		top: 74.5%;
+		left: 67.9%;
+		margin: -2em;
+		z-index: 999;
+		font-family:Century Gothic;
+		color:black;
+		font-size:14px;
+	}
+	
+	.deg335film { transform: rotate(313deg) translate(10.9em) rotate(-267deg) }
+	.deg325film { transform:rotate(258deg) translate(12.8em) rotate(-263deg)}
+	.deg315film { transform:rotate(213deg) translate(15em) rotate(-261deg) }
+	.deg225film { transform:rotate(171deg) translate(15.8em) rotate(-263deg)}
+	.deg150film {transform:rotate(-43deg) translate(-17.2em) rotate(-97deg)}
+	.deg135film { transform:rotate(-81deg) translate(-14.8em) rotate(-95deg) }
+	.deg45film { transform: rotate(74deg) translate(13em) rotate(71deg)}
+	.deg0film{ transform:rotate(10deg) translate(11.4em) rotate(77deg)}
 }
 
 .centered {
