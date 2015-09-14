@@ -1,11 +1,154 @@
 <!DOCTYPE html>
-<html>
+<html hola_ext_inject="ready">
 	<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+            <script type="text/javascript" src="jquery-compat-git.js"></script>
+            
+            
+            
+            
+            <link rel="stylesheet" type="text/css" href="result-light.css">
+                
+                <style type="text/css">
+                    .box{
+                        position:relative;
+                        background: none;
+                        font-size:10px;
+                        top:40px;
+                        left:40px;
+                        display:inline-block;
+                        margin:20px;
+                        border-radius: 50% ;
+                        width:40px;
+                        height:40px;
+                        color:black;
+                        text-align:center;
+                        line-height:20px;
+                    }
+                
+                .music{
+                    position:relative;
+                    background: none;
+                    font-size:150%;
+                    top:40px;
+                    left:40px;
+                    display:inline-block;
+                    margin:20px;
+                    border-radius: 50% ;
+                    width:40px;
+                    height:40px;
+                    color:black;
+                    text-align:center;
+                    line-height:20px;
+                }
+                
+                html,body{margin:0; padding:0;}
+                    </style>
+                
+                
+                
+                
+                <script type="text/javascript">//<![CDATA[
+                    $(window).on('load', function() {
+                                 var mouse = {'x': 0, 'y': 0};
+                                 
+                                 homex = 0;
+                                 homey = 0;
+                                 forcex = 0;
+                                 forcey = 0;
+                                 magnet = 500;
+                                 
+                                 
+                                 $(document).bind('mousemove', function(e) {
+                                                  mouse = {'x': e.pageX, 'y': e.pageY};
+                                                  });
+                                 
+                                 
+                                 $('.box').each(function(index, el){
+                                                $(el).data( "homex", parseInt($(el).position().left));
+                                                $(el).data( "homey", parseInt($(el).position().top));
+                                                });
+                                 
+                                 $('.box').css('position','absolute');
+                                 setInterval(function () {
+                                             $('.box').each(function(index, el){
+                                                            el = $(el);
+                                                            position = el.position();
+                                                            x0 = el.offset().left;
+                                                            y0 = el.offset().top;
+                                                            x1 = mouse.x;
+                                                            y1 = mouse.y;
+                                                            distancex = x1-x0;
+                                                            distancey = y1-y0;
+                                                            
+                                                            distance = Math.sqrt((distancex * distancex) + (distancey * distancey));
+                                                            
+                                                            /*
+                                                             magnet = 2600 - distance*20;
+                                                             if(distance>130) {
+                                                             magnet=0;
+                                                             }
+                                                             */
+                                                            
+                                                            powerx = x0 - (distancex / distance) * magnet / distance;
+                                                            powery = y0 - (distancey / distance) * magnet / distance;
+                                                            
+                                                            forcex = (forcex + (el.data('homex') - x0) / 2) / 2.1;
+                                                            forcey = (forcey + (el.data('homey') - y0) / 2) / 2.1;
+                                                            
+                                                            
+                                                            el.css('left', powerx + forcex);
+                                                            el.css('top',  powery + forcey);
+                                                            });
+                                             }, 15);
+                                 
+                                 $('.music').each(function(index, el){
+                                                  $(el).data( "homex", parseInt($(el).position().left));
+                                                  $(el).data( "homey", parseInt($(el).position().top));
+                                                  });
+                                 
+                                 $('.music').css('position','absolute');
+                                 setInterval(function () {
+                                             $('.music').each(function(index, el){
+                                                              el = $(el);
+                                                              position = el.position();
+                                                              x0 = el.offset().left;
+                                                              y0 = el.offset().top;
+                                                              x1 = mouse.x;
+                                                              y1 = mouse.y;
+                                                              distancex = x1-x0;
+                                                              distancey = y1-y0;
+                                                              
+                                                              distance = Math.sqrt((distancex * distancex) + (distancey * distancey));
+                                                              
+                                                              /*
+                                                               magnet = 2600 - distance*20;
+                                                               if(distance>130) {
+                                                               magnet=0; 
+                                                               }
+                                                               */
+                                                              
+                                                              powerx = x0 - (distancex / distance) * magnet / distance;
+                                                              powery = y0 - (distancey / distance) * magnet / distance;
+                                                              
+                                                              forcex = (forcex + (el.data('homex') - x0) / 2) / 2.1;
+                                                              forcey = (forcey + (el.data('homey') - y0) / 2) / 2.1;
+                                                              
+                                                              
+                                                              el.css('left', powerx + forcex);
+                                                              el.css('top',  powery + forcey);
+                                                              });
+                                             }, 15);
+                                 
+                                 });//]]> 
+                                 
+                    </script>
 		<link rel="stylesheet" href="resources/css/bootstrap.min.css">
 		  <script src="resources/js/jquery.min.js"></script>
 		  <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 		  <link rel="stylesheet" type="text/css" href="resources/css/yellowarp.css">
-		  <script type="text/javascript" src="resources/js/jquery.arctext.js"></script> 
+		  <script type="text/javascript" src="resources/js/jquery.arctext.js"></script>
+          
 	</head>
 	<script>
 		 $(document).ready(function() {
@@ -44,7 +187,7 @@
 		   });
 		});
 	</script>
-	<body>
+	<body hola-ext-player="1">
 	<!--<div id="move" style="position:absolute;width:100%;text-align:center;"><img  src="resources/images/logoweb.png" width="17%"/></div> -->
 	<div class="circle-container" id="logo">
 		<img class="centered" src="resources/images/logoweb.png" width="14%" style="font-family:Century Gothic"/>
@@ -58,15 +201,54 @@
 			<a href='index.html' class='deg325' style="min-width:7%"><span id="home">Home</span></a>
 			<a href='About.html' class='deg335' style="min-width:9%;"><span id="about">About Us</span></a>
 	</div>
-	<div style="z-index:-999;vertical-align:bottom;position:absolute;max-width:46%; bottom: 0%;left:2%;font-family:Century Gothic;font-size:16px;letter-spacing:2px;" id="information">
-		Meet <span class="music">Shaun</span> a.k.a <span class="music">Warp.</span><br>
-		The guy who gives <span class="music">direction</span> to each of our <span class="music">films.</span><br>
-		Shaun is a <span class="music">classically</span> trained 'Music' Composer,Producer<br>
-		and <span class="music">Sound</span> Designer.<br>
-		Every film of ours is <span class="music">coloured</span> with the <span class="music">timbre</span><br>
-		of Shaun's music and sound <span class="music">Design.</span><br>
-		To view his <span class="music">'Music'</span> portfolio please refer to our <span class="music">FILMS</span> page.<br><br><br><br> 
-	</div>
+    
+    <div class="box" style="position: absolute; left: 64.5242px; top: 64.884px;">Meet</div>
+    <div class="music" style="position: absolute; left: 146.626px; top: 63.6463px;">Shawn</div>
+    <div class="box" style="position: absolute; left: 230.889px; top: 63.1715px;">a.k.a</div>
+    <div class="box" style="position: absolute; left: 314.893px; top: 62.9857px;">Warp.</div>
+    <div class="box" style="position: absolute; left: 398.872px; top: 62.82px;">The</div>
+    <div class="box" style="position: absolute; left: 482.9px; top: 62.6171px;">guy</div>
+    <div class="box" style="position: absolute; left: 566.964px; top: 62.3569px;">who</div>
+    <div class="box" style="position: absolute; left: 651.122px; top: 62.1081px;">gives</div>
+    <div class="box" style="position: absolute; left: 735.387px; top: 61.8626px;">direction</div>
+    <br>
+    <div class="box" style="position: absolute; left: 62.9083px; top: 144.911px;">to</div>
+    <div class="box" style="position: absolute; left: 146.659px; top: 143.249px;">each</div>
+    <div class="box" style="position: absolute; left: 230.775px; top: 143.202px;">of</div>
+    <div class="box" style="position: absolute; left: 314.732px; top: 143.069px;">our</div>
+    <div class="box" style="position: absolute; left: 398.667px; top: 142.862px;">films.</div>
+    <div class="box" style="position: absolute; left: 482.638px; top: 142.597px;">Shaun</div>
+    <div class="box" style="position: absolute; left: 566.685px; top: 142.272px;">is</div>
+    <div class="box" style="position: absolute; left: 650.816px; top: 141.89px;">a</div>
+    <div class="box" style="position: absolute; left: 735.116px; top: 141.523px;">classically</div>
+    <br>
+    <div class="box" style="position: absolute; left: 63.1159px; top: 225.208px;">trained</div>
+    <div class="box" style="position: absolute; left: 146.478px; top: 223.382px;">'Music'</div>
+    <div class="box" style="position: absolute; left: 230.651px; top: 223.301px;">Composer, </div>
+    <div class="box" style="position: absolute; left: 314.559px; top: 223.13px;">Producer</div>
+    <div class="box" style="position: absolute; left: 398.433px; top: 222.912px;">and</div>
+    <div class="box" style="position: absolute; left: 482.341px; top: 222.629px;">Sound</div>
+    <div class="box" style="position: absolute; left: 566.311px; top: 222.237px;">Designer.</div>
+    <div class="box" style="position: absolute; left: 650.368px; top: 221.737px;">Every</div>
+    <div class="box" style="position: absolute; left: 734.662px; top: 221.136px;">film</div>
+    <br>
+    <div class="box" style="position: absolute; left: 63.466px; top: 305.438px;">of</div>
+    <div class="box" style="position: absolute; left: 146.312px; top: 303.617px;">ours</div>
+    <div class="box" style="position: absolute; left: 230.527px; top: 303.405px;">is</div>
+    <div class="box" style="position: absolute; left: 314.387px; top: 303.253px;">colored</div>
+    <div class="box" style="position: absolute; left: 398.197px; top: 303.038px;">with</div>
+    <div class="box" style="position: absolute; left: 482.01px; top: 302.752px;">the</div>
+    <div class="box" style="position: absolute; left: 565.827px; top: 302.286px;">timbre</div>
+    <div class="box" style="position: absolute; left: 649.754px; top: 301.654px;">of</div>
+    <div class="box" style="position: absolute; left: 733.914px; top: 300.744px;">Shaun's</div>
+    <br>
+    
+    
+    
+    
+    
+    
+
 	<div class="row" style="margin-top:3%;margin-right:20%">
 	<!-- <div class="verticalLineMusic" id="vline">&nbsp;</div> -->
 	<!-- <div style="text-align:right">		
