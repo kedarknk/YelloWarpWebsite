@@ -15,9 +15,95 @@
 		#img1:hover,#img2:hover,#img3:hover,#img4:hover,#img5:hover,#img6:hover,#img7:hover,#img8:hover {
 			width:8.1%;
 		}
+		.centered ,#img1{position:absolute}
+		.box{
+			position:relative;
+			display:inline-block;
+			border-radius: 50% ;
+			color:black;
+			margin:0.6%;
+			text-align:center;
+		}
+			
+		.music{
+			margin:0.6%;
+			position:relative;
+			background: none;
+			display:inline-block;
+			border-radius: 50% ;
+			color:black;
+			text-align:center;
+		}
 	</style>
 	<script>
+		$(document).bind('mousemove', function(e) {
+			  mouse = {'x': e.pageX, 'y': e.pageY};
+		});
 		 $(document).ready(function() {
+			mouse = {'x': 0, 'y': 0};
+			 homex = 0;
+			 homey = 0;
+			 forcex = 0;
+			 forcey = 0;
+			 magnet = 500;
+			 $('.box').each(function(index, el){
+					$(el).data( "homex", parseInt($(el).position().left));
+					$(el).data( "homey", parseInt($(el).position().top));
+				});
+			$('.music').each(function(index, el){
+					$(el).data( "homex", parseInt($(el).position().left));
+					$(el).data( "homey", parseInt($(el).position().top));
+				});
+			 $('.box').css('position','absolute');
+			 $('.music').css('position','absolute');
+			 setInterval(function () {
+				 $('.box').each(function(index, el){
+						el = $(el);
+						position = el.position();
+						x0 = el.offset().left;
+						y0 = el.offset().top;
+						x1 = mouse.x;
+						y1 = mouse.y;
+						distancex = x1-x0;
+						distancey = y1-y0;
+						
+						distance = Math.sqrt((distancex * distancex) + (distancey * distancey));
+						powerx = x0 - (distancex / distance) * magnet / distance;
+						powery = y0 - (distancey / distance) * magnet / distance;
+						
+						forcex = (forcex + (el.data('homex') - x0) / 2) / 2.1;
+						forcey = (forcey + (el.data('homey') - y0) / 2) / 2.1;
+						
+						el.css('left', powerx + forcex);
+						el.css('top',  powery + forcey);
+						});
+				 }, 15);
+				 
+				 setInterval(function () {
+				 $('.music').each(function(index, el){
+						el = $(el);
+						position = el.position();
+						x0 = el.offset().left;
+						y0 = el.offset().top;
+						x1 = mouse.x;
+						y1 = mouse.y;
+						distancex = x1-x0;
+						distancey = y1-y0;
+						
+						distance = Math.sqrt((distancex * distancex) + (distancey * distancey));
+						
+						powerx = x0 - (distancex / distance) * magnet / distance;
+						powery = y0 - (distancey / distance) * magnet / distance;
+						
+						forcex = (forcex + (el.data('homex') - x0) / 2) / 2.1;
+						forcey = (forcey + (el.data('homey') - y0) / 2) / 2.1;
+						
+						
+						el.css('left', powerx + forcex);
+						el.css('top',  powery + forcey);
+						});
+				 }, 15);
+				 
 			$('#photo').arctext({radius:100});
 			$('#filmCrew').arctext({radius:100});
 			$('#about').arctext({radius:80});
@@ -167,8 +253,32 @@
 		<img id="photoId" src="resources/images/photographyphoto.png" width="13%" height="25%"/></div>
 		<br>	
 		<div style="vertical-align:bottom; bottom: 0;margin-left:20px;font-family:Century Gothic;font-size:16px; width:32%;letter-spacing:2px;" id="information">
-			Meet <span class="photography">Zaryan</span> a.k.a<span class="photography"> Y</span>ellow.<br>The <span class="photography"> 'eye' </span> behind<br><span class="photography">Y</span>ello<span class="photography">W</span>arp Production's<br><span class="photography">P</span>hotography & <span class="photography">Cinematography.</span><br>Zaryan has <span class="photography">conceptualized</span>  & shot<br> numerous photography <span class="photography">campaigns,</span><br>
-			music <span class="photography">videos</span>, Commercials,<br> and many <span class="photography">feature films.</span><br><br><br>
+			<div class="box">Meet </div>
+			<div class="music">Zaryan</div>
+			<div class="box">a.k.a</div>
+			<div class="music">Y</div>
+			<div class="box">ellow.</div><br>
+			<div class="box">The </div>
+			<div class="music"> 'eye' </div>
+			<div class="box">behind</div><br>
+			<div class="music">Y</div>
+			<div class="box">ello</div>
+			<div class="music">W</div>
+			<div class="box">arp Production's</div><br>
+			<div class="music">P</div>
+			<div class="box">hotography & </div>
+			<div class="music">Cinematography.</div><br>
+			<div class="box">Zaryan has </div>
+			<div class="music">conceptualized</div>
+			<div class="box">& shot</div><br>
+			<div class="box">numerous</div><div class="box"> photography</div>
+			<div class="music">campaigns,</div><br>
+			<div class="box">music </div>
+			<div class="music">videos</div>
+			<div class="box">, Commercials,</div><br>
+			<div class="box">and many </div>
+			<div class="music">feature </div>
+			<div class="box">films.</div><br><br><br>
 		</div>
 		<div id="slideShow" style="z-index:9999;"></div>
 		<!--<ul class="pgwSlideshow"></ul>-->
