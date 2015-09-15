@@ -1,15 +1,103 @@
 <html>
 	<head>
+	<style>
+			.box{
+				position:relative;
+				display:inline-block;
+				border-radius: 50% ;
+				color:black;
+				margin:0.6%;
+				text-align:center;
+				font-size:16px;
+			}
+                
+			.music{
+				margin:0.6%;
+				position:relative;
+				background: none;
+				display:inline-block;
+				border-radius: 50% ;
+				color:black;
+				text-align:center;
+			}
+         </style>
 		<link rel="stylesheet" href="resources/css/bootstrap.min.css">
 		<script src="resources/js/jquery.min.js"></script>
 		<!-- <script src="resources/js/guitar.js"></script>  -->
 		<link rel="stylesheet" type="text/css" href="resources/css/yellowarp.css">
-		<script src="maotext.js"></script>
 		<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 		<script type="text/javascript" src="resources/js/jquery.arctext.js"></script> 
 	</head>
 	<script>
+		$(document).bind('mousemove', function(e) {
+			  mouse = {'x': e.pageX, 'y': e.pageY};
+		});
 		 $(document).ready(function() {
+			mouse = {'x': 0, 'y': 0};
+			 homex = 0;
+			 homey = 0;
+			 forcex = 0;
+			 forcey = 0;
+			 magnet = 500;
+			 $('.box').each(function(index, el){
+					$(el).data( "homex", parseInt($(el).position().left));
+					$(el).data( "homey", parseInt($(el).position().top));
+				});
+			$('.music').each(function(index, el){
+					$(el).data( "homex", parseInt($(el).position().left));
+					$(el).data( "homey", parseInt($(el).position().top));
+				});
+			 $('.box').css('position','absolute');
+			 $('.music').css('position','absolute');
+			 
+			 setInterval(function () {
+				 $('.box').each(function(index, el){
+						el = $(el);
+						position = el.position();
+						x0 = el.offset().left;
+						y0 = el.offset().top;
+						x1 = mouse.x;
+						y1 = mouse.y;
+						distancex = x1-x0;
+						distancey = y1-y0;
+						
+						distance = Math.sqrt((distancex * distancex) + (distancey * distancey));
+						powerx = x0 - (distancex / distance) * magnet / distance;
+						powery = y0 - (distancey / distance) * magnet / distance;
+						
+						forcex = (forcex + (el.data('homex') - x0) / 2) / 2.1;
+						forcey = (forcey + (el.data('homey') - y0) / 2) / 2.1;
+						
+						el.css('left', powerx + forcex-250);
+						el.css('top',  powery + forcey);
+						});
+				 }, 15);
+				 
+				 setInterval(function () {
+				 $('.music').each(function(index, el){
+						el = $(el);
+						position = el.position();
+						x0 = el.offset().left;
+						y0 = el.offset().top;
+						x1 = mouse.x;
+						y1 = mouse.y;
+						distancex = x1-x0;
+						distancey = y1-y0;
+						
+						distance = Math.sqrt((distancex * distancex) + (distancey * distancey));
+						
+						powerx = x0 - (distancex / distance) * magnet / distance;
+						powery = y0 - (distancey / distance) * magnet / distance;
+						
+						forcex = (forcex + (el.data('homex') - x0) / 2) / 2.1;
+						forcey = (forcey + (el.data('homey') - y0) / 2) / 2.1;
+						
+						
+						el.css('left', powerx + forcex-250);
+						el.css('top',  powery + forcey);
+						});
+				 }, 15);
+			 
 			$('#serviceImg').hide();			
 			$('#photo').arctext({radius:100});
 			$('#about').arctext({radius:80});
@@ -103,23 +191,113 @@
 		<div class="col-md-4 services-image">
 			<img class="left bottom-image" id = "serviceImg" src="resources/images/Servicesphoto.png" width="40%"/>
 		</div>
-			<div class="col-md-7 moamix1w1" id="information" style="padding-top:9%;line-height:150%;letter-spacing:2px">
-				<p style="font-family:Century Gothic;font-size:16px;">
-					<span class="about">Y</span>ello <span class="about">W</span>arp <span class="about">P</span>roductions is a <span class="about"> FULL</span> service <span class="about">production</span> house,<br>
-					that caters to all <span class="about">media</span> content <span class="about">generation</span> requirements.<br>
-					We cover a <span class="about">broad range </span>of service including : Commercial <span class="about">films</span>,<br>
-					<span class="about">Digital</span> films, Corporate films,<span class="about"> Animated</span> films, Personal films, A/V's,<br>
-					Music <span class="about">Composition</span> & Production,<span class="about"> Photography</span>,<br>Billboard & <span class="about">Poster</span> Design,<span class="about"> Digital art</span>,<br>
-					<span class="about">Website Design</span> and App Development.
+			<div class="col-md-8" id="information" style="font-family:Century Gothic;padding-top:9%;line-height:150%;letter-spacing:2px">
+				<p style="font-family:Century Gothic;">
+					<div class="music">Y</div>
+					<div class="box" style="margin-left:0%;">ello</div>
+					<div class="music" style="margin-left:0%;">W</div>
+					<div class="box" style="margin-left:0%;">arp </div>
+					<div class="music">P</div>
+					<div class="box">roductions </div>
+					<div class="box">is </div>
+					<div class="box">a </div>
+					<div class="music"> FULL</div>
+					<div class="box">service </div>
+					<div class="music">production</div> 
+					<div class="box">house,</div><br>
+					<div class="box">that </div>
+					<div class="box">caters to </div>
+					<div class="box">all </div>
+					<div class="music">media</div> 
+					<div class="box">content </div>
+					<div class="music">generation</div>
+					<div class="box">requirements.</div><br>
+					<div class="box">We cover </div>
+					<div class="box">a </div> 
+					<div class="music">broad</div>
+					<div class="music">range </div>
+					<div class="box">of </div>
+					<div class="box">service </div>
+					<div class="box">including : </div>
+					<div class="box">Commercial </div>
+					<div class="music">films,</div><br>
+					<div class="music">Digital</div> 
+					<div class="box">films, </div>
+					<div class="box">Corporate </div>
+					<div class="box">films,</div>
+					<div class="music"> Animated</div> 
+					<div class="box">films, </div>
+					<div class="box">Personal </div>
+					<div class="box">films, </div>
+					<div class="box">A/V's,</div><br>
+					<div class="box">Music </div>
+					<div class="music">Composition</div>
+					<div class="box">& </div>
+					<div class="box">Production,</div>
+					<div class="music"> Photography,</div><br>
+					<div class="box">Billboard & </div>
+					<div class="music">Poster</div> 
+					<div class="box">Design,</div>
+					<div class="music"> Digital </div>
+					<div class="music">art,</div><br>
+					<div class="music">Website </div>
+					<div class="music">Design</div> 
+					<div class="box">and </div>
+					<div class="box">App </div>
+					<div class="box">Development.</div>
 				</p>
 				<br><br>
 				<p style="font-family:Century Gothic;font-size:16px;">
-					<span class="about">Flexible</span> enough, we provide <span class="about">Value</span> for money package deals <span class="about">& </span><br> 
-					also give our clients the option hire our <span class="about">individual talents</span> on a<br> 
-					<span class="about">freelance</span> basis. These may include : Executive production,<span class="about"> Direction</span>,<br>
-					<span class="about">Cinematography</span>, Editing,vfx & packaging,<span class="about"> Animation,<br>
-					Music</span> Composition & Production,<span class="about"> Sound</span> Design & audio <span class="about">post,</span><br>
-					still <span class="about">Photography</span> and digital <span class="about">art</span>.
+					<div class="music">Flexible</div> 
+					<div class="box">enough, </div>
+					<div class="box">we </div>
+					<div class="box">provide </div>
+					<div class="music">Value</div> 
+					<div class="box">for </div>
+					<div class="box">money </div>
+					<div class="box">package </div>
+					<div class="box">deals </div>
+					<div class="music">& </div><br> 
+					<div class="box">also </div>
+					<div class="box">give </div>
+					<div class="box">our </div>
+					<div class="box">clients </div>
+					<div class="box">the </div>
+					<div class="box">option </div>
+					<div class="box">hire </div>
+					<div class="box">our </div>
+					<div class="music">individual</div>
+					<div class="music">talents</div> 
+					<div class="box">on </div>
+					<div class="box">a</div><br> 
+					<div class="music">freelance</div> 
+					<div class="box">basis.</div> 
+					<div class="box">These </div>
+					<div class="box">may </div>
+					<div class="box">include </div>
+					<div class="box">:Executive </div>
+					<div class="box">production,</div>
+					<div class="music"> Direction,</div><br>
+					<div class="music">Cinematography,</div> 
+					<div class="box">Editing,</div>
+					<div class="box">vfx </div>
+					<div class="box">& </div>
+					<div class="box">packaging,</div>
+					<div class="music"> Animation,</div><br>
+					<div class="music">Music</div>
+					<div class="box">Composition </div>
+					<div class="box">& </div> 
+					<div class="box">Production,</div>
+					<div class="music"> Sound</div> 
+					<div class="box">Design </div>
+					<div class="box">& </div>
+					<div class="box">audio </div>
+					<div class="music">post,</div><br>
+					<div class="box">still </div>
+					<div class="music">Photography</div> 
+					<div class="box">and </div>
+					<div class="box">digital </div>
+					<div class="music">art.</div>
 				</p>
 			</div>
 		</div>
