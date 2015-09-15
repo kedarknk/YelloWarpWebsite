@@ -4,9 +4,101 @@
 		<script src="resources/js/jquery.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="resources/css/yellowarp.css">
 		<script type="text/javascript" src="resources/js/jquery.arctext.js"></script> 
+	<style>
+		.box{
+				position:relative;
+				display:inline-block;
+				border-radius: 50% ;
+				color:black;
+				margin:0.6%;
+				text-align:center;
+				font-size:16px;
+				font-family:Century Gothic;
+			}
+                
+			.music{
+				margin:0.6%;
+				position:relative;
+				background: none;
+				display:inline-block;
+				border-radius: 50% ;
+				color:black;
+				text-align:center;
+				font-family:Century Gothic;
+			}
+	</style>
 	</head>
 	<script>
+		$(document).bind('mousemove', function(e) {
+			  mouse = {'x': e.pageX, 'y': e.pageY};
+		});
+			 
 		 $(document).ready(function() {
+		 mouse = {'x': 0, 'y': 0};
+		 homex = 0;
+		 homey = 0;
+		 forcex = 0;
+		 forcey = 0;
+		 magnet = 500;
+		 $('.box').each(function(index, el){
+					$(el).data( "homex", parseInt($(el).position().left));
+					$(el).data( "homey", parseInt($(el).position().top));
+				});
+			$('.music').each(function(index, el){
+					$(el).data( "homex", parseInt($(el).position().left));
+					$(el).data( "homey", parseInt($(el).position().top));
+				});
+			 $('.box').css('position','absolute');
+			 $('.music').css('position','absolute');
+			 
+			 setInterval(function () {
+				 $('.box').each(function(index, el){
+						el = $(el);
+						position = el.position();
+						x0 = el.offset().left;
+						y0 = el.offset().top;
+						x1 = mouse.x;
+						y1 = mouse.y;
+						distancex = x1-x0;
+						distancey = y1-y0;
+						
+						distance = Math.sqrt((distancex * distancex) + (distancey * distancey));
+						powerx = x0 - (distancex / distance) * magnet / distance;
+						powery = y0 - (distancey / distance) * magnet / distance;
+						
+						forcex = (forcex + (el.data('homex') - x0) / 2) / 2.1;
+						forcey = (forcey + (el.data('homey') - y0) / 2) / 2.1;
+						
+						el.css('left', powerx + forcex-300);
+						el.css('top',  powery + forcey);
+						});
+				 }, 15);
+				 
+				 setInterval(function () {
+				 $('.music').each(function(index, el){
+						el = $(el);
+						position = el.position();
+						x0 = el.offset().left;
+						y0 = el.offset().top;
+						x1 = mouse.x;
+						y1 = mouse.y;
+						distancex = x1-x0;
+						distancey = y1-y0;
+						
+						distance = Math.sqrt((distancex * distancex) + (distancey * distancey));
+						
+						powerx = x0 - (distancex / distance) * magnet / distance;
+						powery = y0 - (distancey / distance) * magnet / distance;
+						
+						forcex = (forcex + (el.data('homex') - x0) / 2) / 2.1;
+						forcey = (forcey + (el.data('homey') - y0) / 2) / 2.1;
+						
+						
+						el.css('left', powerx + forcex-300);
+						el.css('top',  powery + forcey);
+						});
+				 }, 15);
+		 
 		 $('#filmCrew').arctext({radius:100});
 		 $('#about').arctext({radius:80});
 		 $('#photo').arctext({radius:100});
@@ -106,16 +198,81 @@
 			<img src="resources/images/Aboutusphoto.png" width="35%" id="topLogo"/>
 			</div>
 			<div class="col-md-7" id="information" style="padding-top:20%;line-height:150%;letter-spacing:2px;">
-				 <p style="font-family:Century Gothic;font-size:16px;"> 
-					From watching <span class="about">great films</span> & <span class="about">idolizing</span> great filmmakers.<br>
-					To studying film passionately & connecting with the <span class="about">fraternity.</span><br>
-					From <span class="about">coffee</span> runs, to becoming right hand-men.<br>
-					And finally pooling together to <span class="about">plunge</span> into our own <span class="about">existence.</span><br>
-					<span class="about">Y</span>ello <span class="about">W</span>arp <span class="about">Productions</span> comes fully loaded,with a talent pool<br>
-					of young, fresh, creative, dedicated & professional <span class="about">filmmakers.</span><br>
-					Co-Founded by <span class="about">Shaun kolah</span> & <span class="about"> Zaryan Patel.</span><br>
-					We are a <span class="about">one-stop-shop,</span> production-house that caters<br>
-					to all your <span class="about">media</span> content generation <span class="about">requirements.</span>
+				 <p> 
+					<div class="box">From </div>
+					<div class="box">watching </div>
+					<div class="music">great </div>
+					<div class="music">films</div>
+					<div class="box">& </div>
+					<div class="music">idolizing</div>
+					<div class="box">great </div>
+					<div class="box">filmmakers.</div><br>
+					<div class="box">To </div>
+					<div class="box">studying </div>
+					<div class="box">film </div>
+					<div class="box">passionately </div>
+					<div class="box">& </div>
+					<div class="box">connecting </div>
+					<div class="box">with </div>
+					<div class="box">the </div>
+					<div class="music">fraternity.</div><br>
+					<div class="box">From </div>
+					<div class="music">coffee</div> 
+					<div class="box">runs, </div>
+					<div class="box">to </div>
+					<div class="box">becoming </div>
+					<div class="box">right </div>
+					<div class="box">hand-men.</div><br>
+					<div class="box">And </div>
+					<div class="box">finally </div>
+					<div class="box">pooling </div>
+					<div class="box">together </div>
+					<div class="box">to </div>
+					<div class="music">plunge</div> 
+					<div class="box">into </div>
+					<div class="box">our </div>
+					<div class="box">own </div>
+					<div class="music">existence.</div><br>
+					<div class="music">Y</div>
+					<div class="box">ello </div>
+					<div class="music">W</div>
+					<div class="box">arp </div>
+					<div class="music">Productions</div> 
+					<div class="box">comes </div>
+					<div class="box">fully </div>
+					<div class="box">loaded,</div>
+					<div class="box">with </div>
+					<div class="box">a </div>
+					<div class="box">talent </div>
+					<div class="box">pool</div><br>
+					<div class="box">of </div>
+					<div class="box">young, </div>
+					<div class="box">fresh, </div>
+					<div class="box">creative, </div>
+					<div class="box">dedicated </div>
+					<div class="box">& </div>
+					<div class="box">professional </div>
+					<div class="music">filmmakers.</div><br>
+					<div class="box">Co-Founded </div>
+					<div class="box">by </div>
+					<div class="music">Shaun kolah</div> 
+					<div class="box">& </div>
+					<div class="music"> Zaryan </div>
+					<div class="music">Patel.</div><br>
+					<div class="box">We </div>
+					<div class="box">are </div>
+					<div class="box">a </div>
+					<div class="music">one-stop-shop,</div> 
+					<div class="box">production-house </div>
+					<div class="box">that </div>
+					<div class="box">caters</div><br>
+					<div class="box">to </div>
+					<div class="box">all </div>
+					<div class="box">your </div>
+					<div class="music">media</div> 
+					<div class="box">content </div>
+					<div class="box">generation </div>
+					<div class="music">requirements.</div>
 				</p>
 			</div>
 		</div>	
