@@ -186,24 +186,29 @@
 				 if(href != 'photography.html') {
 					$('#information').fadeOut(1500,function(o){
 						$('#leftImage').animate({'margin-top':'-50%'},400,function(o){
-							$('#img4').animate({left: '49.5%', top: '26.7%'}, 500,function() {
+							//$('#img4').animate({left: '49.5%', top: '26.7%'}, 500,function() {
+							$('#img4').animate({left: '47%', top: $('#img5').position().top - 130}, 500,function() {
 								$('#img4').hide();
 							});
-							$('#img2').animate({left: '53%', top: '27%'}, 500,function(){
+							//$('#img2').animate({left: '53%', top: '27%'}, 500,function(){
+							$('#img2').animate({left: '54%', top: $('#img1').position().top - 130}, 500,function(){
 								$('#img2').css('z-index','-999');
 								$('#img2').hide();
 								$('#img1').css('z-index','-999');
-								$('#img1').animate({left: '45%', top: '26%'}, 500,function(){
+								$('#img1').animate({left: '45%', top: $('#img8').position().top-35}, 500,function(){
 									$('#img1').hide();
 								});
-								$('#img5').animate({left: '56%', top: '27%'}, 500,function(){
+								//$('#img5').animate({left: '56%', top: '27%'}, 500,function(){
+								$('#img5').animate({left: '56%', top: $('#img6').position().top-50}, 500,function(){
 									$('#img5').hide();
-									$('#img6').animate({left: '62%', top: '35%'}, 500,function(){
+									//$('#img6').animate({left: '62%', top: '35%'}, 500,function(){
+									$('#img6').animate({left: '62%', top: $('#img7').position().top+100}, 500,function(){
 										$('#img6').css('z-index','-999');
 										$('#img6').hide();
 									});
 									$('#img8').css('z-index','-999');
-									$('#img8').animate({left: '40%', top: '35%'}, 500,function() {
+									//$('#img8').animate({left: '40%', top: '35%'}, 500,function() {
+									$('#img8').animate({left: '40%', top: $('#img7').position().top+100}, 500,function() {
 										$('#img7').css('z-index','999');
 										$('#img8').hide();
 										$('#img7').css('z-index','-999');
@@ -212,7 +217,7 @@
 										});
 										$('#img3').animate({left: '50%',top: '30%'},500,function(){
 											$('#img3').hide();
-											window.location.href = href;
+											//window.location.href = href;
 										});
 									});
 								});
