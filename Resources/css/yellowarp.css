@@ -279,8 +279,8 @@ p{
 	.deg325film { transform:rotate(266deg) translate(6em) rotate(-263deg) }
 	.deg315film { transform:rotate(220deg) translate(7.4em) rotate(-256deg) }
 	.deg225film { transform:rotate(185deg) translate(7.8em) rotate(-263deg) }
-	.deg150film {transform:rotate(-34deg) translate(-9.9em) rotate(-97deg)}
-	.deg135film { transform:rotate(-81deg) translate(-8.1em) rotate(-95deg) }
+	.deg150film {transform:rotate(-34deg) translate(-10.1em) rotate(-97deg)}
+	.deg135film { transform:rotate(-81deg) translate(-8.3em) rotate(-95deg) }
 	.deg45film { transform: rotate(75deg) translate(6.8em) rotate(65deg) }
 	.deg0film{ transform: rotate(10deg) translate(5.7em) rotate(75deg)}
 } 
@@ -361,6 +361,27 @@ p{
 	.deg135crew { transform:rotate(-81deg) translate(-9.1em) rotate(-95deg) }
 	.deg45crew { transform: rotate(75deg) translate(7.5em) rotate(65deg) }
 	.deg0crew { transform: rotate(10deg) translate(6.3em) rotate(75deg)}
+	
+	.left-container-film a {
+		display: block;
+		position: absolute;
+		top: 74.5%;
+		left: 67.9%;
+		margin: -2em;
+		z-index: 999;
+		font-family:Century Gothic;
+		color:black;
+		font-size:14px;
+	}
+	
+	.deg335film { transform: rotate(313deg) translate(5.3em) rotate(-267deg) }
+	.deg325film { transform:rotate(266deg) translate(6.3em) rotate(-263deg) }
+	.deg315film { transform:rotate(220deg) translate(7.7em) rotate(-256deg) }
+	.deg225film { transform:rotate(185deg) translate(8.3em) rotate(-263deg) }
+	.deg150film {transform:rotate(-34deg) translate(-10.4em) rotate(-97deg)}
+	.deg135film { transform:rotate(-81deg) translate(-8.7em) rotate(-95deg) }
+	.deg45film { transform: rotate(75deg) translate(7.1em) rotate(65deg) }
+	.deg0film{ transform: rotate(10deg) translate(5.9em) rotate(75deg)}
 }
 
 @media only screen and (min-width : 1900px) {
