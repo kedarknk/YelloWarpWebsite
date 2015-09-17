@@ -36,9 +36,9 @@
 					duration: 1500,
 					start: function(){
 						$('#rightImage').animate({left: '+=9.5em', top: '+=24em'}, 1500,function(){
-							$('.yellowtree').css({'margin-bottom': '-25%','top': '100%','margin-top':'3.2%'});					
+							$('.yellowtree').css({'bottom': '-30%','position':'fixed'});
 							$('.yellowtree').show();
-							$('.yellowtree').animate({'top': '0'},2000);					
+							$('.yellowtree').animate({bottom:'0'},2000);					
 						});
 					},
 					complete: function(){
@@ -65,8 +65,8 @@
 		   $('a').click(function(e) {
 				e.preventDefault();
 				 var href = $(this).attr('href');
-				 if(href != 'thefilmcrew.html') {				 
-					$('.verticalLine').slideUp({
+				 if(href != 'thefilmcrew.html') {
+					/*$('.verticalLine').slideUp({
 							duration: 2000,
 							start: function(){
 								$('#serviceImg').animate({'margin-top': '42px'},2000);
@@ -82,36 +82,9 @@
 									window.location.href = href;
 								});
 							}
-						});
-						
-					/*$('#line').slideUp({
-						duration: 1000,
-						start: function(){
-							$('.yellowtree').animate({'margin-top':'-60%'},1000,function(){
-								$('#rightImage').animate({left: '-=9.5em', top: '-=24em'}, 1000,function(){
-									$('#rightImage').hide();
-									$('#logo').hide();
-									$('#move').show();
-									$('#move').animate({left: '-=14.5em', top: '+=12em'}, 1000,function(){
-										window.location.href = href;
-									});
-								});
-							});
-						}
-					});*/
-				 
-					/*$('.yellowtree').animate({'margin-top':'-60%'},1000,function(){
-						$('#rightImage').animate({left: '-=9.5em', top: '-=24em'}, 1000,function(){
-							$('#rightImage').hide();
-							$('#logo').hide();
-							$('#move').show();
-							$('#move').animate({left: '-=14.5em', top: '+=12em'}, 1000,function(){
-								window.location.href = href;
-							});
-						});
-					});*/
-					
-					$('.yellowtree').animate({'margin-top':'+50%'},{
+						});*/
+					$('.yellowtree').css('position','absolute');
+					$('.yellowtree').animate({'bottom':'-150%'},{
 						duration: 1000,						
 						complete: function(){
 							$('#line').animate({height: '0'},1000,function(){
@@ -147,7 +120,7 @@
 				</div>
 			</div>
 			<div class="yellowtree">
-				<img src="resources/images/yellowtree.png" width="60%" height="60%">
+				<img src="resources/images/yellowtree.png" width="60%" height="60%" style="vertical-align:bottom">
 				<span id="test1"><span style="min-width:150px">Assistant Direction Team</span><br><span style="margin-left:45px;">Mohit</span><br><span style="margin-left:45px;">Sunny</span><br><span style="margin-left:45px;">Abhishek</span><br><span style="margin-left:45px;">Lalit</span></span>
 				<span id="test2"><span style="min-width:120px">Costume Designers</span><br><span style="margin-left:10%;min-width:120px">Sambo Parakh</span><br><span style="margin-left:10%;min-width:120px">Shweta Grower</span></span>
 				<span id="test3"><span style="min-width:200px">Audio Post-Mix & Master</span><br><span style="margin-left:25%;min-width:100px;text-align:center">Jon Olliffe</span></span>
