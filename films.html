@@ -5,7 +5,7 @@
 	<link rel="stylesheet" type="text/css" href="resources/css/yellowarp.css">
 		  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 		  <!--<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script> -->
-		  <script type="text/javascript" src="resources/js/jquery.arctext.js"></script> 
+		  <script type="text/javascript" src="resources/js/jquery.arctext.js"></script>
 	</head>
 	</head>
 	<style>
@@ -24,7 +24,7 @@
 			$('#contact').arctext({radius:80});
 			$('#films').arctext({radius:80});
 			$('#information').hide();
-			$('#logo').hide();
+			$('#logo').hide();			
 			$('#remoteDiv').hide();
 			$('.film-tv-div').hide();
 		   $('#home').css('color','#FF9900');
@@ -34,7 +34,7 @@
 				$("#logo").css({top: '35%', left: '68em', position:'absolute'});
 				$('#remoteDiv').css('margin-top','-30%');
 				$('#remoteDiv').show();
-				$('#remoteDiv').animate({'margin-top':'+0%'},700,function() {
+				$('#remoteDiv').animate({'margin-top':'+0%'},700,function() {					
 				});
 				$('.film-tv-div').css('margin-left','-250%');
 				$('.film-tv-div').show();
@@ -55,17 +55,19 @@
 					});
 				 }
 		   });*/
-		   $('#remote').mousemove(function(data){
+		   /*$('#remote').mousemove(function(data){
 				if(data.offsetX > 27 && data.offsetX < 115 && data.offsetY > 77 && data.offsetY < 115) {
 					$('.film-tv-div').html('<img src="resources/images/FilmsRemote.png" width="85%" height="54%" style="display:table;margin-top:5%;margin-left:5%;">');
 				} else {
 					$('.film-tv-div').empty();
 				}
-		   })
+		   })*/
 		   //Animation for new DOM--
 			$('#newlogo').hide();
 			$('#tv').hide();
 			$('#remote').hide();
+			$('#line').hide();
+			$('#remote-imgs').hide();
 			$('#move0').animate({left: '+=37.8em', top: '-=3.5em'}, 1000,function(){
 				$('#move0').hide();
 				$('#newlogo').show();				
@@ -73,20 +75,44 @@
 				$('#tv').show();
 				$('#tv').animate({'margin-left':'20%'},600);
 				$('#remote').css('margin-top','-60%');
-				$('#remote').show();
-				$('#remote').animate({'margin-top':'+0%'},700);
+				//$('#line').show( "slide", {direction: "left" },1500);
+				//$('#line').show( "slide", {direction: "right" }, 2000,function(){
+				$('#line').show();
+				$('#line').animate({'margin-left': '50%','width':'100%'},1500,function(){
+					$('#remote').show();
+					$('#remote').animate({'margin-top':'+0%'},700,function(){
+						$('#remote-imgs').show();
+					});
+				});				
+				//});				
 		   });
+
+			$('#remote-imgs').children().children('img').hover(function(e){
+				//mouse enter
+				var html = "<img src = '"+e.target.src+"'' width='56%' style='display:block;margin:4% 23% 3% 25%;position:relative;'>";
+				//var html = "<img src ='Resources/images/actual1.png' width='56%' style='display:block;margin:4% 23% 3% 25%;position:relative;'>";
+				$('#imgDiv').empty();
+				$('#imgDiv').html(html);
+			},function(e){
+				//mouse exit
+				$('#imgDiv').empty();
+			});
 		   
 		   $('a').click(function(e) {
 				e.preventDefault();
 				 var href = $(this).attr('href');
 				 if(href != 'films.html') {
+				 	$('#imgDiv').empty();
 					$('#tv').animate({'margin-left':'-500%'},700,function(){
+						$('#remote-imgs').hide();
 						$('#remote').animate({'margin-top':'-999%'},700,function(){
-							$('#newlogo').hide();
-							$('#move0').show();
-							$('#move0').animate({left: '-=37.5em', top: '+=5em'}, 1000,function(){
-								window.location.href = href;
+							$('#line').animate({'margin-left': '120%','width':'10%'},1500,function(){
+								$('#line').hide();
+								$('#newlogo').hide();
+								$('#move0').show();
+								$('#move0').animate({left: '-=37.5em', top: '+=5em'}, 1000,function(){
+									window.location.href = href;
+								});
 							});
 						});
 					});
@@ -126,22 +152,42 @@
 			<div id="move0" style="margin-top:17.3%;position:absolute;width:100%;text-align:center;"><img  src="resources/images/logoweb.png" width="14%"/></div>
 			<div class="row">
 				<div class="col-md-6" style="margin-top:8%">
-					<img src="resources/images/FilmsTV.png" id="tv" width="65%" style="display:block;margin:0 auto;">
+					<img src="resources/images/FilmsTV.png" id="tv" width="65%" style="display:block;margin:0 auto;position:absolute;">
+					<div id="imgDiv"></div>
 				</div>
 				<div class="col-md-6">
 					<div class="col-md-6">
-						<img src="resources/images/FilmsRemote.png" id="remote" width="80%" style="display:block;margin:0 auto;">
+						<div style="position:relative">
+							<div class="col-md-9" style="margin-top:20%" id="remote-imgs">
+								<div style="display:inline-block;width:50%;position:relative;"><img src="resources/images/actual1.png" height="7%" width="80%" style="max-height=9%;min-height:35px;margin: 5% 8%;"></div>
+								<div style="display:inline-block;width:50%;float:right;"><img src="resources/images/actual2.png" height="7%" width="80%" style="max-height=9%;min-height:35px;margin: 5% 8%;"></div>
+								<div style="display:inline-block;width:50%;float:right;"><img src="resources/images/actual3.png" height="7%" width="80%" style="max-height=9%;min-height:35px;margin: 5% 8%;"></div>
+								<div style="display:inline-block;width:50%;float:right;"><img src="resources/images/actual3.png" height="7%" width="80%" style="max-height=9%;min-height:35px;margin: 5% 8%;"></div>
+								<div style="display:inline-block;width:50%;float:right;"><img src="resources/images/actual3.png" height="7%" width="80%" style="max-height=9%;min-height:35px;margin: 5% 8%;"></div>
+								<div style="display:inline-block;width:50%;float:right;"><img src="resources/images/actual3.png" height="7%" width="80%" style="max-height=9%;min-height:35px;margin: 5% 8%;"></div>
+								<div style="display:inline-block;width:50%;float:right;"><img src="resources/images/actual3.png" height="7%" width="80%" style="max-height=9%;min-height:35px;margin: 5% 8%;"></div>
+								<div style="display:inline-block;width:50%;float:right;"><img src="resources/images/actual3.png" height="7%" width="80%" style="max-height=9%;min-height:35px;margin: 5% 8%;"></div>
+								<div style="display:inline-block;width:50%;float:right;"><img src="resources/images/actual3.png" height="7%" width="80%" style="max-height=9%;min-height:35px;margin: 5% 8%;"></div>
+								<div style="display:inline-block;width:50%;float:right;"><img src="resources/images/actual3.png" height="7%" width="80%" style="max-height=9%;min-height:35px;margin: 5% 8%;"></div>
+								<div style="display:inline-block;width:50%;float:right;"><img src="resources/images/actual3.png" height="7%" width="80%" style="max-height=9%;min-height:35px;margin: 5% 8%;"></div>
+								<div style="display:inline-block;width:50%;float:right;"><img src="resources/images/actual3.png" height="7%" width="80%" style="max-height=9%;min-height:35px;margin: 5% 8%;"></div>
+							</div>
+							<img src="resources/images/FilmsRemote.png" id="remote" width="80%" style="display:block;margin:0 auto;position:absolute;z-index:-99">
+						</div>
+						<div id="line" style="margin-top:80%;position:absolute;margin-left: 100%;width: 50%;background-color:#636363;height:1px;z-index:-999">&nbsp;</div>
 					</div>
+					<!--<div id="line" style="margin-top:75%;postion:absolute;">&nbsp;</div>-->
 					<div class="col-md-5 left-container-film" id="newlogo">
+						<!--<div id="line" style="margin-top:77%;position:absolute;">&nbsp;</div>-->
 						<img src="resources/images/logoweb-crop.png" width="78%" class="pull-right" style="margin-top:70%">
 						<a href='films.html' class='deg135film' style="min-width:7%;"><span id="films">Films</span></a>
-					<a href='thefilmcrew.html' class='deg45film' style="min-width:7%;"><span id="filmCrew">The Film Crew</span></a>
-					<a href='services.html' class='deg0film' style="min-width:9%;"><span id="services">Services</span></a>
-					<a href='photography.html' class='deg150film' style="min-width:9%;"><span id="photo">Photography</span></a>
-					<a href='music.html' class='deg225film' style="min-width:7.1%;"><span id="music">Music</span></a>
-					<a href='contactus.html' class='deg315film' style="min-width:7.5%;"><span id="contact">Contact</span></a>
-					<a href='index.html' class='deg325film' style="min-width:6%;"><span id="home">Home</span></a>
-					<a href='About.html' class='deg335film' style="min-width:9%;"><span id="about">About Us</span></a>
+						<a href='thefilmcrew.html' class='deg45film' style="min-width:7%;"><span id="filmCrew">The Film Crew</span></a>
+						<a href='services.html' class='deg0film' style="min-width:9%;"><span id="services">Services</span></a>
+						<a href='photography.html' class='deg150film' style="min-width:9%;"><span id="photo">Photography</span></a>
+						<a href='music.html' class='deg225film' style="min-width:7.1%;"><span id="music">Music</span></a>
+						<a href='contactus.html' class='deg315film' style="min-width:7.5%;"><span id="contact">Contact</span></a>
+						<a href='index.html' class='deg325film' style="min-width:6%;"><span id="home">Home</span></a>
+						<a href='About.html' class='deg335film' style="min-width:9%;"><span id="about">About Us</span></a>
 					</div>
 				</div>
 			</div>
