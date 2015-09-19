@@ -25,7 +25,7 @@
 				$('#move').css('display','none');
 		   });*/
 		   
-		   setTimeout(function(){
+		   /*setTimeout(function(){
 				$('#logo').foggy();
 			   $('#logo').fadeTo(500,1,function(){
 					setTimeout(function(){  $('#logo').foggy(false);}, 1000);
@@ -38,7 +38,26 @@
 					$('#films').arctext({radius:80});
 					$('#filmCrew').arctext({radius:100});
 			   });
-		   },1500);
+		   },1500);*/
+		   i=20;
+		   setTimeout(function() {
+					$('#logo').fadeIn(1000,function() {
+					$('#photo').arctext({radius:110});
+					$('#about').arctext({radius:80});
+					$('#music').arctext({radius:80});
+					$('#contact').arctext({radius:80});
+					$('#home').arctext({radius:80});
+					$('#services').arctext({radius:80});
+					$('#films').arctext({radius:80});
+					$('#filmCrew').arctext({radius:100});
+				});
+		   },250);
+		   sI = setInterval(function(){
+			i--;
+			$('#logo').css('-webkit-filter','blur('+i+'px)');
+			if(i == 0)
+				clearInterval(sI);
+			},120);
 		});
 	</script>
 	<body>
