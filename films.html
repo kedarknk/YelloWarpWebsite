@@ -24,10 +24,11 @@
 			$('#contact').arctext({radius:80});
 			$('#films').arctext({radius:80});
 			$('#information').hide();
-			$('#logo').hide();			
+			$('#logo').hide();
+			$('#titleDiv').hide();
 			$('#remoteDiv').hide();
 			$('.film-tv-div').hide();
-		   $('#home').css('color','#FF9900');
+		   $('#films').css('color','#FF9900');
 		   $('#move').animate({left: '+=30.5em', top: '-=1em'}, 1000,function() {
 				$('#move').hide();
 				$('#logo').show();
@@ -88,14 +89,63 @@
 		   });
 
 			$('#remote-imgs').children().children('img').hover(function(e){
+			
+				var title1='Major Lazer & DJ Snake- Lean On (feat.MO) <br>[ Cinematography, Art Direction & SetDesign and  Line Production ] ';
+				var title2='Sonya For Vemb';
+				var title3='Move ft. Shakti Mohan';
+				var title4='Shaahid Amir Ad Film';
+				var title5='Mumbai Hazzir Hai';
+				var title6='RevoFit';
+				var title7='Brodha V - Aigiri Nandini (Official Music Video)[Cinematography, Art Direction & Set Design and Lin Production]';
+				var title8='BBC RADIO 1- London Original Music Jingle';
+				var title9='EMYOriginal String Quartet & Trumpet Composition (live in London)';
+				var title10='';
+				var title11='Papa Don\'t Preach';
+				var title12='BMW TVC [Music Composition & Production, Audio Post]';
+				var title13='Bombay Stock Exchange TVC [Music and Sound Design]';
+				var title14='Just Jeans TVC Australia [Music Composition & Production, Audio Post]';
+				var titleHtml;
 				//mouse enter
 				var html = "<img src = '"+e.target.src+"'' width='56%' style='display:block;margin:4% 23% 3% 25%;position:relative;'>";
 				//var html = "<img src ='Resources/images/actual1.png' width='56%' style='display:block;margin:4% 23% 3% 25%;position:relative;'>";
 				$('#imgDiv').empty();
 				$('#imgDiv').html(html);
+				var arr = e.target.src.split('/');
+				if(arr[7] == 'actual1.png')
+					titleHtml = title1;
+				else if(arr[7] == 'actual2.png')
+					titleHtml = title2;
+				else if(arr[7] == 'actual3.png')
+					titleHtml = title3;
+				else if(arr[7] == 'actual4.png')
+					titleHtml = title4;
+				else if(arr[7] == 'actual5.png')
+					titleHtml = title5;
+				else if(arr[7] == 'actual6.png')
+					titleHtml = title6;
+				else if(arr[7] == 'actual7.png')
+					titleHtml = title7;
+				else if(arr[7] == 'actual8.png')
+					titleHtml = title8;
+				else if(arr[7] == 'actual9.png')
+					titleHtml = title9;
+				else if(arr[7] == 'actual10.png')
+					titleHtml = title10;
+				else if(arr[7] == 'actual11.png')
+					titleHtml = title11;
+				else if(arr[7] == 'actual12.png')
+					titleHtml = title12;
+				else if(arr[7] == 'actual3.png')
+					titleHtml = title13;
+				else if(arr[7] == 'actual14.png')
+					titleHtml = title14;		
+				$('#titleDiv').html(titleHtml);
+				$('#titleDiv').show();
 			},function(e){
 				//mouse exit
 				$('#imgDiv').empty();
+				$('#titleDiv').empty();
+				$('#titleDiv').hide();
 			});
 		   
 		   $('a').click(function(e) {
@@ -155,22 +205,25 @@
 					<img src="resources/images/FilmsTV.png" id="tv" width="65%" style="display:block;margin:0 auto;position:absolute;">
 					<div id="imgDiv"></div>
 				</div>
+				..
 				<div class="col-md-6">
 					<div class="col-md-6">
 						<div style="position:relative">
 							<div class="col-md-9" style="margin-top:20%" id="remote-imgs">
 								<div style="display:inline-block;width:50%;position:relative;"><img src="resources/images/actual1.png" height="7%" width="80%" style="max-height=9%;min-height:35px;margin: 5% 8%;"></div>
 								<div style="display:inline-block;width:50%;float:right;"><img src="resources/images/actual2.png" height="7%" width="80%" style="max-height=9%;min-height:35px;margin: 5% 8%;"></div>
+								<div style="display:inline-block;width:50%;float:right;"><img src="resources/images/actual4.png" height="7%" width="80%" style="max-height=9%;min-height:35px;margin: 5% 8%;"></div>
 								<div style="display:inline-block;width:50%;float:right;"><img src="resources/images/actual3.png" height="7%" width="80%" style="max-height=9%;min-height:35px;margin: 5% 8%;"></div>
-								<div style="display:inline-block;width:50%;float:right;"><img src="resources/images/actual3.png" height="7%" width="80%" style="max-height=9%;min-height:35px;margin: 5% 8%;"></div>
-								<div style="display:inline-block;width:50%;float:right;"><img src="resources/images/actual3.png" height="7%" width="80%" style="max-height=9%;min-height:35px;margin: 5% 8%;"></div>
-								<div style="display:inline-block;width:50%;float:right;"><img src="resources/images/actual3.png" height="7%" width="80%" style="max-height=9%;min-height:35px;margin: 5% 8%;"></div>
-								<div style="display:inline-block;width:50%;float:right;"><img src="resources/images/actual3.png" height="7%" width="80%" style="max-height=9%;min-height:35px;margin: 5% 8%;"></div>
-								<div style="display:inline-block;width:50%;float:right;"><img src="resources/images/actual3.png" height="7%" width="80%" style="max-height=9%;min-height:35px;margin: 5% 8%;"></div>
-								<div style="display:inline-block;width:50%;float:right;"><img src="resources/images/actual3.png" height="7%" width="80%" style="max-height=9%;min-height:35px;margin: 5% 8%;"></div>
-								<div style="display:inline-block;width:50%;float:right;"><img src="resources/images/actual3.png" height="7%" width="80%" style="max-height=9%;min-height:35px;margin: 5% 8%;"></div>
-								<div style="display:inline-block;width:50%;float:right;"><img src="resources/images/actual3.png" height="7%" width="80%" style="max-height=9%;min-height:35px;margin: 5% 8%;"></div>
-								<div style="display:inline-block;width:50%;float:right;"><img src="resources/images/actual3.png" height="7%" width="80%" style="max-height=9%;min-height:35px;margin: 5% 8%;"></div>
+								<div style="display:inline-block;width:50%;float:right;"><img src="resources/images/actual6.png" height="7%" width="80%" style="max-height=9%;min-height:35px;margin: 5% 8%;"></div>
+								<div style="display:inline-block;width:50%;float:right;"><img src="resources/images/actual5.png" height="7%" width="80%" style="max-height=9%;min-height:35px;margin: 5% 8%;"></div>
+								<div style="display:inline-block;width:50%;float:right;"><img src="resources/images/actual8.png" height="7%" width="80%" style="max-height=9%;min-height:35px;margin: 5% 8%;"></div>
+								<div style="display:inline-block;width:50%;float:right;"><img src="resources/images/actual7.png" height="7%" width="80%" style="max-height=9%;min-height:35px;margin: 5% 8%;"></div>
+								<div style="display:inline-block;width:50%;float:right;"><img src="resources/images/actual9.png" height="7%" width="80%" style="max-height=9%;min-height:35px;margin: 5% 8%;"></div>
+								<div style="display:inline-block;width:50%;float:right;"><img src="resources/images/actual9.png" height="7%" width="80%" style="max-height=9%;min-height:35px;margin: 5% 8%;"></div>
+								<div style="display:inline-block;width:50%;float:right;"><img src="resources/images/actual12.png" height="7%" width="80%" style="max-height=9%;min-height:35px;margin: 5% 8%;"></div>
+								<div style="display:inline-block;width:50%;float:right;"><img src="resources/images/actual11.png" height="7%" width="80%" style="max-height=9%;min-height:35px;margin: 5% 8%;"></div>
+								<div style="display:inline-block;width:50%;float:right;"><img src="resources/images/actual14.png" height="7%" width="80%" style="max-height=9%;min-height:35px;margin: 5% 8%;"></div>
+								<div style="display:inline-block;width:50%;float:right;"><img src="resources/images/actual13.png" height="7%" width="80%" style="max-height=9%;min-height:35px;margin: 5% 8%;"></div>
 							</div>
 							<img src="resources/images/FilmsRemote.png" id="remote" width="80%" style="display:block;margin:0 auto;position:absolute;z-index:-99">
 						</div>
@@ -189,6 +242,12 @@
 						<a href='index.html' class='deg325film' style="min-width:6%;"><span id="home">Home</span></a>
 						<a href='About.html' class='deg335film' style="min-width:9%;"><span id="about">About Us</span></a>
 					</div>
+				</div>
+			</div>
+			<div class="row">
+			<div class="col-md-1">
+			</div>
+			<div class="col-md-6" id="titleDiv" style="font-family:Century Gothic;text-align:left;">
 				</div>
 			</div>
 	</body>
