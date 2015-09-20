@@ -3,7 +3,12 @@
 	<head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<link rel="stylesheet" type="text/css" href="resources/css/yellowarp.css">
+		<link rel="stylesheet" href="resources/css/bootstrap.min.css">
            <style>
+		   .col-xs-2 {width:1.8%;}
+		   .circle-container a:hover{
+				color:#FF9900;
+		   }
 			.box{
 				position:relative;
 				display:inline-block;
@@ -24,7 +29,6 @@
 			}
 			.centered {position:absolute}
          </style>
-		<link rel="stylesheet" href="resources/css/bootstrap.min.css">
 		  <script src="resources/js/jquery.min.js"></script>
 		  <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 		  <script type="text/javascript" src="resources/js/jquery.arctext.js"></script>
@@ -116,9 +120,9 @@
 		   $('#image').hide();
 		   $('#logo').hide();
 		   $('#logo').show(0,function() {
-				$('#image').css('margin-top','-25%');
+				$('#image').css('margin-top','-95%');
 				$('#image').show();
-				$('#image').animate({'margin-top': '+=25%'}, 500,function(){
+				$('#image').animate({'margin-top': '+=95%'}, 500,function(){
 					$('#information').fadeIn(1000);
 				});
 		   });
@@ -138,6 +142,7 @@
 	</script>
 	<body>
 	<!--<div id="move" style="position:absolute;width:100%;text-align:center;"><img  src="resources/images/logoweb.png" width="17%"/></div> -->
+	<div class="row" style="margin-top:3%;margin-right:20%">
 	<div class="circle-container" id="logo">
 		<img class="centered" src="resources/images/logoweb.png" width="14%" style="font-family:Century Gothic"/>
 			<a href='#' class='center'></a>
@@ -150,13 +155,9 @@
 			<a href='index.html' class='deg325' style="min-width:7%"><span id="home">Home</span></a>
 			<a href='About.html' class='deg335' style="min-width:9%;"><span id="about">About Us</span></a>
 	</div>
-	
-	<div class="row" style="margin-top:3%;margin-right:20%">
-			<div style="text-align:right"><img src="resources/images/musicimg.png" width="15%" id="image"/>	
-			</div>
-	</div>
-	
-	<div style="z-index:-999;width:46%;bottom:0%;margin-left:2%;font-family:Century Gothic;font-size:16px;letter-spacing:2px;" id="information">
+	<div class="col-xs-2"></div>
+	<div class="col-md-6" style="margin-top:10%">
+		<div style="z-index:-999;bottom:0%;margin-left:2%;font-family:Century Gothic;font-size:16px;letter-spacing:2px;" id="information">
 		<div class="box">Meet</div> 
 		<div class="music">Shaun</div> 
 		<div class="box">a.k.a</div> 
@@ -183,5 +184,10 @@
 		<div class="music">FILMS</div> 
 		<div class="box">page.</div>
 	</div>
+	</div>
+			<div class="col-md-5" style="text-align:right;z-index: -999;"><img src="resources/images/musicimg.png" width="34%" id="image"/>
+			</div>
+	</div>
+	
 	</body>
 </html>
