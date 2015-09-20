@@ -31,15 +31,16 @@
 	<script>
 		$(document).bind('mousemove', function(e) {
 		var pluck = function() {
-		console.log("in pluck");
 				var controlY = (currentEndY - startY)/2;
 				if(a>0) a-=0.2;
 				else if(a==0){ 
 				  unpluck(); 
 				} else a+=0.2;
 				a=a*(-1) ;
-				controlY+=a;
-				canvas.width = canvas.width;
+				controlX+=a;
+				//$('#myCanvas').css('height','100%');
+				context.beginPath();
+				//canvas.width = canvas.width;
 				context.moveTo(startX, startY);
 				context.bezierCurveTo(startX, startY, controlX, controlY, currentEndX, currentEndY);
 				context.stroke();
