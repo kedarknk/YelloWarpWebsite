@@ -30,8 +30,44 @@
 	</head>
 	<script>
 		$(document).bind('mousemove', function(e) {
+		var pluck = function() {
+		console.log("in pluck");
+				var controlY = (currentEndY - startY)/2;
+				if(a>0) a-=0.2;
+				else if(a==0){ 
+				  unpluck(); 
+				} else a+=0.2;
+				a=a*(-1) ;
+				controlY+=a;
+				canvas.width = canvas.width;
+				context.moveTo(startX, startY);
+				context.bezierCurveTo(startX, startY, controlX, controlY, currentEndX, currentEndY);
+				context.stroke();
+			  }
+		var unpluck = function() {
+                 if(a==0){
+                    clearInterval(interv);
+                 }
+                    a=20;
+                }
 			  mouse = {'x': e.pageX, 'y': e.pageY};
+			  currentMousePos.x = e.pageX;
+			  currentMousePos.y = e.pageY;
+			  if(currentMousePos.y > startY && currentMousePos.y < currentEndY ){
+					if(((currentMousePos.x-startX)/(currentMousePos.y-startY) >= (currentEndX-startX)/(currentEndY-startY)) && (flag ==1)){
+					   a=20;
+					  interv = setInterval(pluck, 20);
+					  flag = 0;
+					}
+					else if(((currentMousePos.x - startX)/(currentMousePos.y - startY) <= (currentEndX-startX)/(currentEndY-startY)) && (flag ==0)){
+					  a=20;
+					  interv = setInterval(pluck, 20);
+					  flag = 1;
+					}
+					else unpluck;
+			  }
 		});
+		
 		 $(document).ready(function() {
 			mouse = {'x': 0, 'y': 0};
 			 homex = 0;
@@ -39,6 +75,13 @@
 			 forcex = 0;
 			 forcey = 0;
 			 magnet = 500;
+			 flag=0;
+			 a = 20;
+			 startX=$("#logo").offset().top + $("#logo").height();
+			 startY=$("#logo").offset().top + $("#logo").height();
+			 currentEndX = $("#logo").offset().top + $("#logo").height();
+			 currentMousePos = { x: -1, y: -1 };
+			 controlX=(currentEndX)/2;
 			 $('.box').each(function(index, el){
 					$(el).data( "homex", parseInt($(el).position().left));
 					$(el).data( "homey", parseInt($(el).position().top));
@@ -128,8 +171,8 @@
 				$('#myCanvas').css('height','60%');
 				$('#myCanvas').css('width','15%');
 				$('#myCanvas').css('z-index','-999');
-				var canvas = document.getElementById('myCanvas');
-				var context = canvas.getContext('2d');
+				canvas = document.getElementById('myCanvas');
+				context = canvas.getContext('2d');
 				context.beginPath();
 				context.moveTo ($("#logo").offset().top + $("#logo").height(), $("#logo").offset().top + $("#logo").height());
 				context.lineTo ($("#logo").offset().top + $("#logo").height(), $('#serviceImg').position().top);
@@ -137,9 +180,13 @@
 					$('#serviceImg').animate({'top': $("#logo").offset().top + $("#logo").height()+150},
 						{
 							duration:1000,
-							step: function(now){								
+							step: function(now){	
 								$('#myCanvas').slideDown(1000);
-							}
+							},
+							complete: function() {
+								currentEndY = $('#serviceImg').position().top;
+								controlY=(currentEndY - startY)/2;
+								}
 						}
 					);
 		   });
