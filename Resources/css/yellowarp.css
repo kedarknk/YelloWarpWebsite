@@ -185,7 +185,7 @@ p{
 	.imgdeg335 { transform: rotate(328deg) translate(11.5em) rotate(-327deg); }
  }
  
-@media only screen and (min-width : 1200px) {
+@media only screen and (min-width : 1300px) {
 	.circle-container a  {
 		display: block;
 		position: absolute;
@@ -254,13 +254,13 @@ p{
 		font-size:14px;
 	}
 	
-	.deg335crew { transform: rotate(313deg) translate(4.7em) rotate(-271deg) }
+	.deg335crew { transform: rotate(313deg) translate(4.9em) rotate(-271deg) }
 	.deg325crew { transform:rotate(266deg) translate(5.4em) rotate(-263deg) }
 	.deg315crew { transform:rotate(220deg) translate(6.9em) rotate(-256deg) }
-	.deg225crew { transform:rotate(185deg) translate(7.5em) rotate(-263deg) }
-	.deg150crew {transform:rotate(-34deg) translate(-9.9em) rotate(-93deg)}
+	.deg225crew { transform:rotate(185deg) translate(7.5em) rotate(-258deg) }
+	.deg150crew {transform:rotate(-34deg) translate(-10.1em) rotate(-93deg)}
 	.deg135crew { transform:rotate(-81deg) translate(-8.5em) rotate(-95deg) }
-	.deg45crew { transform: rotate(75deg) translate(7em) rotate(65deg) }
+	.deg45crew { transform: rotate(75deg) translate(7.1em) rotate(65deg) }
 	.deg0crew { transform: rotate(10deg) translate(5.7em) rotate(75deg)}
 	
 	.left-container-film a {
