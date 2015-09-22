@@ -185,7 +185,107 @@ p{
 	.imgdeg335 { transform: rotate(328deg) translate(11.5em) rotate(-327deg); }
  }
  
-@media only screen and (min-width : 1300px) {
+@media only screen and (min-width : 1200px) {
+	.circle-container a  {
+		display: block;
+		position: absolute;
+		top: 50%; left: 50%;
+		/*width: 4.5em; 
+		height: 4em;*/
+		margin: -2em;
+		font-family:Century Gothic;
+		color:black;
+		font-size:14px;
+	}
+	
+	.left-container a  {
+		display: block;
+		position: absolute;
+		top: 47.9%;
+		left: 11.5%;
+		margin: -2em;
+		z-index: 999;
+		font-family:Century Gothic;
+		color:black;
+		font-size:14px;
+	}
+	
+	.yellowtree {
+		position: relative;
+	}
+
+	.yellowtree span{
+		position: absolute; 
+		font-family: Century Gothic;
+		font-size:11px;
+	}
+
+	/*.yellowtree span:hover {
+		color: #FEBE1F;
+	}*/
+	
+	.deg335 { transform: rotate(312deg) translate(4.7em) rotate(-279deg) }
+	.deg325 { transform: rotate(269deg) translate(5.6em) rotate(-275deg) }
+	.deg315 { transform:rotate(220deg) translate(6.6em) rotate(-264deg) }
+	.deg225 { transform:rotate(189deg) translate(7.6em) rotate(-272deg) }
+	.deg150 {transform:rotate(-34deg) translate(-9.2em) rotate(-97deg)}
+	.deg135 { transform: rotate(-68deg) translate(-8.6em) rotate(-116deg) }
+	.deg45 { transform: rotate(54deg) translate(6.8em) rotate(73deg)}
+	.deg0 { transform: rotate(16deg) translate(5.2em) rotate(60deg)}
+	
+	.imgdeg0 { transform: rotate(11deg) translate(12.2em) rotate(-11deg) }
+	.imgdeg45 { transform: rotate(54deg) translate(11.2em) rotate(-56deg) }
+	.imgdeg135 { transform: rotate(-81deg) translate(-11.7em) rotate(-276deg) }
+	.imgdeg225 { transform:rotate(172deg) translate(16em) rotate(-532deg); }
+	.imgdeg150 { transform: rotate(-39deg) translate(-14.6em) rotate(39deg); }
+	.imgdeg315 { transform: rotate(208deg) translate(15em) rotate(-208deg); }
+	.imgdeg325 { transform: rotate(265deg) translate(12.5em) rotate(-265deg); }
+	.imgdeg335 { transform: rotate(320deg) translate(11.5em) rotate(-322deg) }
+	
+	.left-container-crew a  {
+		display: block;
+		position: absolute;
+		top: 47.9%;
+		left: 64.5%;
+		margin: -2em;
+		z-index: 999;
+		font-family:Century Gothic;
+		color:black;
+		font-size:14px;
+	}
+	
+	.deg335crew { transform: rotate(313deg) translate(4.9em) rotate(-271deg) }
+	.deg325crew { transform:rotate(266deg) translate(5.4em) rotate(-263deg) }
+	.deg315crew { transform:rotate(220deg) translate(6.9em) rotate(-256deg) }
+	.deg225crew { transform:rotate(185deg) translate(7.5em) rotate(-258deg) }
+	.deg150crew {transform:rotate(-34deg) translate(-10.1em) rotate(-93deg)}
+	.deg135crew { transform:rotate(-81deg) translate(-8.5em) rotate(-95deg) }
+	.deg45crew { transform: rotate(75deg) translate(7.1em) rotate(65deg) }
+	.deg0crew { transform: rotate(10deg) translate(5.7em) rotate(75deg)}
+	
+	.left-container-film a {
+		display: block;
+		position: absolute;
+		top: 74.5%;
+		left: 67.9%;
+		margin: -2em;
+		z-index: 999;
+		font-family:Century Gothic;
+		color:black;
+		font-size:14px;
+	}
+	
+	.deg335film { transform: rotate(313deg) translate(4.7em) rotate(-267deg) }
+	.deg325film { transform:rotate(266deg) translate(5.2em) rotate(-263deg)}
+	.deg315film { transform:rotate(215deg) translate(6.6em) rotate(-256deg) }
+	.deg225film { transform:rotate(181deg) translate(7.2em) rotate(-263deg) }
+	.deg150film {transform:rotate(-34deg) translate(-9.4em) rotate(-97deg)}
+	.deg135film { transform:rotate(-81deg) translate(-7.7em) rotate(-95deg) }
+	.deg45film { transform: rotate(75deg) translate(6.4em) rotate(65deg)}
+	.deg0film{ transform: rotate(10deg) translate(5.3em) rotate(75deg)}
+}
+ 
+ @media only screen and (min-width : 1300px) {
 	.circle-container a  {
 		display: block;
 		position: absolute;
@@ -283,7 +383,7 @@ p{
 	.deg135film { transform:rotate(-81deg) translate(-8.3em) rotate(-95deg) }
 	.deg45film { transform: rotate(75deg) translate(6.8em) rotate(65deg) }
 	.deg0film{ transform: rotate(10deg) translate(5.7em) rotate(75deg)}
-} 
+}
 
 @media only screen and (min-width : 1410px) {
 	.circle-container a  {

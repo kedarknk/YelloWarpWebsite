@@ -31,41 +31,51 @@
 	<script>
 		$(document).bind('mousemove', function(e) {
 		var pluck = function() {
-				var controlY = (currentEndY - startY)/2;
-				if(a>0) a-=0.2;
-				else if(a==0){ 
-				  unpluck(); 
-				} else a+=0.2;
-				a=a*(-1) ;
-				controlX+=a;
-				//$('#myCanvas').css('height','100%');
 				context.beginPath();
-				//canvas.width = canvas.width;
-				context.moveTo(startX, startY);
-				context.bezierCurveTo(startX, startY, controlX, controlY, currentEndX, currentEndY);
+				context.moveTo(xStart, yStart);
+
+				if (xEnd == xStart) {
+				//Vertical Line
+					context.bezierCurveTo(xStart, yStart, xStart + pluckAmplitude, (yStart + yEnd)/2, xEnd, yEnd);
+				} else if (yEnd == ystart) {
+					//Horizontal Line
+					context.bezierCurveTo(xStart, ystart, (xStart + xEnd)/2, ystart + pluckAmplitude, xEnd, yEnd);
+				} else {
+					//All other lines
+					context.bezierCurveTo(xStart, ystart, xStart + (xEnd - xStart)/2, ystart + (yEnd - ystart)/2 + pluckAmplitude, xEnd, yEnd);
+				}
+				
+				console.log(pluckAmplitude);
+				if (pluckAmplitude > 0) {
+					pluckAmplitude -= 0.5;
+				} else if (pluckAmplitude < 0) {
+					pluckAmplitude += 0.5;
+				} else {
+					clearInterval(interv);
+					pluckAmplitude = 10;
+				}
+				pluckAmplitude = pluckAmplitude*-1;
+
+				context.strokeStyle = '#000000';
 				context.stroke();
 			  }
-		var unpluck = function() {
-                 if(a==0){
-                    clearInterval(interv);
-                 }
-                    a=20;
-                }
 			  mouse = {'x': e.pageX, 'y': e.pageY};
 			  currentMousePos.x = e.pageX;
 			  currentMousePos.y = e.pageY;
-			  if(currentMousePos.y > startY && currentMousePos.y < currentEndY ){
-					if(((currentMousePos.x-startX)/(currentMousePos.y-startY) >= (currentEndX-startX)/(currentEndY-startY)) && (flag ==1)){
-					   a=20;
-					  interv = setInterval(pluck, 20);
-					  flag = 0;
+			  if(currentMousePos.y > yStart && currentMousePos.y < yEnd ){
+					if(((currentMousePos.x-xStart)/(currentMousePos.y-yStart) >= (xEnd-xStart)/(yEnd-yStart))){
+					  interv = setInterval(pluck, 10);
 					}
-					else if(((currentMousePos.x - startX)/(currentMousePos.y - startY) <= (currentEndX-startX)/(currentEndY-startY)) && (flag ==0)){
+					/*else if(((currentMousePos.x - startX)/(currentMousePos.y - startY) <= (currentEndX-startX)/(currentEndY-startY)) && (flag ==0)){
 					  a=20;
 					  interv = setInterval(pluck, 20);
 					  flag = 1;
-					}
-					else unpluck;
+					}*/
+					/*if ((event.pageX >= xStart && currentMousePos.x < xStart) || (event.pageX <= xStart && currentMousePos.x > xStart)) {
+						clearInterval(interv);
+						pluckAmplitude = 10;
+						interv = setInterval(pluck, 10);
+					}*/
 			  }
 		});
 		
@@ -76,13 +86,11 @@
 			 forcex = 0;
 			 forcey = 0;
 			 magnet = 500;
-			 flag=0;
-			 a = 20;
-			 startX=$("#logo").offset().top + $("#logo").height();
-			 startY=$("#logo").offset().top + $("#logo").height();
-			 currentEndX = $("#logo").offset().top + $("#logo").height();
+			 pluckAmplitude = 10;
+			 xStart=$("#logo").offset().top + $("#logo").height();
+			 yStart=$("#logo").offset().top + $("#logo").height();
+			 xEnd = $("#logo").offset().top + $("#logo").height();
 			 currentMousePos = { x: -1, y: -1 };
-			 controlX=(currentEndX)/2;
 			 $('.box').each(function(index, el){
 					$(el).data( "homex", parseInt($(el).position().left));
 					$(el).data( "homey", parseInt($(el).position().top));
@@ -185,8 +193,7 @@
 								$('#myCanvas').slideDown(1000);
 							},
 							complete: function() {
-								currentEndY = $('#serviceImg').position().top;
-								controlY=(currentEndY - startY)/2;
+								yEnd = $('#serviceImg').position().top;
 								}
 						}
 					);
@@ -225,15 +232,14 @@
 		<div class="row"><canvas id="myCanvas"></canvas>
 		<div class="left-container" id="logo" style="width:100%;">
 			<img class="left" src="resources/images/logoweb.png" width="14%" style="font-family:Century Gothic;margin-top:0%;"/>
-			<a href='films.html' class='deg135' style="width:93px;"><span id="films">Films</span></a>
-			<a href='thefilmcrew.html' class='deg45' style="width:95px;"><span id="filmCrew">The Film Crew</span></a>
-			<a href='services.html' class='deg0' style="width:120px;"><span id="services">Services</span></a>
-			<!-- <a href='photography.html' class='deg150'>Photo</a><a href='photography.html' class='deg1501'>graphy</a> -->
-			<a href='photography.html' class='deg150' style="width:120px;"><span id="photo">Photography</span></a>
-			<a href='music.html' class='deg225' style="width:93px;"><span id="music">Music</span></a>
-			<a href='contactus.html' class='deg315' style="width:93px;"><span id="contact">Contact</span></a>
-			<a href='index.html' class='deg325' style="width:93px;"><span id="home">Home</span></a>
-			<a href='About.html' class='deg335' style="width:120px;"><span id="about">About Us</span></a>
+			<a href='films.html' class='deg135' style="min-width:7%;"><span id="films">Films</span></a>
+			<a href='thefilmcrew.html' class='deg45' style="min-width:7%;"><span id="filmCrew">The Film Crew</span></a>
+			<a href='services.html' class='deg0' style="min-width:9%;"><span id="services">Services</span></a>
+			<a href='photography.html' class='deg150' style="min-width:9%;"><span id="photo">Photography</span></a>
+			<a href='music.html' class='deg225' style="min-width:7.1%;"><span id="music">Music</span></a>
+			<a href='contactus.html' class='deg315' style="min-width:7.5%;"><span id="contact">Contact</span></a>
+			<a href='index.html' class='deg325' style="min-width:12%;"><span id="home">Home</span></a>
+			<a href='About.html' class='deg335' style="min-width:9%;"><span id="about">About Us</span></a>
 		</div>
 		<!--<div class="verticalLine" id="vline" draggable="true">&nbsp;</div>-->
 		<div class="col-md-4 services-image">
