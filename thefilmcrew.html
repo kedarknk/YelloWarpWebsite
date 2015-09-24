@@ -8,7 +8,72 @@
 		  <script type="text/javascript" src="resources/js/jquery.arctext.js"></script> 
 	</head>
 	<script>
+        var xStart = 900, ystart = 120;
+        var xEnd = 1100, yEnd = 510;
+        var xCurrent = xStart, yCurrent = ystart;
+        var slope = 0;
+        var pluckAmplitude = 20;
+        var pluckInterval = null;
+        var growthinterval = null;
+        var ungrowInterval = null;
+        var isGrown = false;
+        var currentMousePos = { x: -1, y: -1 };
+        var c = null;
+        var ctx = null;
+        
 		 $(document).ready(function() {
+            c=document.getElementById("myCanvas");
+            ctx=c.getContext("2d");
+
+                           debugger;
+            c.width = window.innerWidth;
+            c.height = window.innerHeight;
+
+            if (xEnd == xStart) {
+            //Vertical Line
+
+            } else if (yEnd == ystart) {
+            //Horizontal Line
+
+            } else {
+            //All other lines
+            slope = (yEnd - ystart)/(xEnd - xStart);
+            }
+                           
+           $(document).mousemove(function(event) {
+                                 if (currentMousePos.x == -1 && currentMousePos.y == -1) {
+                                 currentMousePos.x = event.pageX;
+                                 currentMousePos.y = event.pageY;
+                                 }
+                                 
+                                 if (isGrown == true) {
+                                 if (xEnd == xStart) {
+                                 //Vertical Line
+                                 if ((event.pageX >= xStart && currentMousePos.x < xStart) || (event.pageX <= xStart && currentMousePos.x > xStart)) {
+                                 clearInterval(pluckInterval);
+                                 pluckAmplitude = 20;
+                                 pluckInterval = setInterval(pluck, 10);
+                                 }
+                                 } else if (yEnd == ystart) {
+                                 //Horizontal Line
+                                 if ((event.pageY >= ystart && currentMousePos.y < ystart) || (event.pageY <= ystart && currentMousePos.y > ystart)) {
+                                 clearInterval(pluckInterval);
+                                 pluckAmplitude = 20;
+                                 pluckInterval = setInterval(pluck, 10);
+                                 }
+                                 } else {
+                                 //All other lines
+                                 if (line_intersects(xStart, ystart, xEnd, yEnd, event.pageX, event.pageY, currentMousePos.x, currentMousePos.y) == true) {
+                                 clearInterval(pluckInterval);
+                                 pluckAmplitude = 20;
+                                 pluckInterval = setInterval(pluck, 10);
+                                 }
+                                 }
+                                 currentMousePos.x = event.pageX;
+                                 currentMousePos.y = event.pageY;
+                                 }
+                                 });
+
 		 $('#photo').arctext({radius:100});
 		 $('#about').arctext({radius:80});
 		 $('#music').arctext({radius:80});
@@ -23,6 +88,7 @@
 		   $('.yellowtree').hide();
 		   $('#rightImage').css({top: '8.6%', left: '55em', position:'absolute'});
 		   $('#move').animate({left: '+=14.5em', top: '-=12em'}, 1000,function() {
+              growthinterval = setInterval(grow, 10);
 				$('#move').hide();
 				$('#logo').show();
 				$("#logo").css({top: '10.6%', left: '52em', position:'absolute'});
@@ -90,6 +156,9 @@
 							$('#line').animate({height: '0'},1000,function(){
 								$(this).hide();
 							});
+                             xCurrent = xEnd;
+                             yCurrent = yEnd;
+                             ungrowInterval = setInterval(ungrow, 10);
 							$('#rightImage').animate({left: '-=9.5em', top: '-=24em'}, 1000,function(){
 								$('#rightImage').hide();
 								$('#logo').hide();
@@ -103,10 +172,171 @@
 				 }
 		   });
 		});
+        function line_intersects(p0_x, p0_y, p1_x, p1_y, p2_x, p2_y, p3_x, p3_y) {
+            
+            var s1_x, s1_y, s2_x, s2_y;
+            s1_x = p1_x - p0_x;
+            s1_y = p1_y - p0_y;
+            s2_x = p3_x - p2_x;
+            s2_y = p3_y - p2_y;
+            
+            var s, t;
+            s = (-s1_y * (p0_x - p2_x) + s1_x * (p0_y - p2_y)) / (-s2_x * s1_y + s1_x * s2_y);
+            t = ( s2_x * (p0_y - p2_y) - s2_y * (p0_x - p2_x)) / (-s2_x * s1_y + s1_x * s2_y);
+            
+            if (s >= 0 && s <= 1 && t >= 0 && t <= 1)
+            {
+                // Collision detected
+                return true;
+            }
+            
+            return false; // No collision
+        }
+    
+    function pluck() {
+        c.width = c.width;
+        ctx.beginPath();
+        ctx.moveTo(xStart, ystart);
+        
+        if (xEnd == xStart) {
+            //Vertical Line
+            ctx.bezierCurveTo(xStart, ystart, xStart + pluckAmplitude, (ystart + yEnd)/2, xEnd, yEnd);
+        } else if (yEnd == ystart) {
+            //Horizontal Line
+            ctx.bezierCurveTo(xStart, ystart, (xStart + xEnd)/2, ystart + pluckAmplitude, xEnd, yEnd);
+        } else {
+            //All other lines
+            ctx.bezierCurveTo(xStart, ystart, xStart + (xEnd - xStart)/2, ystart + (yEnd - ystart)/2 + pluckAmplitude, xEnd, yEnd);
+        }
+        
+        console.log(pluckAmplitude);
+        if (pluckAmplitude > 0) {
+            pluckAmplitude -= 0.5;
+        } else if (pluckAmplitude < 0) {
+            pluckAmplitude += 0.5;
+        } else {
+            clearInterval(pluckInterval);
+            pluckAmplitude = 20;
+        }
+        pluckAmplitude = pluckAmplitude*-1;
+        
+        ctx.strokeStyle = '#000000';
+        ctx.stroke();
+    }
+    
+    function ungrow() {
+        c.width = c.width;
+        ctx.beginPath();
+        ctx.moveTo(xStart, ystart);
+        
+        console.log(xCurrent, yCurrent);
+        if (xEnd == xStart) {
+            //Vertical Line
+            
+            ctx.lineTo(xCurrent, yCurrent);
+        } else if (yEnd == ystart) {
+            //Horizontal Line
+            
+            ctx.lineTo(xCurrent, yCurrent);
+        } else {
+            //All other lines
+            
+            xCurrent = xCurrent - 5;
+            yCurrent = yEnd - (xEnd - xCurrent)*slope;
+            ctx.lineTo(xCurrent, yCurrent);
+        }
+        
+        //TODO: Needs cleanup.
+        if (yEnd < ystart) {
+            if (yCurrent >= ystart) {
+                clearInterval(ungrowInterval);
+            }
+        } else if (yEnd > ystart) {
+            if (yCurrent <= ystart) {
+                clearInterval(ungrowInterval);
+            }
+        } else if (xEnd < xStart) {
+            if (xCurrent >= xStart) {
+                clearInterval(ungrowInterval);
+            }
+        } else if (xEnd > xStart) {
+            if (xCurrent <= xStart) {
+                clearInterval(ungrowInterval);
+            }
+        }
+        
+        ctx.strokeStyle = '#000000';
+        ctx.stroke();
+    }
+    
+    function grow(){
+        c.width = c.width;
+        ctx.beginPath();
+        ctx.moveTo(xStart, ystart);
+        
+        console.log(xCurrent, yCurrent);
+        if (xEnd == xStart) {
+            //Vertical Line
+            if (yCurrent < yEnd) {
+                yCurrent = yCurrent + 5;
+            } else {
+                yCurrent = yCurrent - 5;
+            }
+            xCurrent = xStart;
+            ctx.lineTo(xCurrent, yCurrent);
+        } else if (yEnd == ystart) {
+            //Horizontal Line
+            if (xCurrent < xEnd) {
+                xCurrent = xCurrent + 5;
+            } else {
+                xCurrent = xCurrent - 5;
+            }
+            yCurrent = ystart;
+            ctx.lineTo(xCurrent, yCurrent);
+        } else {
+            //All other lines
+            if (xStart < xEnd) {
+                xCurrent = xCurrent + 5;
+                yCurrent = ystart + (xCurrent - xStart)*slope;
+            } else if (xStart > xEnd) {
+                xCurrent = xCurrent - 5;
+                yCurrent = ystart + (xCurrent - xStart)*slope;
+            }
+            ctx.lineTo(xCurrent, yCurrent);
+        }
+        
+        //TODO: Needs cleanup.
+        if (yEnd < ystart) {
+            if (yCurrent <= yEnd) {
+                isGrown = true;
+                clearInterval(growthinterval);
+            }
+        } else if (yEnd > ystart) {
+            if (yCurrent >= yEnd) {
+                isGrown = true;
+                clearInterval(growthinterval);
+            }
+        } else if (xEnd < xStart) {
+            if (xCurrent <= xEnd) {
+                isGrown = true;
+                clearInterval(growthinterval);
+            }
+        } else if (xEnd > xStart) {
+            if (xCurrent >= xEnd) {
+                isGrown = true;
+                clearInterval(growthinterval);
+            }
+        }
+        
+        ctx.strokeStyle = '#000000';
+        ctx.stroke();
+    }
+
 	</script>
 	<body>
 	<div id="move" style="margin-top:16.3%;position:absolute;width:100%;text-align:center;"><img  src="resources/images/logoweb.png" width="14%"/></div>
 			<div class="row">
+                <canvas id="myCanvas"></canvas>
 				<div class="left-container-crew" id="logo" style="width:14%;">
 					<img class="left" src="resources/images/logoweb-crop.png" width="100%"/>
 					<a href='contactus.html' class='deg315crew' style="min-width:7%;"><span id="contact">Contact</span></a>
