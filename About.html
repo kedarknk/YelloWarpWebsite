@@ -29,13 +29,14 @@
 	</style>
 	</head>
 	<script>
-        var xStart = 100, ystart = 100;
-        var xEnd = 300, yEnd = 500;
+        var xStart = 210, ystart = 450;
+        var xEnd = 470, yEnd = 110;
         var xCurrent = xStart, yCurrent = ystart;
         var slope = 0;
         var pluckAmplitude = 20;
         var pluckInterval = null;
         var growthinterval = null;
+        var ungrowInterval = null;
         var isGrown = false;
         var currentMousePos = { x: -1, y: -1 };
         var c = null;
@@ -50,7 +51,8 @@
                            c=document.getElementById("myCanvas");
                            ctx=c.getContext("2d");
                            
-                           growthinterval = setInterval(grow, 10);
+                           c.width = window.innerWidth;
+                           c.height = window.innerHeight;
                            
                            if (xEnd == xStart) {
                            //Vertical Line
@@ -183,6 +185,7 @@
 			$('#myCanvas').css('height','100%');
 			$('#myCanvas').css('width','100%');
 		   $('#move').animate({left: '-=33.5em', top: '+=10em'}, 1000,function() {
+                              growthinterval = setInterval(grow, 10);
 				//$('#information').show();
 				$('#move').hide();
 				$('#logo').show();
@@ -233,7 +236,10 @@
 								window.location.href = href;
 							});
 						});*/
-						$('#topLogo').animate({'margin-top': '62%','left': '26%'},700,function(){
+                          xCurrent = xEnd;
+                          yCurrent = yEnd;
+                          ungrowInterval = setInterval(ungrow, 10);
+						$('#topLogo').animate({'margin-top': '62%','left': '26%'},1000,function(){
 							$('#topLogo').hide();
 							$("#move").animate({left: '+=33.5em', top: '-=10em'},1000,function(){
 								window.location.href = href;
@@ -292,6 +298,51 @@
             pluckAmplitude = 20;
         }
         pluckAmplitude = pluckAmplitude*-1;
+        
+        ctx.strokeStyle = '#000000';
+        ctx.stroke();
+    }
+    
+    function ungrow() {
+        c.width = c.width;
+        ctx.beginPath();
+        ctx.moveTo(xStart, ystart);
+        
+        console.log(xCurrent, yCurrent);
+        if (xEnd == xStart) {
+            //Vertical Line
+            
+            ctx.lineTo(xCurrent, yCurrent);
+        } else if (yEnd == ystart) {
+            //Horizontal Line
+            
+            ctx.lineTo(xCurrent, yCurrent);
+        } else {
+            //All other lines
+            
+            xCurrent = xCurrent - 5;
+            yCurrent = yEnd - (xEnd - xCurrent)*slope;
+            ctx.lineTo(xCurrent, yCurrent);
+        }
+        
+        //TODO: Needs cleanup.
+        if (yEnd < ystart) {
+            if (yCurrent >= ystart) {
+                clearInterval(ungrowInterval);
+            }
+        } else if (yEnd > ystart) {
+            if (yCurrent <= ystart) {
+                clearInterval(ungrowInterval);
+            }
+        } else if (xEnd < xStart) {
+            if (xCurrent >= xStart) {
+                clearInterval(ungrowInterval);
+            }
+        } else if (xEnd > xStart) {
+            if (xCurrent <= xStart) {
+                clearInterval(ungrowInterval);
+            }
+        }
         
         ctx.strokeStyle = '#000000';
         ctx.stroke();
