@@ -25,72 +25,86 @@
 		<script src="resources/js/jquery.min.js"></script>
 		<!-- <script src="resources/js/guitar.js"></script>  -->
 		<link rel="stylesheet" type="text/css" href="resources/css/yellowarp.css">
-		<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-		<script type="text/javascript" src="resources/js/jquery.arctext.js"></script> 
+<!--		<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>-->
+		<script type="text/javascript" src="resources/js/jquery.arctext.js"></script>
 	</head>
 	<script>
+        var xStart = 210, ystart = 100;
+        var xEnd = 210, yEnd = 900;
+        var xCurrent = xStart, yCurrent = ystart;
+        var slope = 0;
+        var pluckAmplitude = 20;
+        var pluckInterval = null;
+        var growthinterval = null;
+        var ungrowInterval = null;
+        var isGrown = false;
+        var currentMousePos = { x: -1, y: -1 };
+        var c = null;
+        var ctx = null;
+        
 		$(document).bind('mousemove', function(e) {
-		var pluck = function() {
-				context.beginPath();
-				context.moveTo(xStart, yStart);
-
-				if (xEnd == xStart) {
-				//Vertical Line
-					context.bezierCurveTo(xStart, yStart, xStart + pluckAmplitude, (yStart + yEnd)/2, xEnd, yEnd);
-				} else if (yEnd == ystart) {
-					//Horizontal Line
-					context.bezierCurveTo(xStart, ystart, (xStart + xEnd)/2, ystart + pluckAmplitude, xEnd, yEnd);
-				} else {
-					//All other lines
-					context.bezierCurveTo(xStart, ystart, xStart + (xEnd - xStart)/2, ystart + (yEnd - ystart)/2 + pluckAmplitude, xEnd, yEnd);
-				}
-				
-				console.log(pluckAmplitude);
-				if (pluckAmplitude > 0) {
-					pluckAmplitude -= 0.5;
-				} else if (pluckAmplitude < 0) {
-					pluckAmplitude += 0.5;
-				} else {
-					clearInterval(interv);
-					pluckAmplitude = 10;
-				}
-				pluckAmplitude = pluckAmplitude*-1;
-
-				context.strokeStyle = '#000000';
-				context.stroke();
-			  }
 			  mouse = {'x': e.pageX, 'y': e.pageY};
-			  currentMousePos.x = e.pageX;
-			  currentMousePos.y = e.pageY;
-			  if(currentMousePos.y > yStart && currentMousePos.y < yEnd ){
-					if(((currentMousePos.x-xStart)/(currentMousePos.y-yStart) >= (xEnd-xStart)/(yEnd-yStart))){
-					  interv = setInterval(pluck, 10);
-					}
-					/*else if(((currentMousePos.x - startX)/(currentMousePos.y - startY) <= (currentEndX-startX)/(currentEndY-startY)) && (flag ==0)){
-					  a=20;
-					  interv = setInterval(pluck, 20);
-					  flag = 1;
-					}*/
-					/*if ((event.pageX >= xStart && currentMousePos.x < xStart) || (event.pageX <= xStart && currentMousePos.x > xStart)) {
-						clearInterval(interv);
-						pluckAmplitude = 10;
-						interv = setInterval(pluck, 10);
-					}*/
-			  }
 		});
 		
 		 $(document).ready(function() {
+                           c=document.getElementById("myCanvas");
+                           ctx=c.getContext("2d");
+                           
+                           c.width = window.innerWidth;
+                           c.height = window.innerHeight;
+                           
+                           if (xEnd == xStart) {
+                           //Vertical Line
+                           
+                           } else if (yEnd == ystart) {
+                           //Horizontal Line
+                           
+                           } else {
+                           //All other lines
+                           slope = (yEnd - ystart)/(xEnd - xStart);
+                           }
+                           
+                           $(document).mousemove(function(event) {
+                                                 if (currentMousePos.x == -1 && currentMousePos.y == -1) {
+                                                 currentMousePos.x = event.pageX;
+                                                 currentMousePos.y = event.pageY;
+                                                 }
+                                                 
+                                                 if (isGrown == true) {
+                                                 if (xEnd == xStart) {
+                                                 //Vertical Line
+                                                 if ((event.pageX >= xStart && currentMousePos.x < xStart) || (event.pageX <= xStart && currentMousePos.x > xStart)) {
+                                                 clearInterval(pluckInterval);
+                                                 pluckAmplitude = 20;
+                                                 pluckInterval = setInterval(pluck, 10);
+                                                 }
+                                                 } else if (yEnd == ystart) {
+                                                 //Horizontal Line
+                                                 if ((event.pageY >= ystart && currentMousePos.y < ystart) || (event.pageY <= ystart && currentMousePos.y > ystart)) {
+                                                 clearInterval(pluckInterval);
+                                                 pluckAmplitude = 20;
+                                                 pluckInterval = setInterval(pluck, 10);
+                                                 }
+                                                 } else {
+                                                 //All other lines
+                                                 if (line_intersects(xStart, ystart, xEnd, yEnd, event.pageX, event.pageY, currentMousePos.x, currentMousePos.y) == true) {
+                                                 clearInterval(pluckInterval);
+                                                 pluckAmplitude = 20;
+                                                 pluckInterval = setInterval(pluck, 10);
+                                                 }
+                                                 }
+                                                 currentMousePos.x = event.pageX;
+                                                 currentMousePos.y = event.pageY;
+                                                 }
+                                                 });
+                           
 			mouse = {'x': 0, 'y': 0};
 			 homex = 0;
 			 homey = 0;
 			 forcex = 0;
 			 forcey = 0;
 			 magnet = 500;
-			 pluckAmplitude = 10;
-			 xStart=$("#logo").offset().top + $("#logo").height();
-			 yStart=$("#logo").offset().top + $("#logo").height();
-			 xEnd = $("#logo").offset().top + $("#logo").height();
-			 currentMousePos = { x: -1, y: -1 };
+			 
 			 $('.box').each(function(index, el){
 					$(el).data( "homex", parseInt($(el).position().left));
 					$(el).data( "homey", parseInt($(el).position().top));
@@ -163,8 +177,10 @@
 			$('#vline').hide();
 		   $('#services').css('color','#FF9900');
 		   $('#move').css('margin-top','16.5%');
-		   $('#myCanvas').hide();
+		   //$('#myCanvas').hide();
 		   $('#move').animate({left: '-=33.5em', top: '-=13.5em'}, 1500,function() {
+                              growthinterval = setInterval(grow, 10);
+
 				$('#information').fadeIn(1000);
 				$('#move').hide();
 				$('#logo').show();
@@ -175,22 +191,12 @@
 				$("#logo").css({top: 50, left: 50, position:'absolute'});				
 				$('.verticalLine').css({top: $('#logo').height()+50});				
 				$('#myCanvas').css('position','absolute');
-				$('#myCanvas').css('left','5%');
-				$('#myCanvas').css('top','12%');
-				$('#myCanvas').css('height','60%');
-				$('#myCanvas').css('width','15%');
 				$('#myCanvas').css('z-index','-999');
-				canvas = document.getElementById('myCanvas');
-				context = canvas.getContext('2d');
-				context.beginPath();
-				context.moveTo ($("#logo").offset().top + $("#logo").height(), $("#logo").offset().top + $("#logo").height());
-				context.lineTo ($("#logo").offset().top + $("#logo").height(), $('#serviceImg').position().top);
-				context.stroke();
 					$('#serviceImg').animate({'top': $("#logo").offset().top + $("#logo").height()+150},
 						{
 							duration:1000,
 							step: function(now){	
-								$('#myCanvas').slideDown(1000);
+								//$('#myCanvas').slideDown(1000);
 							},
 							complete: function() {
 								yEnd = $('#serviceImg').position().top;
@@ -203,22 +209,24 @@
 				e.preventDefault();
 				 var href = $(this).attr('href');
 				 if(href != 'services.html') {
-					$('#information').fadeOut(1500,function(o){						
+					$('#information').fadeOut(1500,function(o){
+                                              xCurrent = xEnd;
+                                              yCurrent = yEnd;
+                                              ungrowInterval = setInterval(ungrow, 10);
 						$('#serviceImg').animate({'top': $("#logo").offset().top + $("#logo").height()-229},
 						{
 								duration:1000,
-								step: function(now){								
-									$('#myCanvas').slideUp(1000,function(){
-										$('#serviceImg').hide();
-										$('#logo').hide();
-										$('#move').show();
-										$('#move').animate({left: '+=33.5em', top: '+=13.2em'}, 1000,function() {
-											$('#move').hide();
-											$("#logo").css({top: 206, left: '36em', position:'absolute'});
-											$('#logo').show();
-											window.location.href = href;
-										});
-									});
+								step: function(now){
+                                                 $('#serviceImg').hide();
+                                                 $('#logo').hide();
+                                                 $('#move').show();
+                                                 $('#move').animate({left: '+=33.5em', top: '+=13.2em'}, 1000,function() {
+                                                                    $('#move').hide();
+                                                                    $("#logo").css({top: 206, left: '36em', position:'absolute'});
+                                                                    $('#logo').show();
+                                                                    window.location.href = href;
+                                                                    });
+									
 								}
 							}
 						);
@@ -226,6 +234,170 @@
 				}
 		   });
 		});
+        
+        function line_intersects(p0_x, p0_y, p1_x, p1_y, p2_x, p2_y, p3_x, p3_y) {
+            
+            var s1_x, s1_y, s2_x, s2_y;
+            s1_x = p1_x - p0_x;
+            s1_y = p1_y - p0_y;
+            s2_x = p3_x - p2_x;
+            s2_y = p3_y - p2_y;
+            
+            var s, t;
+            s = (-s1_y * (p0_x - p2_x) + s1_x * (p0_y - p2_y)) / (-s2_x * s1_y + s1_x * s2_y);
+            t = ( s2_x * (p0_y - p2_y) - s2_y * (p0_x - p2_x)) / (-s2_x * s1_y + s1_x * s2_y);
+            
+            if (s >= 0 && s <= 1 && t >= 0 && t <= 1)
+            {
+                // Collision detected
+                return true;
+            }
+            
+            return false; // No collision
+        }
+    
+    function pluck() {
+        c.width = c.width;
+        ctx.beginPath();
+        ctx.moveTo(xStart, ystart);
+        
+        if (xEnd == xStart) {
+            //Vertical Line
+            ctx.bezierCurveTo(xStart, ystart, xStart + pluckAmplitude, (ystart + yEnd)/2, xEnd, yEnd);
+        } else if (yEnd == ystart) {
+            //Horizontal Line
+            ctx.bezierCurveTo(xStart, ystart, (xStart + xEnd)/2, ystart + pluckAmplitude, xEnd, yEnd);
+        } else {
+            //All other lines
+            ctx.bezierCurveTo(xStart, ystart, xStart + (xEnd - xStart)/2, ystart + (yEnd - ystart)/2 + pluckAmplitude, xEnd, yEnd);
+        }
+        
+        console.log(pluckAmplitude);
+        if (pluckAmplitude > 0) {
+            pluckAmplitude -= 0.5;
+        } else if (pluckAmplitude < 0) {
+            pluckAmplitude += 0.5;
+        } else {
+            clearInterval(pluckInterval);
+            pluckAmplitude = 20;
+        }
+        pluckAmplitude = pluckAmplitude*-1;
+        
+        ctx.strokeStyle = '#000000';
+        ctx.stroke();
+    }
+    
+    function ungrow() {
+        c.width = c.width;
+        ctx.beginPath();
+        ctx.moveTo(xStart, ystart);
+        
+        console.log(xCurrent, yCurrent);
+        if (xEnd == xStart) {
+            //Vertical Line
+            if (yEnd > ystart) {
+                yCurrent = yEnd - 5;
+            } else if (yEnd < ystart) {
+                yCurrent = yEnd + 5;
+            }
+            ctx.lineTo(xCurrent, yCurrent);
+        } else if (yEnd == ystart) {
+            //Horizontal Line
+            
+            ctx.lineTo(xCurrent, yCurrent);
+        } else {
+            //All other lines
+            
+            xCurrent = xCurrent - 5;
+            yCurrent = yEnd - (xEnd - xCurrent)*slope;
+            ctx.lineTo(xCurrent, yCurrent);
+        }
+        
+        //TODO: Needs cleanup.
+        if (yEnd < ystart) {
+            if (yCurrent >= ystart) {
+                clearInterval(ungrowInterval);
+            }
+        } else if (yEnd > ystart) {
+            if (yCurrent <= ystart) {
+                clearInterval(ungrowInterval);
+            }
+        } else if (xEnd < xStart) {
+            if (xCurrent >= xStart) {
+                clearInterval(ungrowInterval);
+            }
+        } else if (xEnd > xStart) {
+            if (xCurrent <= xStart) {
+                clearInterval(ungrowInterval);
+            }
+        }
+        
+        ctx.strokeStyle = '#000000';
+        ctx.stroke();
+    }
+    
+    function grow(){
+        c.width = c.width;
+        ctx.beginPath();
+        ctx.moveTo(xStart, ystart);
+        
+        console.log(xCurrent, yCurrent);
+        if (xEnd == xStart) {
+            //Vertical Line
+            if (yCurrent < yEnd) {
+                yCurrent = yCurrent + 5;
+            } else {
+                yCurrent = yCurrent - 5;
+            }
+            xCurrent = xStart;
+            ctx.lineTo(xCurrent, yCurrent);
+        } else if (yEnd == ystart) {
+            //Horizontal Line
+            if (xCurrent < xEnd) {
+                xCurrent = xCurrent + 5;
+            } else {
+                xCurrent = xCurrent - 5;
+            }
+            yCurrent = ystart;
+            ctx.lineTo(xCurrent, yCurrent);
+        } else {
+            //All other lines
+            if (xStart < xEnd) {
+                xCurrent = xCurrent + 5;
+                yCurrent = ystart + (xCurrent - xStart)*slope;
+            } else if (xStart > xEnd) {
+                xCurrent = xCurrent - 5;
+                yCurrent = ystart + (xCurrent - xStart)*slope;
+            }
+            ctx.lineTo(xCurrent, yCurrent);
+        }
+        
+        //TODO: Needs cleanup.
+        if (yEnd < ystart) {
+            if (yCurrent <= yEnd) {
+                isGrown = true;
+                clearInterval(growthinterval);
+            }
+        } else if (yEnd > ystart) {
+            if (yCurrent >= yEnd) {
+                isGrown = true;
+                clearInterval(growthinterval);
+            }
+        } else if (xEnd < xStart) {
+            if (xCurrent <= xEnd) {
+                isGrown = true;
+                clearInterval(growthinterval);
+            }
+        } else if (xEnd > xStart) {
+            if (xCurrent >= xEnd) {
+                isGrown = true;
+                clearInterval(growthinterval);
+            }
+        }
+        
+        ctx.strokeStyle = '#000000';
+        ctx.stroke();
+    }
 	</script>
 	<body>
 	<div id="move" style="margin-top:12%;position:absolute;width:100%;text-align:center;"><img  src="resources/images/logoweb.png" width="14%"/></div>
