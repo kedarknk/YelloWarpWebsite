@@ -27,7 +27,6 @@
          </style>
 		<link rel="stylesheet" href="resources/css/bootstrap.min.css">
 		<script src="resources/js/jquery.min.js"></script>
-		<!-- <script src="resources/js/guitar.js"></script>  -->
 <!--		<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>-->
 		<script type="text/javascript" src="resources/js/jquery.arctext.js"></script>
 	</head>
@@ -69,35 +68,35 @@
                            
                            $(document).mousemove(function(event) {
                                                  if (currentMousePos.x == -1 && currentMousePos.y == -1) {
-                                                 currentMousePos.x = event.pageX;
-                                                 currentMousePos.y = event.pageY;
+													 currentMousePos.x = event.pageX;
+													 currentMousePos.y = event.pageY;
                                                  }
                                                  
                                                  if (isGrown == true) {
                                                  if (xEnd == xStart) {
                                                  //Vertical Line
                                                  if ((event.pageX >= xStart && currentMousePos.x < xStart) || (event.pageX <= xStart && currentMousePos.x > xStart)) {
-                                                 clearInterval(pluckInterval);
-                                                 pluckAmplitude = 20;
-                                                 pluckInterval = setInterval(pluck, 10);
-                                                 }
+														clearInterval(pluckInterval);
+														pluckAmplitude = 20;
+														pluckInterval = setInterval(pluck, 10);
+													 }
                                                  } else if (yEnd == ystart) {
                                                  //Horizontal Line
                                                  if ((event.pageY >= ystart && currentMousePos.y < ystart) || (event.pageY <= ystart && currentMousePos.y > ystart)) {
-                                                 clearInterval(pluckInterval);
-                                                 pluckAmplitude = 20;
-                                                 pluckInterval = setInterval(pluck, 10);
+													 clearInterval(pluckInterval);
+													 pluckAmplitude = 20;
+													 pluckInterval = setInterval(pluck, 10);
                                                  }
                                                  } else {
                                                  //All other lines
                                                  if (line_intersects(xStart, ystart, xEnd, yEnd, event.pageX, event.pageY, currentMousePos.x, currentMousePos.y) == true) {
-                                                 clearInterval(pluckInterval);
-                                                 pluckAmplitude = 20;
-                                                 pluckInterval = setInterval(pluck, 10);
-                                                 }
-                                                 }
-                                                 currentMousePos.x = event.pageX;
-                                                 currentMousePos.y = event.pageY;
+															 clearInterval(pluckInterval);
+															 pluckAmplitude = 20;
+															 pluckInterval = setInterval(pluck, 10);
+														}
+													}
+													 currentMousePos.x = event.pageX;
+													 currentMousePos.y = event.pageY;
                                                  }
                                                  });
                            
@@ -182,10 +181,7 @@
 		   $('#move').css('margin-top','16.5%');
 		   //$('#myCanvas').hide();
 		   $('#move').animate({left: '-=33.5em', top: '-=13.5em'}, 1500,function() {
-                              $("#logo").css({top: 50, left: 50, position:'absolute'});
-
-                              
-
+				$("#logo").css({top: 50, left: 50, position:'absolute'});
 				$('#information').fadeIn(1000);
 				$('#move').hide();
 				$('#logo').show();
@@ -196,23 +192,20 @@
 				$('.verticalLine').css({top: $('#logo').height()+50});
 				$('#myCanvas').css('position','absolute');
 				$('#myCanvas').css('z-index','-999');
-                              $('#myCanvas').css('width','100%');
-                              $('#myCanvas').css('height','100%');
-                              
-                              xStart = 70 + $("#logo").offset().left + $('.left').width()/2;
-                              ystart = $("#logo").offset().top + $('.left').height()/2;
-                              growthinterval = setInterval(grow, 10);
+				  $('#myCanvas').css('width','100%');
+				  $('#myCanvas').css('height','100%');
+				  
+				  xStart = 70 + $("#logo").offset().left + $('.left').width()/2;
+				  ystart = $("#logo").offset().top + $('.left').height()/2;
+				  growthinterval = setInterval(grow, 10);
 					$('#serviceImg').animate({'top': $("#logo").offset().top + $("#logo").height()+150},
 						{
 							duration:1000,
-							step: function(now){	
-								//$('#myCanvas').slideDown(1000);
-							},
 							complete: function() {
-                                             xEnd = xCurrent;
-                                             yEnd = yCurrent;
-                                             isGrown = true;
-                                             clearInterval(growthinterval);
+								 xEnd = xCurrent;
+								 yEnd = yCurrent;
+								 isGrown = true;
+								 clearInterval(growthinterval);
 								}
 						}
 					);
@@ -223,23 +216,23 @@
 				 var href = $(this).attr('href');
 				 if(href != 'services.html') {
 					$('#information').fadeOut(1500,function(o){
-                                              xCurrent = xEnd;
-                                              yCurrent = yEnd;
-                                              growthinterval = setInterval(grow, 10);
-						$('#serviceImg').animate({'top': $("#logo").offset().top + $("#logo").height()-229},
+						  xCurrent = xEnd;
+						  yCurrent = yEnd;
+						  growthinterval = setInterval(grow, 10);
+						$('#serviceImg').animate({'top': $("#logo").offset().top},
 						{
 								duration:1000,
 								complete: function(now){
-                                                 $('#serviceImg').hide();
-                                                 $('#logo').hide();
-                                                 $('#move').show();
-                                                 $('#move').animate({left: '+=33.5em', top: '+=13.2em'}, 1000,function() {
-                                                                    $('#move').hide();
-                                                                    $("#logo").css({top: 206, left: '36em', position:'absolute'});
-                                                                    $('#logo').show();
-                                                                    window.location.href = href;
-                                                                    });
-									
+									$('#myCanvas').hide();
+									 $('#serviceImg').hide();
+									 $('#logo').hide();
+									 $('#move').show();
+									 $('#move').animate({left: '+=33.5em', top: '+=13.2em'}, 1000,function() {
+										$('#move').hide();
+										$("#logo").css({top: 206, left: '36em', position:'absolute'});
+										$('#logo').show();
+										window.location.href = href;
+									});
 								}
 							}
 						);
@@ -285,7 +278,6 @@
             ctx.bezierCurveTo(xStart, ystart, xStart + (xEnd - xStart)/2, ystart + (yEnd - ystart)/2 + pluckAmplitude, xEnd, yEnd);
         }
         
-        console.log(pluckAmplitude);
         if (pluckAmplitude > 0) {
             pluckAmplitude -= 0.5;
         } else if (pluckAmplitude < 0) {
@@ -304,8 +296,6 @@
         c.width = c.width;
         ctx.beginPath();
         ctx.moveTo(xStart, ystart);
-        
-        console.log("Ungrow coordinates: " + xCurrent + yCurrent);
         if (xEnd == xStart) {
             //Vertical Line
             if (yEnd > ystart) {
@@ -344,7 +334,6 @@
                 clearInterval(ungrowInterval);
             }
         }
-        
         ctx.strokeStyle = '#000000';
         ctx.stroke();
     }
@@ -354,7 +343,6 @@
         ctx.beginPath();
         ctx.moveTo(xStart, ystart);
         
-        console.log(xCurrent, yCurrent);
         /*if (xEnd == xStart) {
             //Vertical Line
             if (yCurrent < yEnd) {
@@ -430,16 +418,15 @@
 			<a href='index.html' class='deg325' style="min-width:12%;"><span id="home">Home</span></a>
 			<a href='About.html' class='deg335' style="min-width:9%;"><span id="about">About Us</span></a>
 		</div>
-		<!--<div class="verticalLine" id="vline" draggable="true">&nbsp;</div>-->
 		<div class="col-md-4 services-image">
 			<img class="left bottom-image" id = "serviceImg" src="resources/images/Servicesphoto.png" width="40%"/>
 		</div>
 			<div class="col-md-8" id="information" style="font-family:Century Gothic;padding-top:9%;line-height:150%;letter-spacing:2px">
 				<p style="font-family:Century Gothic;">
-					<div class="music">Y</div>
-					<div class="box" style="margin-left:0%;">ello</div>
+					<div class="music">YelloWarp</div>
+					<!--<div class="box" style="margin-left:0%;">ello</div>
 					<div class="music" style="margin-left:0%;">W</div>
-					<div class="box" style="margin-left:0%;">arp </div>
+					<div class="box" style="margin-left:0%;">arp </div> -->
 					<div class="music">P</div>
 					<div class="box">roductions </div>
 					<div class="box">is </div>

@@ -774,3 +774,8 @@ a:hover {
 	height:100px;
 	width:100px;
 }
+
+@font-face {
+    font-family: 'century gothic'; /*a name to be used later*/
+    src: ../resources/fonts/ufonts.com_century-gothic.ttf; /*URL to font*/
+}
