@@ -1,6 +1,10 @@
 <html>
 	<head>
+        <link rel="stylesheet" type="text/css" href="resources/css/yellowarp.css">
 	<style>
+        .bottom-image{
+            margin-top:0%;
+        }
 			.box{
 				position:relative;
 				display:inline-block;
@@ -24,13 +28,12 @@
 		<link rel="stylesheet" href="resources/css/bootstrap.min.css">
 		<script src="resources/js/jquery.min.js"></script>
 		<!-- <script src="resources/js/guitar.js"></script>  -->
-		<link rel="stylesheet" type="text/css" href="resources/css/yellowarp.css">
 <!--		<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>-->
 		<script type="text/javascript" src="resources/js/jquery.arctext.js"></script>
 	</head>
 	<script>
         var xStart = 210, ystart = 100;
-        var xEnd = 210, yEnd = 900;
+        var xEnd = 210, yEnd = 950;
         var xCurrent = xStart, yCurrent = ystart;
         var slope = 0;
         var pluckAmplitude = 20;
@@ -192,6 +195,8 @@
 				$('.verticalLine').css({top: $('#logo').height()+50});				
 				$('#myCanvas').css('position','absolute');
 				$('#myCanvas').css('z-index','-999');
+                              $('#myCanvas').css('width','100%');
+                              $('#myCanvas').css('height','100%');
 					$('#serviceImg').animate({'top': $("#logo").offset().top + $("#logo").height()+150},
 						{
 							duration:1000,
@@ -216,7 +221,7 @@
 						$('#serviceImg').animate({'top': $("#logo").offset().top + $("#logo").height()-229},
 						{
 								duration:1000,
-								step: function(now){
+								complete: function(now){
                                                  $('#serviceImg').hide();
                                                  $('#logo').hide();
                                                  $('#move').show();
@@ -292,13 +297,13 @@
         ctx.beginPath();
         ctx.moveTo(xStart, ystart);
         
-        console.log(xCurrent, yCurrent);
+        console.log("Ungrow coordinates: " + xCurrent + yCurrent);
         if (xEnd == xStart) {
             //Vertical Line
             if (yEnd > ystart) {
-                yCurrent = yEnd - 5;
+                yCurrent = yCurrent - 5;
             } else if (yEnd < ystart) {
-                yCurrent = yEnd + 5;
+                yCurrent = yCurrent + 5;
             }
             ctx.lineTo(xCurrent, yCurrent);
         } else if (yEnd == ystart) {
