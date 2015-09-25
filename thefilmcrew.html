@@ -9,7 +9,7 @@
 	</head>
 	<script>
         var xStart = 900, ystart = 120;
-        var xEnd = 1100, yEnd = 510;
+        var xEnd = 1200, yEnd = 450;
         var xCurrent = xStart, yCurrent = ystart;
         var slope = 0;
         var pluckAmplitude = 20;
@@ -24,8 +24,6 @@
 		 $(document).ready(function() {
             c=document.getElementById("myCanvas");
             ctx=c.getContext("2d");
-
-                           debugger;
             c.width = window.innerWidth;
             c.height = window.innerHeight;
 
@@ -37,41 +35,41 @@
 
             } else {
             //All other lines
-            slope = (yEnd - ystart)/(xEnd - xStart);
+				slope = (yEnd - ystart)/(xEnd - xStart);
             }
                            
            $(document).mousemove(function(event) {
                                  if (currentMousePos.x == -1 && currentMousePos.y == -1) {
-                                 currentMousePos.x = event.pageX;
-                                 currentMousePos.y = event.pageY;
+									 currentMousePos.x = event.pageX;
+									 currentMousePos.y = event.pageY;
                                  }
                                  
                                  if (isGrown == true) {
                                  if (xEnd == xStart) {
                                  //Vertical Line
                                  if ((event.pageX >= xStart && currentMousePos.x < xStart) || (event.pageX <= xStart && currentMousePos.x > xStart)) {
-                                 clearInterval(pluckInterval);
-                                 pluckAmplitude = 20;
-                                 pluckInterval = setInterval(pluck, 10);
-                                 }
+									 clearInterval(pluckInterval);
+									 pluckAmplitude = 20;
+									 pluckInterval = setInterval(pluck, 10);
+									 }
                                  } else if (yEnd == ystart) {
                                  //Horizontal Line
                                  if ((event.pageY >= ystart && currentMousePos.y < ystart) || (event.pageY <= ystart && currentMousePos.y > ystart)) {
-                                 clearInterval(pluckInterval);
-                                 pluckAmplitude = 20;
-                                 pluckInterval = setInterval(pluck, 10);
-                                 }
+										 clearInterval(pluckInterval);
+										 pluckAmplitude = 20;
+										pluckInterval = setInterval(pluck, 10);
+									}
                                  } else {
                                  //All other lines
                                  if (line_intersects(xStart, ystart, xEnd, yEnd, event.pageX, event.pageY, currentMousePos.x, currentMousePos.y) == true) {
-                                 clearInterval(pluckInterval);
-                                 pluckAmplitude = 20;
-                                 pluckInterval = setInterval(pluck, 10);
-                                 }
-                                 }
-                                 currentMousePos.x = event.pageX;
-                                 currentMousePos.y = event.pageY;
-                                 }
+											 clearInterval(pluckInterval);
+											 pluckAmplitude = 20;
+											 pluckInterval = setInterval(pluck, 10);
+										 }
+									 }
+										 currentMousePos.x = event.pageX;
+										 currentMousePos.y = event.pageY;
+									}
                                  });
 
 		 $('#photo').arctext({radius:100});
@@ -88,27 +86,30 @@
 		   $('.yellowtree').hide();
 		   $('#rightImage').css({top: '8.6%', left: '55em', position:'absolute'});
 		   $('#move').animate({left: '+=14.5em', top: '-=12em'}, 1000,function() {
-              growthinterval = setInterval(grow, 10);
 				$('#move').hide();
 				$('#logo').show();
 				$("#logo").css({top: '10.6%', left: '52em', position:'absolute'});
-				$("#line").css({top: $('#logo').height(), left: '55em'});
-				var left = parseInt($("#line").css('left').split("px")[0]) + ($("#logo").children('img').width()/2);
-				$('#line').css('left',left);
+				xStart = 20 + $("#logo").offset().left + $("#logo").width()/2;
+				ystart = $("#logo").offset().top +$("#logo").height()/2;
+				growthinterval = setInterval(grow, 10);
+				//$("#line").css({top: $('#logo').height(), left: '55em'});
+				//var left = parseInt($("#line").css('left').split("px")[0]) + ($("#logo").children('img').width()/2);
+				//$('#line').css('left',left);
 				$('#rightImage').css('z-index',-99);
 				$('#rightImage').show();
 				
-				$('#line').slideDown({
-					duration: 1500,
-					start: function(){
-						$('#rightImage').animate({left: '+=9.5em', top: '+=24em'}, 1500,function(){
-							$('.yellowtree').css({'bottom': '-30%','position':'fixed'});
-							$('.yellowtree').show();
-							$('.yellowtree').animate({bottom:'0'},2000);					
-						});
+				$('#rightImage').animate({left: '+=22%', top: '+=43%'},
+				{
+					duration:1000,
+					step: function(e) {
+						if(e >54)
+							$('#rightImage').css('z-index',99);
 					},
-					complete: function(){
-						$('#line').css({display: 'block'});
+					complete: function() {
+						$('#rightImage').css('z-index',99);
+						$('.yellowtree').css({'bottom': '-30%','position':'fixed'});
+						$('.yellowtree').show();
+						$('.yellowtree').animate({bottom:'0'},2000);					
 					}
 				});
 		   });
@@ -132,41 +133,40 @@
 				e.preventDefault();
 				 var href = $(this).attr('href');
 				 if(href != 'thefilmcrew.html') {
-					/*$('.verticalLine').slideUp({
-							duration: 2000,
-							start: function(){
-								$('#serviceImg').animate({'margin-top': '42px'},2000);
-							},
-							complete: function(){
-								$('#serviceImg').hide();
-								$('#logo').hide();								
-								$('#move').show();
-								$('#move').animate({left: '+=33.5em', top: '+=13.2em'}, 1000,function() {
-									$('#move').hide();
-									$("#logo").css({top: 206, left: '36em', position:'absolute'});
-									$('#logo').show();
-									window.location.href = href;
-								});
-							}
-						});*/
 					$('.yellowtree').css('position','absolute');
 					$('.yellowtree').animate({'bottom':'-150%'},{
 						duration: 1000,						
 						complete: function(){
-							$('#line').animate({height: '0'},1000,function(){
-								$(this).hide();
-							});
                              xCurrent = xEnd;
                              yCurrent = yEnd;
                              ungrowInterval = setInterval(ungrow, 10);
-							$('#rightImage').animate({left: '-=9.5em', top: '-=24em'}, 1000,function(){
+							 $('#logo').css('z-index',999);
+							 $('#move').css('z-index',999);
+							$('#rightImage').animate({left: '-=24.5%', top: '-=43%'},{
+								duration:1000,
+								step: function(e) {
+									if(e <= 3)
+										$('#rightImage').css('z-index',-9999);
+									$('#rightImage').css('width',$('#rightImage').width()-0.1);
+								},
+								complete: function(){
+									$('#rightImage').hide();
+									$('#myCanvas').hide();
+									$('#logo').hide();
+									$('#move').show();
+									$('#move').animate({left: '-=14.5em', top: '+=12em'}, 1000,function(){
+										window.location.href = href;
+									});
+								}
+							});
+								/*1000,function(){
 								$('#rightImage').hide();
 								$('#logo').hide();
 								$('#move').show();
 								$('#move').animate({left: '-=14.5em', top: '+=12em'}, 1000,function(){
-									window.location.href = href;
+									//window.location.href = href;
 								});
-							});
+							});*/
 						}
 					});
 				 }
@@ -336,7 +336,7 @@
 	<body>
 	<div id="move" style="margin-top:16.3%;position:absolute;width:100%;text-align:center;"><img  src="resources/images/logoweb.png" width="14%"/></div>
 			<div class="row">
-                <canvas id="myCanvas"></canvas>
+                <canvas id="myCanvas" style="z-index:-999"></canvas>
 				<div class="left-container-crew" id="logo" style="width:14%;">
 					<img class="left" src="resources/images/logoweb-crop.png" width="100%"/>
 					<a href='contactus.html' class='deg315crew' style="min-width:7%;"><span id="contact">Contact</span></a>
@@ -350,7 +350,7 @@
 				</div>
 			</div>
 			<div class="yellowtree">
-				<img src="resources/images/yellowtree.png" width="60%" height="60%" style="vertical-align:bottom">
+				<img src="resources/images/yellowtree.png" width="60%" height="60%" style="vertical-align:bottom;z-index:999">
 				<span id="test1"><span style="min-width:150px">Assistant Direction Team</span><br><span style="margin-left:45px;">Mohit</span><br><span style="margin-left:45px;">Sunny</span><br><span style="margin-left:45px;">Abhishek</span><br><span style="margin-left:45px;">Lalit</span></span>
 				<span id="test2"><span style="min-width:120px">Costume Designers</span><br><span style="margin-left:10%;min-width:120px">Sambo Parakh</span><br><span style="margin-left:10%;min-width:120px">Shweta Grower</span></span>
 				<span id="test3"><span style="min-width:200px">Audio Post-Mix & Master</span><br><span style="margin-left:25%;min-width:100px;text-align:center">Jon Olliffe</span></span>
