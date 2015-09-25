@@ -62,7 +62,7 @@
 									}
                                  } else {
                                  //All other lines
-                                 if (line_intersects(xStart, ystart, xEnd, yEnd, event.pageX, event.pageY, currentMousePos.x, currentMousePos.y) == true) {
+                                 if (line_intersects(20 + $("#logo").offset().left + $("#logo").width()/2, $("#logo").offset().top + $("#logo").height()/2, 20 + $("#rightImage").offset().left + $("#rightImage").width()/2, $("#rightImage").offset().top + $("#rightImage").height()/2, event.pageX, event.pageY, currentMousePos.x, currentMousePos.y) == true) {
 											 clearInterval(pluckInterval);
 											 pluckAmplitude = 20;
 											 pluckInterval = setInterval(pluck, 10);
@@ -119,6 +119,11 @@
 							$('#rightImage').css('z-index',99);
 					},
 					complete: function() {
+                                         isGrown = true;
+                                         xEnd = xCurrent;
+                                         yEnd = yCurrent;
+                                         slope = (yEnd - ystart)/(xEnd - xStart);
+                        clearInterval(growthinterval);
 						$('#rightImage').css('z-index',99);
 						$('.yellowtree').css({'bottom': '-30%','position':'fixed'});
 						$('.yellowtree').show();
@@ -287,7 +292,7 @@
         ctx.beginPath();
         ctx.moveTo(xStart, ystart);
         
-        console.log(xCurrent, yCurrent);
+        /*console.log(xCurrent, yCurrent);
         if (xEnd == xStart) {
             //Vertical Line
             if (yCurrent < yEnd) {
@@ -339,7 +344,11 @@
                 isGrown = true;
                 clearInterval(growthinterval);
             }
-        }
+        }*/
+        
+        xCurrent = 20 + $("#rightImage").offset().left + $("#rightImage").width()/2;
+        yCurrent = $("#rightImage").offset().top +$("#rightImage").height()/2;
+        ctx.lineTo(xCurrent, yCurrent);
         
         ctx.strokeStyle = '#000000';
         ctx.stroke();
