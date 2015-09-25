@@ -182,7 +182,9 @@
 		   $('#move').css('margin-top','16.5%');
 		   //$('#myCanvas').hide();
 		   $('#move').animate({left: '-=33.5em', top: '-=13.5em'}, 1500,function() {
-                              growthinterval = setInterval(grow, 10);
+                              $("#logo").css({top: 50, left: 50, position:'absolute'});
+
+                              
 
 				$('#information').fadeIn(1000);
 				$('#move').hide();
@@ -191,12 +193,15 @@
 				$('#serviceImg').css('position','absolute');
 				$('#serviceImg').css('left','14%');
 				$('#serviceImg').show();			
-				$("#logo").css({top: 50, left: 50, position:'absolute'});				
-				$('.verticalLine').css({top: $('#logo').height()+50});				
+				$('.verticalLine').css({top: $('#logo').height()+50});
 				$('#myCanvas').css('position','absolute');
 				$('#myCanvas').css('z-index','-999');
                               $('#myCanvas').css('width','100%');
                               $('#myCanvas').css('height','100%');
+                              
+                              xStart = 70 + $("#logo").offset().left + $('.left').width()/2;
+                              ystart = $("#logo").offset().top + $('.left').height()/2;
+                              growthinterval = setInterval(grow, 10);
 					$('#serviceImg').animate({'top': $("#logo").offset().top + $("#logo").height()+150},
 						{
 							duration:1000,
@@ -204,7 +209,10 @@
 								//$('#myCanvas').slideDown(1000);
 							},
 							complete: function() {
-								yEnd = $('#serviceImg').position().top;
+                                             xEnd = xCurrent;
+                                             yEnd = yCurrent;
+                                             isGrown = true;
+                                             clearInterval(growthinterval);
 								}
 						}
 					);
@@ -217,7 +225,7 @@
 					$('#information').fadeOut(1500,function(o){
                                               xCurrent = xEnd;
                                               yCurrent = yEnd;
-                                              ungrowInterval = setInterval(ungrow, 10);
+                                              growthinterval = setInterval(grow, 10);
 						$('#serviceImg').animate({'top': $("#logo").offset().top + $("#logo").height()-229},
 						{
 								duration:1000,
@@ -347,7 +355,7 @@
         ctx.moveTo(xStart, ystart);
         
         console.log(xCurrent, yCurrent);
-        if (xEnd == xStart) {
+        /*if (xEnd == xStart) {
             //Vertical Line
             if (yCurrent < yEnd) {
                 yCurrent = yCurrent + 5;
@@ -398,8 +406,12 @@
                 isGrown = true;
                 clearInterval(growthinterval);
             }
-        }
+        }*/
         
+        xCurrent = xStart;
+        yCurrent = $("#serviceImg").offset().top + $("#serviceImg").height()/2;
+        ctx.lineTo(xCurrent, yCurrent);
+
         ctx.strokeStyle = '#000000';
         ctx.stroke();
     }
