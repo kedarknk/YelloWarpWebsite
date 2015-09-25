@@ -25,7 +25,7 @@
 				$('#information').animate({'margin-top': '+=28%'}, 500,function(){});
 				$('#move').hide();
 				$('#logo').show();
-				$("#logo").css({top: '49%', left: '9em', position:'absolute'});
+				$("#logo").css({top: '50%', left: '9em', position:'absolute'});
 				$('#contact').show();
 		   });
 		   
@@ -36,12 +36,22 @@
 						$('#information').animate({'margin-top':'-48%'},500,function(){							
 							$('#logo').hide();
 								$('#move').show();
-								$('#move').animate({left: '+=28.5em', top: '-=6em'}, 1000,function() {
-									$('#move').hide();
-									$("#logo").css({top: 251, left: '38em', position:'absolute'});
-									$('#logo').show();
-									window.location.href = href;
-								});
+								if(href == 'About.html') {
+									$('#move').animate({left: '-=6%', top: '+=9%'}, 700,function(){
+										window.location.href = href;
+									});
+								} else if(href == 'index.html' || href == 'music.html') {
+									$('#move').animate({left: '+=28.5em', top: '-=6em'}, 1000,function() {
+										$('#move').hide();
+										$("#logo").css({top: 251, left: '38em', position:'absolute'});
+										$('#logo').show();
+										window.location.href = href;
+									});
+								} else if(href == 'services.html') {
+									$('#move').animate({left: '-=4.2%', top: '-=41.5%'}, 1000,function() {
+										window.location.href = href;
+									});
+								}
 							});
 					}
 		   });
