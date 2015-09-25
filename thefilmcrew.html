@@ -88,7 +88,7 @@
 		   $('#rightImage').hide();
 		   $('.yellowtree').hide();
 		   $('#rightImage').css({top: '8.6%', left: '55em', position:'absolute'});
-		   $('#move').animate({left: '+=14.5em', top: '-=12em'}, 1000,function() {
+		   //$('#move').animate({left: '+=14.5em', top: '-=12em'}, 1000,function() {
 				$('#move').hide();
 				$('#logo').show();
 				$("#logo").css({top: '10.6%', left: '52em', position:'absolute'});
@@ -105,9 +105,6 @@
                               slope = (yEnd - ystart)/(xEnd - xStart);
                               }
 				growthinterval = setInterval(grow, 10);
-				//$("#line").css({top: $('#logo').height(), left: '55em'});
-				//var left = parseInt($("#line").css('left').split("px")[0]) + ($("#logo").children('img').width()/2);
-				//$('#line').css('left',left);
 				$('#rightImage').css('z-index',-99);
 				$('#rightImage').show();
 				
@@ -130,7 +127,7 @@
 						$('.yellowtree').animate({bottom:'0'},2000);					
 					}
 				});
-		   });
+		   //});
 		   $('#test1').css({top:'77%',left:'12%'});
 		   $('#test2').css({top:'66%',left:'7%'});
 		   $('#test3').css({top:'55%',left:'6%'});

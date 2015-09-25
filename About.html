@@ -186,10 +186,11 @@
 		$('#myCanvas').css('position','absolute');
 		$('#myCanvas').css('height','100%');
 		$('#myCanvas').css('width','100%');
-		$('#move').animate({left: '-=33.5em', top: '+=10em'}, 1000,function() {
+		//$('#move').animate({left: '-=33.5em', top: '+=10em'}, 1000,function() {
 			$('#move').hide();
 			$('#logo').show();
 			$("#logo").css({top: 380, left: 60, position:'absolute'});
+			$("#move").css({top: '+=10em', left: '-=33.5em', position:'absolute'});
 			xStart = 25 + $("#logo").offset().left + ($('.left').width()/2);
                            xStart = 25 + $("#logo").offset().left + ($('.left').width()/2);
                            ystart = $("#logo").offset().top +$('.left').height()/2;
@@ -221,7 +222,7 @@
 					}
 				}
 			);
-		});
+		//});
 		$('a').click(function(e) {
 			e.preventDefault();
 			 var href = $(this).attr('href');

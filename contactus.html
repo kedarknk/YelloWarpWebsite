@@ -37,10 +37,10 @@
 							$('#logo').hide();
 								$('#move').show();
 								if(href == 'About.html') {
-									$('#move').animate({left: '-=6%', top: '+=9%'}, 700,function(){
+									$('#move').animate({left: '-=10.3%', top: '+=9%'}, 700,function(){
 										window.location.href = href;
 									});
-								} else if(href == 'index.html' || href == 'music.html') {
+								} else if(href == 'index.html' || href == 'music.html' || href == 'photography.html') {
 									$('#move').animate({left: '+=28.5em', top: '-=6em'}, 1000,function() {
 										$('#move').hide();
 										$("#logo").css({top: 251, left: '38em', position:'absolute'});
@@ -48,7 +48,15 @@
 										window.location.href = href;
 									});
 								} else if(href == 'services.html') {
-									$('#move').animate({left: '-=4.2%', top: '-=41.5%'}, 1000,function() {
+									$('#move').animate({left: '-=6%', top: '-=41.5%'}, 1000,function() {
+										window.location.href = href;
+									});
+								} else if(href == 'thefilmcrew.html') {
+									$('#move').animate({left: '+=40%', top: '-=38%'}, 1000,function() {
+										window.location.href = href;
+									});
+								} else if(href == 'films.html') {
+									$('#move').animate({left: '+=66%', top: '-=18.5%'}, 1000,function() {
 										window.location.href = href;
 									});
 								}
