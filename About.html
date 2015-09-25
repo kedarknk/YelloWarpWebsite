@@ -186,8 +186,8 @@
 		$('#myCanvas').css('position','absolute');
 		$('#myCanvas').css('height','100%');
 		$('#myCanvas').css('width','100%');
-		//$('#move').animate({left: '-=33.5em', top: '+=10em'}, 1000,function() {
-			$('#move').hide();
+		$('#move').hide();
+		$('#move').animate({left: '-=38.5em', top: '+=11em'}, 1000,function() {});
 			$('#logo').show();
 			$("#logo").css({top: 380, left: 60, position:'absolute'});
 			$("#move").css({top: '+=10em', left: '-=33.5em', position:'absolute'});
@@ -232,13 +232,19 @@
 				$("#move").show();
 					  xCurrent = xEnd;
 					  yCurrent = yEnd;
-                                          growthinterval = setInterval(grow, 10);
-					$('#topLogo').animate({'margin-top': '62%','left': '26%'},1000,function(){
+					  growthinterval = setInterval(grow, 10);
+					$('#topLogo').animate({'margin-top': '62%','left': '15%'},1000,function(){
 						$('#myCanvas').hide();
 						$('#topLogo').hide();
-						$("#move").animate({left: '+=33.5em', top: '-=10em'},1000,function(){
-							window.location.href = href;
-						});
+						if(href == 'index.html' || href == 'music.html' || href == 'photography.html') {
+							$("#move").animate({left: '+=33.5em', top: '-=10em'},1000,function(){
+								window.location.href = href;
+							});
+						} else if(href == 'services.html') {
+							$("#move").animate({left: '+=4%', top: '-=51%'},1000,function(){
+								window.location.href = href;
+							});
+						}
 					});
 				});
 			 }
