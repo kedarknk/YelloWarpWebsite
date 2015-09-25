@@ -92,6 +92,16 @@
 				$("#logo").css({top: '10.6%', left: '52em', position:'absolute'});
 				xStart = 20 + $("#logo").offset().left + $("#logo").width()/2;
 				ystart = $("#logo").offset().top +$("#logo").height()/2;
+                              if (xEnd == xStart) {
+                              //Vertical Line
+                              
+                              } else if (yEnd == ystart) {
+                              //Horizontal Line
+                              
+                              } else {
+                              //All other lines
+                              slope = (yEnd - ystart)/(xEnd - xStart);
+                              }
 				growthinterval = setInterval(grow, 10);
 				//$("#line").css({top: $('#logo').height(), left: '55em'});
 				//var left = parseInt($("#line").css('left').split("px")[0]) + ($("#logo").children('img').width()/2);
