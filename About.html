@@ -91,7 +91,7 @@
 								}
 							 } else {
 							 //All other lines
-							 if (line_intersects(xStart, ystart, xEnd, yEnd, event.pageX, event.pageY, currentMousePos.x, currentMousePos.y) == true) {
+							 if (line_intersects(25 + $("#logo").offset().left + ($('.left').width()/2), $("#logo").offset().top +$('.left').height()/2, 25 + $("#topLogo").offset().left + $("#topLogo").width()/2, $("#topLogo").offset().top + $("#topLogo").height()/2, event.pageX, event.pageY, currentMousePos.x, currentMousePos.y) == true) {
 									 clearInterval(pluckInterval);
 									 pluckAmplitude = 20;
 									 pluckInterval = setInterval(pluck, 10);
@@ -191,16 +191,32 @@
 			$('#logo').show();
 			$("#logo").css({top: 380, left: 60, position:'absolute'});
 			xStart = 25 + $("#logo").offset().left + ($('.left').width()/2);
-			
+                           xStart = 25 + $("#logo").offset().left + ($('.left').width()/2);
+                           ystart = $("#logo").offset().top +$('.left').height()/2;
+                           if (xEnd == xStart) {
+                           //Vertical Line
+                           
+                           } else if (yEnd == ystart) {
+                           //Horizontal Line
+                           
+                           } else {
+                           //All other lines
+                           slope = (yEnd - ystart)/(xEnd - xStart);
+                           }
+                           growthinterval = setInterval(grow, 10);
 			$('#topLogo').css('z-index','-999');
 			$('#topLogo').show();
-			growthinterval = setInterval(grow, 10);
 			$('#topLogo').animate({'margin-top': '6%','left': '70%'},
 				{
 					duration:1000,
 					step: function(e){
 					},
 					complete:function() {
+                                  isGrown = true;
+                                  xEnd = xCurrent;
+                                  yEnd = yCurrent;
+                                  slope = (yEnd - ystart)/(xEnd - xStart);
+                                  clearInterval(growthinterval);
 						$('#information').fadeIn(1000);
 					}
 				}
@@ -327,7 +343,7 @@
         c.width = c.width;
         ctx.beginPath();
         ctx.moveTo(xStart, ystart);
-        if (xEnd == xStart) {
+        /*if (xEnd == xStart) {
             //Vertical Line
             if (yCurrent < yEnd) {
                 yCurrent = yCurrent + 5;
@@ -378,7 +394,11 @@
                 isGrown = true;
                 clearInterval(growthinterval);
             }
-        }
+        }*/
+        
+        xCurrent = 25 + $("#topLogo").offset().left + $("#topLogo").width()/2;
+        yCurrent = $("#topLogo").offset().top +$("#topLogo").height()/2;
+        ctx.lineTo(xCurrent, yCurrent);
         
         ctx.strokeStyle = '#000000';
         ctx.stroke();
