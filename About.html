@@ -5,6 +5,9 @@
 		<link rel="stylesheet" type="text/css" href="resources/css/yellowarp.css">
 		<script type="text/javascript" src="resources/js/jquery.arctext.js"></script> 
 	<style>
+		.left-container a {
+			left:7.3%;
+		}
 		.box{
 				position:relative;
 				display:inline-block;
@@ -30,7 +33,7 @@
 	</head>
 	<script>
         var xStart = 210, ystart = 450;
-        var xEnd = 470, yEnd = 110;
+        var xEnd = 470, yEnd = 180;
         var xCurrent = xStart, yCurrent = ystart;
         var slope = 0;
         var pluckAmplitude = 20;
@@ -66,42 +69,41 @@
                            }
                            
                            $(document).mousemove(function(event) {
-                                                 if (currentMousePos.x == -1 && currentMousePos.y == -1) {
-                                                 currentMousePos.x = event.pageX;
-                                                 currentMousePos.y = event.pageY;
-                                                 }
-                                                 
-                                                 if (isGrown == true) {
-                                                 if (xEnd == xStart) {
-                                                 //Vertical Line
-                                                 if ((event.pageX >= xStart && currentMousePos.x < xStart) || (event.pageX <= xStart && currentMousePos.x > xStart)) {
-                                                 clearInterval(pluckInterval);
-                                                 pluckAmplitude = 20;
-                                                 pluckInterval = setInterval(pluck, 10);
-                                                 }
-                                                 } else if (yEnd == ystart) {
-                                                 //Horizontal Line
-                                                 if ((event.pageY >= ystart && currentMousePos.y < ystart) || (event.pageY <= ystart && currentMousePos.y > ystart)) {
-                                                 clearInterval(pluckInterval);
-                                                 pluckAmplitude = 20;
-                                                 pluckInterval = setInterval(pluck, 10);
-                                                 }
-                                                 } else {
-                                                 //All other lines
-                                                 if (line_intersects(xStart, ystart, xEnd, yEnd, event.pageX, event.pageY, currentMousePos.x, currentMousePos.y) == true) {
-                                                 clearInterval(pluckInterval);
-                                                 pluckAmplitude = 20;
-                                                 pluckInterval = setInterval(pluck, 10);
-                                                 }
-                                                 }
-                                                 currentMousePos.x = event.pageX;
-                                                 currentMousePos.y = event.pageY;
-                                                 }
-                                                 });
-                           
-                           $('#grow').on('click', function(){
-                                         growthinterval = setInterval(grow, 10);
-                                         });
+							 if (currentMousePos.x == -1 && currentMousePos.y == -1) {
+								 currentMousePos.x = event.pageX;
+								 currentMousePos.y = event.pageY;
+							 }
+							 
+							 if (isGrown == true) {
+								 if (xEnd == xStart) {
+								 //Vertical Line
+								 if ((event.pageX >= xStart && currentMousePos.x < xStart) || (event.pageX <= xStart && currentMousePos.x > xStart)) {
+									 clearInterval(pluckInterval);
+									 pluckAmplitude = 20;
+									 pluckInterval = setInterval(pluck, 10);
+								 }
+							 } else if (yEnd == ystart) {
+							 //Horizontal Line
+							 if ((event.pageY >= ystart && currentMousePos.y < ystart) || (event.pageY <= ystart && currentMousePos.y > ystart)) {
+									 clearInterval(pluckInterval);
+									 pluckAmplitude = 20;
+									 pluckInterval = setInterval(pluck, 10);
+								}
+							 } else {
+							 //All other lines
+							 if (line_intersects(xStart, ystart, xEnd, yEnd, event.pageX, event.pageY, currentMousePos.x, currentMousePos.y) == true) {
+									 clearInterval(pluckInterval);
+									 pluckAmplitude = 20;
+									 pluckInterval = setInterval(pluck, 10);
+								}
+							}
+									currentMousePos.x = event.pageX;
+									currentMousePos.y = event.pageY;
+								 }
+							 });                           
+			$('#grow').on('click', function(){
+				growthinterval = setInterval(grow, 10);
+			});
 		 mouse = {'x': 0, 'y': 0};
 		 homex = 0;
 		 homey = 0;
@@ -121,135 +123,111 @@
 			 
 			 setInterval(function () {
 				 $('.box').each(function(index, el){
-						el = $(el);
-						position = el.position();
-						x0 = el.offset().left;
-						y0 = el.offset().top;
-						x1 = mouse.x;
-						y1 = mouse.y;
-						distancex = x1-x0;
-						distancey = y1-y0;
-						
-						distance = Math.sqrt((distancex * distancex) + (distancey * distancey));
-						powerx = x0 - (distancex / distance) * magnet / distance;
-						powery = y0 - (distancey / distance) * magnet / distance;
-						
-						forcex = (forcex + (el.data('homex') - x0) / 2) / 2.1;
-						forcey = (forcey + (el.data('homey') - y0) / 2) / 2.1;
-						
-						el.css('left', powerx + forcex-300);
-						el.css('top',  powery + forcey);
-						});
+					el = $(el);
+					position = el.position();
+					x0 = el.offset().left;
+					y0 = el.offset().top;
+					x1 = mouse.x;
+					y1 = mouse.y;
+					distancex = x1-x0;
+					distancey = y1-y0;
+					
+					distance = Math.sqrt((distancex * distancex) + (distancey * distancey));
+					powerx = x0 - (distancex / distance) * magnet / distance;
+					powery = y0 - (distancey / distance) * magnet / distance;
+					
+					forcex = (forcex + (el.data('homex') - x0) / 2) / 2.1;
+					forcey = (forcey + (el.data('homey') - y0) / 2) / 2.1;
+					
+					el.css('left', powerx + forcex-300);
+					el.css('top',  powery + forcey);
+					});
 				 }, 15);
 				 
 				 setInterval(function () {
 				 $('.music').each(function(index, el){
-						el = $(el);
-						position = el.position();
-						x0 = el.offset().left;
-						y0 = el.offset().top;
-						x1 = mouse.x;
-						y1 = mouse.y;
-						distancex = x1-x0;
-						distancey = y1-y0;
-						
-						distance = Math.sqrt((distancex * distancex) + (distancey * distancey));
-						
-						powerx = x0 - (distancex / distance) * magnet / distance;
-						powery = y0 - (distancey / distance) * magnet / distance;
-						
-						forcex = (forcex + (el.data('homex') - x0) / 2) / 2.1;
-						forcey = (forcey + (el.data('homey') - y0) / 2) / 2.1;
-						
-						
-						el.css('left', powerx + forcex-300);
-						el.css('top',  powery + forcey);
-						});
+					el = $(el);
+					position = el.position();
+					x0 = el.offset().left;
+					y0 = el.offset().top;
+					x1 = mouse.x;
+					y1 = mouse.y;
+					distancex = x1-x0;
+					distancey = y1-y0;
+					
+					distance = Math.sqrt((distancex * distancex) + (distancey * distancey));
+					
+					powerx = x0 - (distancex / distance) * magnet / distance;
+					powery = y0 - (distancey / distance) * magnet / distance;
+					
+					forcex = (forcex + (el.data('homex') - x0) / 2) / 2.1;
+					forcey = (forcey + (el.data('homey') - y0) / 2) / 2.1;
+					
+					
+					el.css('left', powerx + forcex-300);
+					el.css('top',  powery + forcey);
+					});
 				 }, 15);
 		 
-		 $('#filmCrew').arctext({radius:100});
-		 $('#about').arctext({radius:80});
-		 $('#photo').arctext({radius:100});
-		 $('#music').arctext({radius:80});
-		 $('#home').arctext({radius:80});
-		 $('#services').arctext({radius:80});
-		 $('#contact').arctext({radius:80});
-			$('#information').hide();
-			$('#logo').hide();
-			$('#topLogo').hide();
-			$("#topLogo").css({'margin-top': '63%', left: '20%', position:'absolute'});
-		   $('#about').css('color','#FF9900');
-		   $('#move').css('margin-top','16.3%');
-		   $('#myCanvas').css('z-index','-999');
-		   $('#myCanvas').css('position','absolute');
-			$('#myCanvas').css('height','100%');
-			$('#myCanvas').css('width','100%');
-		   $('#move').animate({left: '-=33.5em', top: '+=10em'}, 1000,function() {
-                              growthinterval = setInterval(grow, 10);
-				//$('#information').show();
-				$('#move').hide();
-				$('#logo').show();
-				$("#logo").css({top: 380, left: 60, position:'absolute'});
-				//var canvas = document.getElementById('myCanvas');
-				//var context = canvas.getContext('2d');
-				//context.beginPath();
-				//context.moveTo ($("#logo").offset().top + $("#logo").height(), $("#logo").offset().top + $("#logo").height());
-				//context.moveTo (70, 70);
-				//context.lineTo(50,50);
-				//context.stroke();
-				$('#topLogo').css('z-index','-999');
-				$('#topLogo').show();
-				$('#topLogo').animate({'margin-top': '6%','left': '70%'},
-					{
-						duration:1000,
-						step: function(now){								
-							//$('#myCanvas').slideDown(1000);
-						},
-						complete:function() {
-							$('#information').fadeIn(1000);
-						}
+		$('#filmCrew').arctext({radius:100});
+		$('#about').arctext({radius:80});
+		$('#photo').arctext({radius:100});
+		$('#music').arctext({radius:80});
+		$('#home').arctext({radius:80});
+		$('#services').arctext({radius:80});
+		$('#contact').arctext({radius:80});
+		$('#information').hide();
+		$('#logo').hide();
+		$('#topLogo').hide();
+		$("#topLogo").css({'margin-top': '63%', left: '20%', position:'absolute'});
+		$('#about').css('color','#FF9900');
+		$('#move').css('margin-top','16.3%');
+		$('#myCanvas').css('z-index','-999');
+		$('#myCanvas').css('position','absolute');
+		$('#myCanvas').css('height','100%');
+		$('#myCanvas').css('width','100%');
+		$('#move').animate({left: '-=33.5em', top: '+=10em'}, 1000,function() {
+			$('#move').hide();
+			$('#logo').show();
+			$("#logo").css({top: 380, left: 60, position:'absolute'});
+			xStart = 25 + $("#logo").offset().left + ($('.left').width()/2);
+			
+			$('#topLogo').css('z-index','-999');
+			$('#topLogo').show();
+			growthinterval = setInterval(grow, 10);
+			$('#topLogo').animate({'margin-top': '6%','left': '70%'},
+				{
+					duration:1000,
+					step: function(e){
+					},
+					complete:function() {
+						$('#information').fadeIn(1000);
 					}
-				);
-				$('.aboutusline').css({top: $('#topLogo').height() -25});
-				var margin = parseInt($('#topLogo').css('margin-left').split("px")[0]) + (parseInt($('#topLogo').css('width').split("px")[0]) / 2 ) - 45;
-				$('.aboutusline').css('margin-left',margin);
-				var height = 450 - $('#topLogo').height();
-				$('.aboutusline').css('height',0);
-				$('.aboutusline').css({top: $('#topLogo').height() -25 + height});				
-				$('.aboutusline').css('display','none');
-				$('.aboutusline').animate({'height': height,'top': $('#topLogo').height() -25},400,'linear',function(){
-					$('#topLogo').fadeIn(1000,function() {
-						$('#information').fadeIn(1000);					
-					});
-				});
-		   });
-		   $('a').click(function(e) {
-				e.preventDefault();
-				 var href = $(this).attr('href');
-				 if(href != 'About.html') {
-					$('#information').fadeOut(1000,function(){
-					$("#logo").hide();
-					$("#move").show();
-						/*$('#topLogo').fadeOut(1000,function(){
-							$('.aboutusline').hide();
-							$("#move").animate({left: '+=33.5em', top: '-=10em'},1000,function(){
-								window.location.href = href;
-							});
-						});*/
-                          xCurrent = xEnd;
-                          yCurrent = yEnd;
-                          ungrowInterval = setInterval(ungrow, 10);
-						$('#topLogo').animate({'margin-top': '62%','left': '26%'},1000,function(){
-							$('#topLogo').hide();
-							$("#move").animate({left: '+=33.5em', top: '-=10em'},1000,function(){
-								window.location.href = href;
-							});
+				}
+			);
+		});
+		$('a').click(function(e) {
+			e.preventDefault();
+			 var href = $(this).attr('href');
+			 if(href != 'About.html') {
+				$('#information').fadeOut(1000,function(){
+				$("#logo").hide();
+				$("#move").show();
+					  xCurrent = xEnd;
+					  yCurrent = yEnd;
+					  ungrowInterval = setInterval(ungrow, 10);
+					$('#topLogo').animate({'margin-top': '62%','left': '26%'},1000,function(){
+						$('#myCanvas').hide();
+						$('#topLogo').hide();
+						$("#move").animate({left: '+=33.5em', top: '-=10em'},1000,function(){
+							window.location.href = href;
 						});
 					});
-				 }
-			});
-                           
+				});
+			 }
 		});
+					   
+	});
         
         function line_intersects(p0_x, p0_y, p1_x, p1_y, p2_x, p2_y, p3_x, p3_y) {
             
@@ -268,7 +246,6 @@
                 // Collision detected
                 return true;
             }
-            
             return false; // No collision
         }
     
@@ -288,7 +265,6 @@
             ctx.bezierCurveTo(xStart, ystart, xStart + (xEnd - xStart)/2, ystart + (yEnd - ystart)/2 + pluckAmplitude, xEnd, yEnd);
         }
         
-        console.log(pluckAmplitude);
         if (pluckAmplitude > 0) {
             pluckAmplitude -= 0.5;
         } else if (pluckAmplitude < 0) {
@@ -308,7 +284,6 @@
         ctx.beginPath();
         ctx.moveTo(xStart, ystart);
         
-        console.log(xCurrent, yCurrent);
         if (xEnd == xStart) {
             //Vertical Line
             
@@ -352,8 +327,6 @@
         c.width = c.width;
         ctx.beginPath();
         ctx.moveTo(xStart, ystart);
-        
-        console.log(xCurrent, yCurrent);
         if (xEnd == xStart) {
             //Vertical Line
             if (yCurrent < yEnd) {
@@ -416,7 +389,7 @@
 		<div class="row">
 		<canvas id="myCanvas"></canvas>
 		<div class="left-container" id="logo">
-			<img class="left" src="resources/images/logoweb.png" width="14%" style="font-family:Century Gothic;margin-top:0%"/>
+			<img class="left" src="resources/images/logoweb.png" width="14%" style="font-family:Century Gothic;margin:0%"/>
 			<a href='films.html' class='deg135' style="min-width:7%;"><span id="films">Films</span></a>
 			<a href='thefilmcrew.html' class='deg45' style="min-width:7%;"><span id="filmCrew">The Film Crew</span></a>
 			<a href='services.html' class='deg0' style="min-width:9%;"><span id="services">Services</span></a>
@@ -426,7 +399,6 @@
 			<a href='index.html' class='deg325' style="min-width:12%;"><span id="home">Home</span></a>
 			<a href='About.html' class='deg335' style="min-width:9%;"><span id="about">About Us</span></a>
 		</div>
-			<div class="aboutusline">&nbsp;</div>
 			<div class="col-md-5">
 			<img src="resources/images/Aboutusphoto.png" width="35%" id="topLogo"/>
 			</div>
