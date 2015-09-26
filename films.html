@@ -35,9 +35,9 @@
 			$('#remote').hide();
 			$('#line').hide();
 			$('#remote-imgs').hide();
-			//$('#move0').animate({left: '+=37.8em', top: '-=3.5em'}, 1000,function(){
-				$('#move0').hide();
-				$('#newlogo').show();				
+			$('#move0').hide();
+			$('#move0').animate({left: '+=37.8em', top: '-=3.5em'}, 1000,function(){});
+				$('#newlogo').show();
 				$('#tv').css('margin-left','-20%');
 				$('#tv').show();
 				$('#tv').animate({'margin-left':'20%'},600);
@@ -122,9 +122,27 @@
 								$('#line').hide();
 								$('#newlogo').hide();
 								$('#move0').show();
-								$('#move0').animate({left: '-=37.5em', top: '+=5em'}, 1000,function(){
-									window.location.href = href;
-								});
+								if(href == 'index.html' || href == 'music.html' || href == 'photography.html') {
+									$('#move0').animate({left: '-=38%', top: '+=8.5%'}, 1000,function(){
+										window.location.href = href;
+									});
+								} else if(href == 'contactus.html') {
+									$('#move0').animate({left: '-=68%', top: '+=20%'}, 1000,function(){
+										window.location.href = href;
+									});
+								} else if(href == 'About.html') {
+									$('#move0').animate({left: '-=77.5%', top: '+=28.5%'}, 1000,function(){
+										window.location.href = href;
+									});
+								} else if(href == 'services.html') {
+									$('#move0').animate({left: '-=73%', top: '-=22.5%'}, 1000,function(){
+										window.location.href = href;
+									});
+								} else if(href == 'thefilmcrew.html') {
+									$('#move0').animate({left: '-=27%', top: '-=18%'}, 1000,function(){
+										window.location.href = href;
+									});
+								}
 							});
 						});
 					});
