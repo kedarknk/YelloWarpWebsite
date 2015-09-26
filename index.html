@@ -37,10 +37,10 @@
 			
 			$('a').click(function(e) {
 				e.preventDefault();
+				var href = $(this).attr('href');
 				$('#logo').hide();
 				$("#move").animate({left: '+=0%', top: '+=34%'},0,function(){});
 				$('#move').show();
-				 var href = $(this).attr('href');
 				 if(href == 'music.html' || href == 'photography.html') {
 					window.location.href = href;
 				 } else if(href == 'About.html') {
@@ -48,7 +48,7 @@
 						window.location.href = href;
 					});
 				 } else if(href == 'services.html') {
-					$("#move").animate({left: '-=35%', top: '-=25%'},1000,function(){
+					$("#move").animate({left: '-=35%', top: '-=26%'},1000,function(){
 						window.location.href = href;
 					});
 				 } else if(href == 'thefilmcrew.html') {

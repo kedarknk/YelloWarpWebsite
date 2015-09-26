@@ -197,6 +197,7 @@
 			$('#logo').hide();
 			$('#leftImage').hide();
 			$('#photoId').hide();
+			$('#move').hide();
 			$('#logo').show(0,function(){
 				$('#img7').css({top: 391, left: '50%'});
 				$('#img7').show();
@@ -372,7 +373,33 @@
 										});
 										$('#img3').animate({left: '50%',top: '30%'},500,function(){
 											$('#img3').hide();
-											window.location.href = href;
+											//window.location.href = href;
+											$('#logo').hide();
+											$("#move").animate({left: '+=0%', top: '+=34%'},0,function(){});
+											$('#move').show();
+											 if(href == 'music.html' || href == 'index.html') {
+												window.location.href = href;
+											 } else if(href == 'About.html') {
+												$("#move").animate({left: '-=39%', top: '+=24%'},1000,function(){
+													window.location.href = href;
+												});
+											 } else if(href == 'services.html') {
+												$("#move").animate({left: '-=35%', top: '-=26%'},1000,function(){
+													window.location.href = href;
+												});
+											 } else if(href == 'thefilmcrew.html') {
+												$("#move").animate({left: '+=10%', top: '-=22.5%'},1000,function(){
+													window.location.href = href;
+												});
+											 } else if(href == 'films.html') {
+												$("#move").animate({left: '+=38%', top: '-=4%'},1000,function(){
+													window.location.href = href;
+												});
+											 } else if(href == 'contactus.html') {
+												$("#move").animate({left: '-=29.5%', top: '+=14%'},1000,function(){
+													window.location.href = href;
+												});
+											 }
 										});
 									});
 								});
@@ -384,7 +411,7 @@
 		});
 	</script>
 	<body>
-	<!-- <div id="move" style="position:absolute;width:100%;text-align:left; margin-left:10%;margin-top:50px"><img  src="resources/images/logoweb.png" width="17%"/></div> -->
+	<div id="move" style="position:absolute;width:100%;text-align:center;"><img  src="resources/images/logoweb.png" width="14%"/></div>
 	<div class="outer">
 	
 	<!-- <a href="resources/images/logoweb.png"> --> 
