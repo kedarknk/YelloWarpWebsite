@@ -88,8 +88,8 @@
 		   $('#rightImage').hide();
 		   $('.yellowtree').hide();
 		   $('#rightImage').css({top: '8.6%', left: '55em', position:'absolute'});
-		   //$('#move').animate({left: '+=14.5em', top: '-=12em'}, 1000,function() {
-				$('#move').hide();
+		   $('#move').hide();
+		   $('#move').animate({left: '+=14.5em', top: '-=12em'}, 1000,function() {});
 				$('#logo').show();
 				$("#logo").css({top: '10.6%', left: '52em', position:'absolute'});
 				xStart = 20 + $("#logo").offset().left + $("#logo").width()/2;
@@ -169,9 +169,27 @@
 									$('#myCanvas').hide();
 									$('#logo').hide();
 									$('#move').show();
-									$('#move').animate({left: '-=14.5em', top: '+=12em'}, 1000,function(){
-										window.location.href = href;
-									});
+									if(href == 'index.html' || href == 'music.html' || href == 'photography.html') {
+										$('#move').animate({left: '-=14%', top: '+=28.5%'}, 1000,function(){
+											window.location.href = href;
+										});
+									} else if(href == 'films.html') {
+										$('#move').animate({left: '+=24%', top: '+=24%'}, 1000,function(){
+											window.location.href = href;
+										});
+									} else if(href == 'contactus.html') {
+										$('#move').animate({left: '-=43.5%', top: '+=40%'}, 1000,function(){
+											window.location.href = href;
+										});
+									} else if(href == 'About.html') {
+										$('#move').animate({left: '-=53.5%', top: '+=52.5%'}, 1000,function(){
+											window.location.href = href;
+										});
+									} else if(href == 'services.html') {
+										$('#move').animate({left: '-=50%', top: '+=0%'}, 1000,function(){
+											window.location.href = href;
+										});
+									}
 								}
 							});
 								/*1000,function(){
