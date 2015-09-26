@@ -1,7 +1,11 @@
 <html>
 	<head>
         <link rel="stylesheet" type="text/css" href="resources/css/yellowarp.css">
+		<link rel="stylesheet" href="resources/css/bootstrap.min.css">
 	<style>
+		a:hover {
+			color: #FF9900;
+		}
         .bottom-image{
             margin-top:0%;
         }
@@ -25,7 +29,6 @@
 				text-align:center;
 			}
          </style>
-		<link rel="stylesheet" href="resources/css/bootstrap.min.css">
 		<script src="resources/js/jquery.min.js"></script>
 <!--		<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>-->
 		<script type="text/javascript" src="resources/js/jquery.arctext.js"></script>
@@ -179,11 +182,10 @@
 			$('#vline').hide();
 		   $('#services').css('color','#FF9900');
 		   $('#move').css('margin-top','16.5%');
-		   //$('#myCanvas').hide();
-		   //$('#move').animate({left: '-=33.5em', top: '-=13.5em'}, 1500,function() {
+		   $('#move').hide();
+		   $('#move').animate({left: '-=33.5em', top: '-=13.5em'}, 1500,function() {});
 				$("#logo").css({top: 50, left: 50, position:'absolute'});
 				$('#information').fadeIn(1000);
-				$('#move').hide();
 				$('#logo').show();
 				$('#logo').css('z-index',999);
 				$('#serviceImg').css('position','absolute');
@@ -227,12 +229,23 @@
 									 $('#serviceImg').hide();
 									 $('#logo').hide();
 									 $('#move').show();
-									 $('#move').animate({left: '+=33.5em', top: '+=13.2em'}, 1000,function() {
-										$('#move').hide();
-										$("#logo").css({top: 206, left: '36em', position:'absolute'});
-										$('#logo').show();
-										window.location.href = href;
-									});
+									 if(href == 'index.html' || href == 'music.html' || href == 'photography.html') {
+										 $('#move').animate({left: '+=34.5%', top: '+=31.5%'}, 1000,function() {
+											window.location.href = href;
+										});
+									} else if(href == 'thefilmcrew.html') {
+										$('#move').animate({left: '+=45%', top: '+=5%'}, 1000,function() {
+											window.location.href = href;
+										});
+									} else if(href == 'films.html') {
+										$('#move').animate({left: '+=72%', top: '+=24%'}, 1000,function() {
+											window.location.href = href;
+										});
+									} else if(href == 'contactus.html') {
+										$('#move').animate({left: '+=5%', top: '+=44%'}, 1000,function() {
+											window.location.href = href;
+										});
+									}
 								}
 							}
 						);
