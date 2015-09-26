@@ -19,15 +19,15 @@
 			$('#filmCrew').arctext({radius:100});
 			$('#logo').hide();
 		   $('#contact').css('color','#FF9900');
-		   $('#move').animate({left: '-=28.5%', top: '+=7em'}, 1000,function() {
+		   $('#move').hide();
+		   $('#move').animate({left: '-=28.5%', top: '+=7em'}, 1000,function() {});
 				$('#information').css('margin-top','-25%');
 				$('#information').show();
 				$('#information').animate({'margin-top': '+=28%'}, 500,function(){});
-				$('#move').hide();
 				$('#logo').show();
 				$("#logo").css({top: '50%', left: '9em', position:'absolute'});
 				$('#contact').show();
-		   });
+		   //});
 		   
 		   $('a').click(function(e) {
 				e.preventDefault();

@@ -237,11 +237,23 @@
 						$('#myCanvas').hide();
 						$('#topLogo').hide();
 						if(href == 'index.html' || href == 'music.html' || href == 'photography.html') {
-							$("#move").animate({left: '+=33.5em', top: '-=10em'},1000,function(){
+							$("#move").animate({left: '+=39.5%', top: '-=20%'},1000,function(){
 								window.location.href = href;
 							});
 						} else if(href == 'services.html') {
 							$("#move").animate({left: '+=4%', top: '-=51%'},1000,function(){
+								window.location.href = href;
+							});
+						} else if(href == 'thefilmcrew.html') {
+							$("#move").animate({left: '+=51%', top: '-=47%'},1000,function(){
+								window.location.href = href;
+							});
+						} else if(href == 'films.html') {
+							$("#move").animate({left: '+=77%', top: '-=28%'},1000,function(){
+								window.location.href = href;
+							});
+						} else if(href == 'contactus.html') {
+							$("#move").animate({left: '+=10%', top: '-=8.5%'},1000,function(){
 								window.location.href = href;
 							});
 						}
