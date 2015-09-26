@@ -13,32 +13,8 @@
 		 $(document).ready(function() {
 		 var me = this;
 			$('#logo').hide();
+			$('#move').hide();
 		   $('#home').css('color','#FF9900');
-		   /*$('#move').hide();
-		   $('#move').fadeIn(1500);
-			$('#move').animate({left: '+=33em', top: '+=15em'}, 1000);
-		   $('#move').animate({left: '-=33em', top: '+=15em'}, 1000);
-		   $('#move').animate({left: '-=40em', top: '-=15em'}, 1000);
-		   $('#move').animate({left: '+=38em', top: '-=14em'}, 1000);
-		   $('#move').animate({left: '0em', top: '+=15em'}, 1000,function() {
-				$('#logo').css('display','inline-block');
-				$('#move').css('display','none');
-		   });*/
-		   
-		   /*setTimeout(function(){
-				$('#logo').foggy();
-			   $('#logo').fadeTo(500,1,function(){
-					setTimeout(function(){  $('#logo').foggy(false);}, 1000);
-					$('#photo').arctext({radius:110});
-					$('#about').arctext({radius:80});
-					$('#music').arctext({radius:80});
-					$('#contact').arctext({radius:80});
-					$('#home').arctext({radius:80});
-					$('#services').arctext({radius:80});
-					$('#films').arctext({radius:80});
-					$('#filmCrew').arctext({radius:100});
-			   });
-		   },1500);*/
 		   i=20;
 		   setTimeout(function() {
 					$('#logo').fadeIn(1000,function() {
@@ -58,10 +34,41 @@
 			if(i == 0)
 				clearInterval(sI);
 			},120);
+			
+			$('a').click(function(e) {
+				e.preventDefault();
+				$('#logo').hide();
+				$("#move").animate({left: '+=0%', top: '+=34%'},0,function(){});
+				$('#move').show();
+				 var href = $(this).attr('href');
+				 if(href == 'music.html' || href == 'photography.html') {
+					window.location.href = href;
+				 } else if(href == 'About.html') {
+					$("#move").animate({left: '-=39%', top: '+=24%'},1000,function(){
+						window.location.href = href;
+					});
+				 } else if(href == 'services.html') {
+					$("#move").animate({left: '-=35%', top: '-=25%'},1000,function(){
+						window.location.href = href;
+					});
+				 } else if(href == 'thefilmcrew.html') {
+					$("#move").animate({left: '+=10%', top: '-=22.5%'},1000,function(){
+						window.location.href = href;
+					});
+				 } else if(href == 'films.html') {
+					$("#move").animate({left: '+=38%', top: '-=4%'},1000,function(){
+						window.location.href = href;
+					});
+				 } else if(href == 'contactus.html') {
+					$("#move").animate({left: '-=29.5%', top: '+=14%'},1000,function(){
+						window.location.href = href;
+					});
+				 }
+			});
 		});
 	</script>
 	<body>
-	<!--<div id="move" style="position:absolute;width:100%;text-align:center;"><img  src="resources/images/logoweb.png" width="17%"/></div> -->
+	<div id="move" style="position:absolute;width:100%;text-align:center;"><img  src="resources/images/logoweb.png" width="14%"/></div>
 	<div class="circle-container" id="logo" style="font-family:Century Gothic;">
 		<img class="centered" src="resources/images/logoweb.png" width="14%"/>
 			<a href='#' class='center'></a>
