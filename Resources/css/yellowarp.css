@@ -226,11 +226,11 @@ p{
 	
 	.deg335 { transform: rotate(312deg) translate(4.7em) rotate(-279deg) }
 	.deg325 { transform: rotate(269deg) translate(5.6em) rotate(-275deg) }
-	.deg315 { transform:rotate(220deg) translate(6.6em) rotate(-264deg) }
-	.deg225 { transform:rotate(189deg) translate(7.6em) rotate(-272deg) }
-	.deg150 {transform:rotate(-34deg) translate(-9.2em) rotate(-97deg)}
+	.deg315 { transform:rotate(220deg) translate(6.4em) rotate(-264deg) }
+	.deg225 { transform:rotate(189deg) translate(7.4em) rotate(-272deg) }
+	.deg150 {transform:rotate(-34deg) translate(-8.7em) rotate(-97deg)}
 	.deg135 { transform: rotate(-68deg) translate(-8.6em) rotate(-116deg) }
-	.deg45 { transform: rotate(54deg) translate(6.8em) rotate(73deg)}
+	.deg45 { transform: rotate(54deg) translate(6.6em) rotate(73deg)}
 	.deg0 { transform: rotate(16deg) translate(5.2em) rotate(60deg)}
 	
 	.imgdeg0 { transform: rotate(11deg) translate(12.2em) rotate(-11deg) }
