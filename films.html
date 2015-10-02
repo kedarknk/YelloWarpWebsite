@@ -51,6 +51,12 @@
 				});
 		  // });
 
+			$('#remote-imgs').children().children('img').click(function(e){
+				var html = "<iframe id='player' width='56%' style='display:block;margin:4% 23% 3% 25%;position:relative;min-height:210px' src=http://www.youtube.com/embed/XGSy3_Czz8k?autoplay=1 allowfullscreen></iframe>";
+				$('#imgDiv').empty();
+				$('#imgDiv').html(html);
+			});
+			
 			$('#remote-imgs').children().children('img').hover(function(e){
 			
 				var title1='Major Lazer & DJ Snake- Lean On (feat.MO) <br>[ Cinematography, Art Direction & SetDesign and  Line Production ] ';
@@ -105,7 +111,8 @@
 				$('#titleDiv').show();
 			},function(e){
 				//mouse exit
-				$('#imgDiv').empty();
+				if($('#imgDiv').html().indexOf('iframe') == -1)
+					$('#imgDiv').empty();
 				$('#titleDiv').empty();
 				$('#titleDiv').hide();
 			});
