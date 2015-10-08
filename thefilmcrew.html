@@ -89,9 +89,9 @@
 		   $('.yellowtree').hide();
 		   $('#rightImage').css({top: '8.6%', left: '55em', position:'absolute'});
 		   $('#move').hide();
-		   $('#move').animate({left: '+=14.5em', top: '-=12em'}, 1000,function() {});
+		   $('#move').animate({left: '+=54%', top: '+=10%'}, 1000,function() {});
 				$('#logo').show();
-				$("#logo").css({top: '10.6%', left: '52em', position:'absolute'});
+				$("#logo").css({top: '10.6%', left: '60%', position:'absolute'});
 				xStart = 20 + $("#logo").offset().left + $("#logo").width()/2;
 				ystart = $("#logo").offset().top +$("#logo").height()/2;
                               if (xEnd == xStart) {
@@ -157,7 +157,7 @@
                              ungrowInterval = setInterval(ungrow, 10);
 							 $('#logo').css('z-index',999);
 							 $('#move').css('z-index',999);
-							$('#rightImage').animate({left: '-=24.5%', top: '-=43%'},{
+							$('#rightImage').animate({left: $('#logo').offset().left, top: '-=43%'},{
 								duration:1000,
 								step: function(e) {
 									if(e <= 3)
@@ -182,24 +182,16 @@
 											window.location.href = href;
 										});
 									} else if(href == 'About.html') {
-										$('#move').animate({left: '-=53.5%', top: '+=52.5%'}, 1000,function(){
+										$('#move').animate({left: '-=48%', top: '+=53.5%'}, 1000,function(){
 											window.location.href = href;
 										});
 									} else if(href == 'services.html') {
-										$('#move').animate({left: '-=50%', top: '+=0%'}, 1000,function(){
+										$('#move').animate({left: '-=45%', top: '-=4%'}, 1000,function(){
 											window.location.href = href;
 										});
 									}
 								}
 							});
-								/*1000,function(){
-								$('#rightImage').hide();
-								$('#logo').hide();
-								$('#move').show();
-								$('#move').animate({left: '-=14.5em', top: '+=12em'}, 1000,function(){
-									//window.location.href = href;
-								});
-							});*/
 						}
 					});
 				 }
@@ -307,60 +299,6 @@
         ctx.beginPath();
         ctx.moveTo(xStart, ystart);
         
-        /*console.log(xCurrent, yCurrent);
-        if (xEnd == xStart) {
-            //Vertical Line
-            if (yCurrent < yEnd) {
-                yCurrent = yCurrent + 5;
-            } else {
-                yCurrent = yCurrent - 5;
-            }
-            xCurrent = xStart;
-            ctx.lineTo(xCurrent, yCurrent);
-        } else if (yEnd == ystart) {
-            //Horizontal Line
-            if (xCurrent < xEnd) {
-                xCurrent = xCurrent + 5;
-            } else {
-                xCurrent = xCurrent - 5;
-            }
-            yCurrent = ystart;
-            ctx.lineTo(xCurrent, yCurrent);
-        } else {
-            //All other lines
-            if (xStart < xEnd) {
-                xCurrent = xCurrent + 5;
-                yCurrent = ystart + (xCurrent - xStart)*slope;
-            } else if (xStart > xEnd) {
-                xCurrent = xCurrent - 5;
-                yCurrent = ystart + (xCurrent - xStart)*slope;
-            }
-            ctx.lineTo(xCurrent, yCurrent);
-        }
-        
-        //TODO: Needs cleanup.
-        if (yEnd < ystart) {
-            if (yCurrent <= yEnd) {
-                isGrown = true;
-                clearInterval(growthinterval);
-            }
-        } else if (yEnd > ystart) {
-            if (yCurrent >= yEnd) {
-                isGrown = true;
-                clearInterval(growthinterval);
-            }
-        } else if (xEnd < xStart) {
-            if (xCurrent <= xEnd) {
-                isGrown = true;
-                clearInterval(growthinterval);
-            }
-        } else if (xEnd > xStart) {
-            if (xCurrent >= xEnd) {
-                isGrown = true;
-                clearInterval(growthinterval);
-            }
-        }*/
-        
         xCurrent = 20 + $("#rightImage").offset().left + $("#rightImage").width()/2;
         yCurrent = $("#rightImage").offset().top +$("#rightImage").height()/2;
         ctx.lineTo(xCurrent, yCurrent);
@@ -371,7 +309,7 @@
 
 	</script>
 	<body>
-	<div id="move" style="margin-top:16.3%;position:absolute;width:100%;text-align:center;"><img  src="resources/images/logoweb.png" width="14%"/></div>
+	<div id="move" style="position:absolute;width:100%;"><img  src="resources/images/logoweb.png" width="14%"/></div>
 			<div class="row">
                 <canvas id="myCanvas" style="z-index:-999"></canvas>
 				<div class="left-container-crew" id="logo" style="width:14%;">
