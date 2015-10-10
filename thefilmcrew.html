@@ -102,9 +102,9 @@
 		   $("#line").hide();
 		   $('#rightImage').hide();
 		   $('.yellowtree').hide();
-		   $('#rightImage').css({top: '8.6%', left: '55em', position:'absolute'});
+		   $('#rightImage').css({top: '8.6%', left: '60%', position:'absolute'});
 		   $('#move').hide();
-		   $('#move').animate({left: '+=59.5%', top: '+=7%'}, 1000,function() {});
+		   $('#move').animate({left: '+=59.5%', top: '+=8%'}, 1000,function() {});
 				$('#logo').show();
 				$("#logo").css({top: '10.6%', left: '60%', position:'absolute'});
 				xStart = 20 + $("#logo").offset().left + $("#logo").width()/2;
@@ -253,8 +253,6 @@
             //All other lines
             ctx.bezierCurveTo(xStart, ystart, xStart + (xEnd - xStart)/2, ystart + (yEnd - ystart)/2 + pluckAmplitude, xEnd, yEnd);
         }
-        
-        console.log(pluckAmplitude);
         if (pluckAmplitude > 0) {
             pluckAmplitude -= 0.5;
         } else if (pluckAmplitude < 0) {
@@ -273,8 +271,7 @@
         c.width = c.width;
         ctx.beginPath();
         ctx.moveTo(xStart, ystart);
-        
-        console.log(xCurrent, yCurrent);
+
         if (xEnd == xStart) {
             //Vertical Line
             
