@@ -3,6 +3,19 @@
         <link rel="stylesheet" type="text/css" href="resources/css/yellowarp.css">
 		<link rel="stylesheet" href="resources/css/bootstrap.min.css">
 	<style>
+		.rotate-div{
+			-webkit-transform: rotate(360deg);  /* Chrome, Safari 3.1+ */
+		    -moz-transform: rotate(360deg);  /* Firefox 3.5-15 */
+		    -ms-transform: rotate(360deg);  /* IE 9 */
+		    -o-transform: rotate(360deg);  /* Opera 10.50-12.00 */
+		    transform: rotate(360deg);  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.50+ */
+		}
+		.div-transition{
+			-webkit-transition: all 2s ease-out;  /* Chrome 1-25, Safari 3.2+ */
+     		-moz-transition: all 2s ease-out;  /* Firefox 4-15 */
+      		-o-transition: all 2s ease-out;  /* Opera 10.50–12.00 */
+          	transition: all 2s ease-out;  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.50+ */
+		}
 		.left {
 			margin-left:61.4px;
 		}
@@ -186,7 +199,7 @@
 		   $('#services').css('color','#FF9900');
 		   //$('#move').css('margin-top','16.5%');
 		   $('#move').hide();
-		   $('#move').animate({left: '-=34%', top: '+=5%'}, 1500,function() {});
+		   $('#move').animate({left: '-=43%', top: '+=5%'}, 1500,function() {});
 				$("#logo").css({top: 50, left: 50, position:'absolute'});
 				$('#information').fadeIn(1000);
 				$('#logo').show();
@@ -236,22 +249,27 @@
 										 $('#move').animate({left: '+=34.5%', top: '+=31.5%'}, 1000,function() {
 											window.location.href = href;
 										});
+										$("#links").addClass('rotate-div div-transition');
 									} else if(href == 'thefilmcrew.html') {
 										$('#move').animate({left: '+=47%', top: '+=5%'}, 1000,function() {
 											window.location.href = href;
 										});
+										$("#links").addClass('rotate-div div-transition');
 									} else if(href == 'films.html') {
 										$('#move').animate({left: '+=72%', top: '+=24%'}, 1000,function() {
 											window.location.href = href;
 										});
+										$("#links").addClass('rotate-div div-transition');
 									} else if(href == 'contactus.html') {
 										$('#move').animate({left: '+=5%', top: '+=44%'}, 1000,function() {
 											window.location.href = href;
 										});
+										$("#links").addClass('rotate-div div-transition');
 									} else if(href == 'About.html') {
 										$('#move').animate({left: '-=4%', top: '+=58%'}, 1000,function() {
 											window.location.href = href;
 										});
+										$("#links").addClass('rotate-div div-transition');
 									}
 								}
 							}
@@ -425,7 +443,9 @@
     }
 	</script>
 	<body>
-	<div id="move" style="position:absolute;width:100%;text-align:center;"><img  src="resources/images/logoweb.png" width="14%"/></div>
+	<div id="move" style="position:absolute;width:100%;text-align:center;"><img  src="resources/images/logoweb.png" width="14%" style="position:absolute;margin-left:1%;margin-top:1.5%"/>
+	<img  id="links" style="position:absolute;z-index:-999;" src="resources/images/homemenu.png" width="16%"/>
+	</div>
 		<div class="row"><canvas id="myCanvas"></canvas>
 		<div class="left-container" id="logo" style="width:100%;">
 			<img class="left" src="resources/images/logoweb.png" width="14%" style="font-family:Century Gothic;margin-top:0%;"/>
