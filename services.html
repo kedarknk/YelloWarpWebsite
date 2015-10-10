@@ -237,7 +237,7 @@
 						  xCurrent = xEnd;
 						  yCurrent = yEnd;
 						  growthinterval = setInterval(grow, 10);
-						$('#serviceImg').animate({'top': $("#logo").offset().top},
+						$('#serviceImg').animate({'top': $("#logo").offset().top-40},
 						{
 								duration:1000,
 								complete: function(now){
@@ -246,12 +246,12 @@
 									 $('#logo').hide();
 									 $('#move').show();
 									 if(href == 'index.html' || href == 'music.html' || href == 'photography.html') {
-										 $('#move').animate({left: '+=34.5%', top: '+=31.5%'}, 1000,function() {
+										 $('#move').animate({left: '+=34.5%', top: '+=30%'}, 1000,function() {
 											window.location.href = href;
 										});
 										$("#links").addClass('rotate-div div-transition');
 									} else if(href == 'thefilmcrew.html') {
-										$('#move').animate({left: '+=47%', top: '+=5%'}, 1000,function() {
+										$('#move').animate({left: '+=52%', top: '+=5%'}, 1000,function() {
 											window.location.href = href;
 										});
 										$("#links").addClass('rotate-div div-transition');
@@ -261,7 +261,7 @@
 										});
 										$("#links").addClass('rotate-div div-transition');
 									} else if(href == 'contactus.html') {
-										$('#move').animate({left: '+=5%', top: '+=44%'}, 1000,function() {
+										$('#move').animate({left: '+=5.5%', top: '+=42%'}, 1000,function() {
 											window.location.href = href;
 										});
 										$("#links").addClass('rotate-div div-transition');
