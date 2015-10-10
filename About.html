@@ -5,6 +5,19 @@
 		<link rel="stylesheet" type="text/css" href="resources/css/yellowarp.css">
 		<script type="text/javascript" src="resources/js/jquery.arctext.js"></script> 
 	<style>
+		.rotate-div{
+			-webkit-transform: rotate(360deg);  /* Chrome, Safari 3.1+ */
+		    -moz-transform: rotate(360deg);  /* Firefox 3.5-15 */
+		    -ms-transform: rotate(360deg);  /* IE 9 */
+		    -o-transform: rotate(360deg);  /* Opera 10.50-12.00 */
+		    transform: rotate(360deg);  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.50+ */
+		}
+		.div-transition{
+			-webkit-transition: all 2s ease-out;  /* Chrome 1-25, Safari 3.2+ */
+     		-moz-transition: all 2s ease-out;  /* Firefox 4-15 */
+      		-o-transition: all 2s ease-out;  /* Opera 10.50–12.00 */
+          	transition: all 2s ease-out;  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.50+ */
+		}
 		.left-container a {
 			left:7.3%;
 		}
@@ -187,7 +200,7 @@
 		$('#myCanvas').css('height','100%');
 		$('#myCanvas').css('width','100%');
 		$('#move').hide();
-		$('#move').animate({left: '-=38%', top: '+=64%'}, 1000,function() {});
+		$('#move').animate({left: '-=45.5%', top: '+=62%'}, 1000,function() {});
 			$('#logo').show();
 			$("#logo").css({top: '64%', left: '5%', position:'absolute'});
 			//$("#move").css({top: '+=10em', left: '-=33.5em', position:'absolute'});
@@ -229,6 +242,7 @@
 			 if(href != 'About.html') {
 				$('#information').fadeOut(1000,function(){
 				$("#logo").hide();
+				$("#move").css('z-index',9999);
 				$("#move").show();
 					  xCurrent = xEnd;
 					  yCurrent = yEnd;
@@ -237,25 +251,30 @@
 						$('#myCanvas').hide();
 						$('#topLogo').hide();
 						if(href == 'index.html' || href == 'music.html' || href == 'photography.html') {
-							$("#move").animate({left: '+=39.5%', top: '-=20%'},1000,function(){
+							$("#move").animate({left: '+=39%', top: '-=25%'},1000,function(){
 								window.location.href = href;
 							});
+							$("#links").addClass('rotate-div div-transition');
 						} else if(href == 'services.html') {
 							$("#move").animate({left: '+=4%', top: '-=58%'},1000,function(){
 								window.location.href = href;
 							});
+							$("#links").addClass('rotate-div div-transition');
 						} else if(href == 'thefilmcrew.html') {
 							$("#move").animate({left: '+=51%', top: '-=47%'},1000,function(){
 								window.location.href = href;
 							});
+							$("#links").addClass('rotate-div div-transition');
 						} else if(href == 'films.html') {
 							$("#move").animate({left: '+=77%', top: '-=28%'},1000,function(){
 								window.location.href = href;
 							});
+							$("#links").addClass('rotate-div div-transition');
 						} else if(href == 'contactus.html') {
 							$("#move").animate({left: '+=9%', top: '-=15%'},800,function(){
 								window.location.href = href;
 							});
+							$("#links").addClass('rotate-div div-transition');
 						}
 					});
 				});
@@ -424,7 +443,9 @@
     }
 	</script>
 	<body>
-	<div id="move" style="position:absolute;width:100%;text-align:center;"><img  src="resources/images/logoweb.png" width="14%"/></div>
+	<div id="move" style="position:absolute;width:100%;text-align:center;"><img  src="resources/images/logoweb.png" width="14%" style="z-index:999;position:absolute;margin-left:0.9%;margin-top:1%;"/>
+	<img  id="links" style="position:absolute;z-index:-999;" src="resources/images/homemenu.png" width="16%"/>
+	</div>
 		<div class="row">
 		<canvas id="myCanvas"></canvas>
 		<div class="left-container" id="logo">
