@@ -63,7 +63,6 @@
 					});
 				});
 		  // });
-
 			$('#remote-imgs').children().children('img').click(function(e){
 				var html = "<iframe id='player' width='56%' style='display:block;margin:4% 23% 3% 25%;position:relative;min-height:210px' src=http://www.youtube.com/embed/XGSy3_Czz8k?autoplay=1 allowfullscreen></iframe>";
 				$('#imgDiv').empty();
@@ -88,7 +87,7 @@
 				var title14='Just Jeans TVC Australia [Music Composition & Production, Audio Post]';
 				var titleHtml;
 				//mouse enter
-				var html = "<img src = '"+e.target.src+"'' width='56%' style='display:block;margin:4% 23% 3% 25%;position:relative;min-height:210px'>";
+				var html = "<img src = '"+e.target.src+"'' height= '25%'' width='55.5%' style='display:block;margin:4% 23% 4% 25%;position:relative;min-height:210px; max-height: 600px'>";
 				$('#imgDiv').empty();
 				$('#imgDiv').html(html);
 				var arr = e.target.src.split('/');
@@ -191,22 +190,51 @@
 					<div class="col-md-6">
 						<div style="position:relative">
 							<div class="col-md-9" style="margin-top:20%" id="remote-imgs">
-								<div style="display:inline-block;width:50%;position:relative;margin-bottom:20px;"><img src="resources/images/actual1.png" height="35px" width="80%" style="max-height=35px;;min-height:35px;margin: 5% 8%;"></div>
-								<div style="display:inline-block;width:50%;float:right;margin-bottom:20px;"><img src="resources/images/actual2.png" height="35px" width="80%" style="max-height=35px;;min-height:35px;margin: 5% 8%;"></div>
-								<div style="display:inline-block;width:50%;float:right;"><img src="resources/images/actual4.png" height="35px" width="80%" style="max-height=35px;;min-height:35px;margin: 5% 8%;"></div>
-								<div style="display:inline-block;width:50%;float:right;margin-bottom:17px;"><img src="resources/images/actual3.png" height="35px" width="80%" style="max-height=35px;;min-height:35px;margin: 5% 8%;"></div>
-								<div style="display:inline-block;width:50%;float:right;"><img src="resources/images/actual6.png" height="35px" width="80%" style="max-height=35px;;min-height:35px;margin: 5% 8%;"></div>
-								<div style="display:inline-block;width:50%;float:right;margin-bottom:8px;"><img src="resources/images/actual5.png" height="35px" width="80%" style="max-height=35px;;min-height:35px;margin: 5% 8%;"></div>
-								<div style="display:inline-block;width:50%;float:right;"><img src="resources/images/actual8.png" height="35px" width="80%" style="max-height=35px;;min-height:35px;margin: 5% 8%;"></div>
-								<div style="display:inline-block;width:50%;float:right;margin-bottom:14px;"><img src="resources/images/actual7.png" height="35px" width="80%" style="max-height=35px;min-height:35px;margin: 5% 8%;"></div>
-								<div style="display:inline-block;width:50%;float:right;"><img src="resources/images/actual9.png" height="35px" width="80%" style="max-height=35px;min-height:35px;margin: 5% 8%;"></div>
-								<div style="display:inline-block;width:50%;float:right;"><img src="resources/images/actual9.png" height="35px" width="80%" style="max-height=35px;min-height:35px;margin: 5% 8%;"></div>
-								<div style="display:inline-block;width:50%;float:right;margin-top:13px;"><img src="resources/images/actual12.png" height="35px" width="80%" style="max-height=35px;min-height:35px;margin: 5% 8%;"></div>
-								<div style="display:inline-block;width:50%;float:right;margin-top:13px;"><img src="resources/images/actual11.png" height="35px" width="80%" style="max-height=35px;min-height:35px;margin: 5% 8%;"></div>
-								<div style="display:inline-block;width:50%;float:right;"><img src="resources/images/actual14.png" height="35px" width="80%" style="max-height=35px;min-height:35px;margin: 5% 8%;"></div>
-								<div style="display:inline-block;width:50%;float:right;"><img src="resources/images/actual13.png" height="35px" width="80%" style="max-height=35px;min-height:35px;margin: 5% 8%;"></div>
+								<div style="display:inline-block;width:50%;position:relative;/*margin-bottom:20px;*/">
+									<img src="resources/images/actual1.png" height="6%" width="80%" style="max-height=45px;min-height:35px;max-height:35px;margin: 5% 8%;">
+								</div>
+								<div style="display:inline-block;width:50%;float:right;/*margin-bottom:20px;*/">
+									<img src="resources/images/actual2.png" height="6%" width="80%" style="min-height:35px;max-height:35px;margin: 5% 8%;">
+								</div>
+								<div style="display:inline-block;width:50%;float:right;">
+									<img src="resources/images/actual4.png" height="6%" width="80%" style="min-height:35px;max-height:35px;margin: 5% 8%;">
+								</div>
+								<div style="display:inline-block;width:50%;float:right;/*margin-bottom:17px;*/">
+									<img src="resources/images/actual3.png" height="6%" width="80%" 
+									style="max-height:35px;min-height:35px;margin: 5% 8%;">
+								</div>
+								<div style="display:inline-block;width:50%;float:right;">
+									<img src="resources/images/actual6.png" height="6%" width="80%" style="max-height:35px;min-height:35px;margin: 2.5% 8%;">
+								</div>
+								<div style="display:inline-block;width:50%;float:right;/*margin-bottom:8px;*/">
+									<img src="resources/images/actual5.png" height="6%" width="80%" style="max-height:35px;min-height:35px;margin: 5% 8%;">
+								</div>
+								<div style="display:inline-block;width:50%;float:right;">
+									<img src="resources/images/actual8.png" height="6%" width="80%" style="max-height:35px;min-height:35px;margin: 5% 8%;">
+								</div>
+								<div style="display:inline-block;width:50%;float:right;/*margin-bottom:14px;*/">
+									<img src="resources/images/actual7.png" height="6%" width="80%" style="max-height:35px;min-height:35px;margin: 5% 8%;">
+								</div>
+								<div style="display:inline-block;width:50%;float:right;">
+									<img src="resources/images/actual9.png" height="6%" width="80%" style="max-height:35px;min-height:35px;margin: 5% 8%;">
+								</div>
+								<div style="display:inline-block;width:50%;float:right;">
+									<img src="resources/images/actual9.png" height="6%" width="80%" style="max-height:35px;min-height:35px;margin: 5% 8%;">
+								</div>
+								<div style="display:inline-block;width:50%;float:right;/*margin-top:13px;*/">
+									<img src="resources/images/actual12.png" height="6%" width="80%" style="max-height:35px;min-height:35px;margin: 5% 8%;">
+								</div>
+								<div style="display:inline-block;width:50%;float:right;/*margin-top:13px;*/">
+									<img src="resources/images/actual11.png" height="6%" width="80%" style="max-height:35px;min-height:35px;margin: 5% 8%;">
+								</div>
+								<div style="display:inline-block;width:50%;float:right;">
+									<img src="resources/images/actual14.png" height="6%" width="80%" style="max-height:35px;min-height:35px;margin: 5% 8%;">
+								</div>
+								<div style="display:inline-block;width:50%;float:right;">
+									<img src="resources/images/actual13.png" height="6%" width="80%" style="max-height:35px;min-height:35px;margin: 5% 8%;">
+								</div>
 							</div>
-							<img src="resources/images/FilmsRemote.png" id="remote" width="80%" style="display:block;margin:0 auto;position:absolute;z-index:-99">
+							<img src="resources/images/FilmsRemote1.png" id="remote" width="80%" style="display:block;margin:0 auto;position:absolute;z-index:-99">
 						</div>
 						<div id="line" style="margin-top:80%;position:absolute;margin-left: 100%;width: 50%;background-color:#636363;height:1px;z-index:-999">&nbsp;</div>
 					</div>
